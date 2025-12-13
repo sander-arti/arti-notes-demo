@@ -1,8 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { FolderProvider } from '@/contexts/FolderContext';
 import { AdminProvider } from '@/contexts/AdminContext';
+import { DemoUserProvider } from '@/contexts/DemoUserContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import ProtectedAdminRoute from '@/components/admin/ProtectedAdminRoute';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -20,9 +22,13 @@ import PricingPage from './pages/PricingPage';
 import EnterprisePage from './pages/EnterprisePage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import AboutPage from './pages/AboutPage';
-import SettingsPage from './pages/SettingsPage';
+import SettingsPage from './pages/settings/SettingsPage';
 import DocsPage from './pages/DocsPage';
 import ContactPage from './pages/ContactPage';
+import TemplatesPage from './pages/TemplatesPage';
+import SupportPage from './pages/SupportPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 
 function AppRoutes() {
   const location = useLocation();
@@ -63,6 +69,11 @@ function AppRoutes() {
           <Route path="about" element={<AboutPage />} />
           <Route path="docs" element={<DocsPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="templates" element={<TemplatesPage />} />
+          <Route path="organization" element={<Navigate to="/settings?tab=team" replace />} />
+          <Route path="support" element={<SupportPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="terms" element={<TermsPage />} />
         </Route>
       </Routes>
     </AnimatePresence>
@@ -71,15 +82,19 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <FolderProvider>
-          <AdminProvider>
-            <ScrollToTop />
-            <AppRoutes />
-          </AdminProvider>
-        </FolderProvider>
-      </AuthProvider>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AuthProvider>
+          <FolderProvider>
+            <AdminProvider>
+              <DemoUserProvider>
+                <ScrollToTop />
+                <AppRoutes />
+              </DemoUserProvider>
+            </AdminProvider>
+          </FolderProvider>
+        </AuthProvider>
+      </Router>
+    </ThemeProvider>
   );
 }

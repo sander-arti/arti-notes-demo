@@ -1,3 +1,13 @@
+interface MinutesSection {
+  title: string;
+  content: string;
+}
+
+interface MeetingMinutes {
+  sections: MinutesSection[];
+  generatedAt: string;
+}
+
 interface MockMeetingDetail {
   id: string;
   meeting: {
@@ -24,6 +34,7 @@ interface MockMeetingDetail {
     name: string;
     email?: string;
   }>;
+  minutes?: MeetingMinutes;
 }
 
 export const mockMeetingDetails: Record<string, MockMeetingDetail> = {
@@ -81,7 +92,44 @@ export const mockMeetingDetails: Record<string, MockMeetingDetail> = {
       { id: 'p1', name: 'Kari Nordmann', email: 'kari@selskap.no' },
       { id: 'p2', name: 'Ole Hansen', email: 'ole@selskap.no' },
       { id: 'p3', name: 'Lisa Johansen', email: 'lisa@selskap.no' }
-    ]
+    ],
+    minutes: {
+      generatedAt: new Date('2024-12-02T15:30:00').toISOString(),
+      sections: [
+        {
+          title: 'Møtets formål',
+          content: 'Gjennomgang og godkjenning av budsjettforslaget for 2025, med fokus på vekststrategi og investeringsplaner.'
+        },
+        {
+          title: 'Deltakere',
+          content: 'Til stede: Kari Nordmann (styreleder), Ole Hansen (CFO), Lisa Johansen (CEO). Alle stemmeberettigede var til stede.'
+        },
+        {
+          title: 'Agenda',
+          content: '1. Inntektsprognoser for 2025\n2. Nye markedssegmenter\n3. Investeringsbudsjett\n4. Rekrutteringsplan\n5. Risikovurdering\n6. Avstemning om budsjett'
+        },
+        {
+          title: 'Diskusjon - Inntektsprognoser',
+          content: 'CFO Ole Hansen presenterte inntektsprognosene som viser forventet vekst på 15% sammenlignet med inneværende år. Veksten skal primært komme fra tre nye markedssegmenter:\n\n• Små og mellomstore teknologibedrifter med behov for digitalisering\n• Offentlig sektor, spesielt kommuner som moderniserer systemer\n• Konsulentselskaper med behov for prosjektstyringsverktøy\n\nStyreleder stilte kritiske spørsmål om grunnlaget for prognosen, som ble tilfredsstillende besvart.'
+        },
+        {
+          title: 'Diskusjon - Investeringer',
+          content: 'Følgende investeringer ble foreslått:\n\n• Produktutvikling: +30% økning for raskere feature-leveranser\n• Markedsføring: +20% økning for å nå nye målgrupper\n• Personell: 5 nye i produktutvikling, 3 nye i kundestøtte\n\nTotal investering representerer en betydelig satsing, men styret var enige om at dette er nødvendig for å oppnå vekstmålene.'
+        },
+        {
+          title: 'Risikovurdering',
+          content: 'Hovedrisiko identifisert: Markedsveksten kan bli lavere enn forventet. For å mitigere dette er det bygget inn en buffer i budsjettet. Kvartalsvis oppfølging av budsjett vs. faktiske tall ble vedtatt som kontrollmekanisme.'
+        },
+        {
+          title: 'Vedtak',
+          content: 'Budsjettforslaget for 2025 ble enstemmig vedtatt av styret. Implementering starter umiddelbart med rekrutteringsprosess for 8 nye stillinger og utvikling av markedsføringsplan for de tre nye segmentene.'
+        },
+        {
+          title: 'Neste steg',
+          content: '• Implementere budsjettforslaget for 2025\n• Starte rekrutteringsprosess for 8 nye stillinger\n• Utvikle markedsføringsplan for de tre nye segmentene\n• Sette opp kvartalsvis oppfølging av budsjett vs. faktiske tall\n\nNeste styremøte: 15. januar 2025'
+        }
+      ]
+    }
   },
   'rec-2': {
     id: 'rec-2',
@@ -128,7 +176,24 @@ export const mockMeetingDetails: Record<string, MockMeetingDetail> = {
       { id: 'p4', name: 'Erik Andersen', email: 'erik@team.no' },
       { id: 'p5', name: 'Maria Berg', email: 'maria@team.no' },
       { id: 'p6', name: 'Thomas Larsen', email: 'thomas@team.no' }
-    ]
+    ],
+    minutes: {
+      generatedAt: new Date('2024-12-02T09:30:00').toISOString(),
+      sections: [
+        {
+          title: 'Status per teammedlem',
+          content: '**Erik Andersen:** Jobber med brukerautentisering denne uken. Trenger hjelp med autentiseringsflowet.\n\n**Maria Berg:** Har fullført designet for dashboard-siden, venter på feedback.\n\n**Thomas Larsen:** Jobber med API-integrasjon for tredjepartssystemer. Tilbyr hjelp til Erik etter møtet.'
+        },
+        {
+          title: 'Blokkere',
+          content: 'Erik trenger støtte for å forstå autentiseringsflowet bedre. Thomas tar ansvar for å hjelpe etter møtet.'
+        },
+        {
+          title: 'Tidsfrister',
+          content: '• Autentisering: Ferdig innen torsdag\n• Dashboard-design: Review i morgen\n• Demo for stakeholders: Neste uke'
+        }
+      ]
+    }
   },
   'rec-3': {
     id: 'rec-3',
@@ -178,7 +243,32 @@ export const mockMeetingDetails: Record<string, MockMeetingDetail> = {
       { id: 'p7', name: 'Anna Petersen', email: 'anna@kunde.no' },
       { id: 'p8', name: 'Martin Olsen', email: 'martin@kunde.no' },
       { id: 'p9', name: 'Sofia Kristensen', email: 'sofia@selskap.no' }
-    ]
+    ],
+    minutes: {
+      generatedAt: new Date('2024-12-01T14:30:00').toISOString(),
+      sections: [
+        {
+          title: 'Møtets formål',
+          content: 'Presentasjon av ny produktvisjon med fokus på AI-drevet automatisering av arbeidsprosesser.'
+        },
+        {
+          title: 'Produktpresentasjon',
+          content: 'Det nye produktet fokuserer på automatisering av arbeidsprosesser med AI-teknologi. Hovedfordeler:\n\n• Opptil 40% tidsbesparelse på manuelle oppgaver\n• Sømløs integrasjon med alle større CRM-systemer\n• Norsk språkstøtte (unik i markedet)'
+        },
+        {
+          title: 'Konkurransefortrinn',
+          content: 'Løsningen skiller seg fra konkurrentene ved:\n1. Eneste løsning med full integrasjon mot alle CRM-systemer\n2. Norsk språkstøtte som konkurrentene mangler\n3. Brukergrensesnitt designet for norske forhold'
+        },
+        {
+          title: 'Lanseringsplan',
+          content: 'Lansering planlagt Q1 2025 med pilot-testing som starter i januar. Klienten er invitert som pilotkunde med 5-10 testbrukere i 4 uker.'
+        },
+        {
+          title: 'Avtale',
+          content: 'Klienten bekreftet interesse for pilotprogrammet. Dokumentasjon og demo-video sendes innen fredag.'
+        }
+      ]
+    }
   },
   'rec-4': {
     id: 'rec-4',

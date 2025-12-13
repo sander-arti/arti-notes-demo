@@ -5,8 +5,6 @@ import {
   Clock,
   Mic,
   ChevronRight,
-  BarChart,
-  Clock3,
   Search,
   Folder,
   Tag as TagIcon,
@@ -21,11 +19,12 @@ import {
   Video,
   Calendar,
   Settings,
-  ExternalLink,
-  CheckCircle
+  CheckCircle,
+  ArrowRight
 } from 'lucide-react';
 import RecordingModal from '@/components/RecordingModal';
 import FileUploadModal from '@/components/FileUploadModal';
+import DirectInviteModal from '@/components/DirectInviteModal';
 import FolderRenameModal from '@/components/FolderRenameModal';
 import DeleteConfirmationDialog from '@/components/DeleteConfirmationDialog';
 import TagEditor from '@/components/TagEditor';
@@ -65,6 +64,7 @@ export default function DashboardPage() {
   const [activeTags, setActiveTags] = useState<Set<string>>(new Set());
   const [showRecordingModal, setShowRecordingModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showDirectInviteModal, setShowDirectInviteModal] = useState(false);
   const [recordings, setRecordings] = useState<Recording[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error] = useState<string | null>(null);
@@ -333,12 +333,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen pt-16 bg-gray-50/50">
+    <div className="min-h-screen pt-16 bg-gray-50/50 dark:bg-gray-950">
       <div className="max-w-7xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-semibold mb-1">Mine opptak</h1>
-          <p className="text-gray-600">Her finner du alle dine møteopptak</p>
+          <h1 className="text-2xl font-semibold mb-1 text-gray-900 dark:text-white">Mine opptak</h1>
+          <p className="text-gray-600 dark:text-gray-400">Her finner du alle dine møteopptak</p>
         </div>
 
         {/* Quick Actions */}
@@ -351,8 +351,8 @@ export default function DashboardPage() {
               <Mic className="h-5 w-5" />
             </div>
             <div className="text-left">
-              <h3 className="font-medium mb-1">Start opptak</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Start opptak</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Begynn å ta opp et møte nå
               </p>
             </div>
@@ -366,8 +366,8 @@ export default function DashboardPage() {
               <FileText className="h-5 w-5" />
             </div>
             <div className="text-left">
-              <h3 className="font-medium mb-1">Last opp opptak</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Last opp opptak</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Last opp eksisterende lydopptak
               </p>
             </div>
@@ -375,140 +375,148 @@ export default function DashboardPage() {
 
           <button
             className="feature-card flex items-center"
-            onClick={() => toast.info('Direkteinvitasjon kommer snart!')}
+            onClick={() => setShowDirectInviteModal(true)}
           >
             <div className="feature-icon mr-4">
               <Video className="h-5 w-5" />
             </div>
             <div className="text-left">
-              <h3 className="font-medium mb-1">Direkteinvitasjon</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Direkteinvitasjon</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Send Notably til et møte umiddelbart
               </p>
             </div>
           </button>
         </div>
 
-        {/* Calendar Integration Widget */}
-        {!isCalendarBannerDismissed && (
+        {/* Feature Hub - Quick Access Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {/* Calendar Card */}
           <div className={cn(
-            "rounded-xl shadow-sm mb-6 overflow-hidden",
-            isCalendarConnected ? "bg-white" : "bg-gradient-to-r from-violet-50 to-fuchsia-50 border border-violet-100"
+            "rounded-xl shadow-sm overflow-hidden transition-all hover:shadow-md",
+            isCalendarConnected
+              ? "bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800"
+              : "bg-gradient-to-br from-violet-50 to-fuchsia-50 dark:from-gray-900 dark:to-gray-900/80 border border-violet-100 dark:border-violet-900/50"
           )}>
-            {!isCalendarConnected ? (
-              // Not connected state
-              <div className="p-5">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-white rounded-xl shadow-sm">
-                      <Calendar className="h-6 w-6 text-violet-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">
-                        Koble til kalenderen din
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-4 max-w-lg">
-                        La Notably automatisk delta i dine digitale møter og transkribere dem.
-                        Støtter Microsoft 365 og Google Calendar.
-                      </p>
-                      <div className="flex flex-wrap gap-3">
-                        <button
-                          onClick={() => {
-                            setIsCalendarConnected(true);
-                            toast.success('Microsoft 365 kalender tilkoblet!');
-                          }}
-                          className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-violet-300 transition-colors shadow-sm"
-                        >
-                          <svg className="h-4 w-4 mr-2" viewBox="0 0 23 23">
-                            <path fill="#f35325" d="M1 1h10v10H1z"/>
-                            <path fill="#81bc06" d="M12 1h10v10H12z"/>
-                            <path fill="#05a6f0" d="M1 12h10v10H1z"/>
-                            <path fill="#ffba08" d="M12 12h10v10H12z"/>
-                          </svg>
-                          Microsoft 365
-                        </button>
-                        <button
-                          onClick={() => {
-                            setIsCalendarConnected(true);
-                            toast.success('Google Calendar tilkoblet!');
-                          }}
-                          className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-violet-300 transition-colors shadow-sm"
-                        >
-                          <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                          </svg>
-                          Google Calendar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+            <div className="p-5">
+              <div className="flex items-start justify-between mb-4">
+                <div className={cn(
+                  "p-3 rounded-xl",
+                  isCalendarConnected
+                    ? "bg-green-100 dark:bg-green-900/30"
+                    : "bg-white dark:bg-gray-800 shadow-sm dark:shadow-none dark:border dark:border-gray-700"
+                )}>
+                  <Calendar className={cn(
+                    "h-6 w-6",
+                    isCalendarConnected ? "text-green-600 dark:text-green-400" : "text-violet-600 dark:text-violet-400"
+                  )} />
+                </div>
+                {isCalendarConnected && (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                    <CheckCircle className="h-3 w-3 mr-1" />
+                    Tilkoblet
+                  </span>
+                )}
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Kalender</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                {isCalendarConnected
+                  ? `${mockUpcomingMeetings.length} kommende møter`
+                  : "Koble til for automatisk transkripsjon"
+                }
+              </p>
+              {!isCalendarConnected ? (
+                <div className="flex flex-wrap gap-2">
                   <button
-                    onClick={() => setIsCalendarBannerDismissed(true)}
-                    className="p-1.5 hover:bg-white/50 rounded-lg text-gray-400 hover:text-gray-600 transition-colors"
+                    onClick={() => {
+                      setIsCalendarConnected(true);
+                      toast.success('Microsoft 365 kalender tilkoblet!');
+                    }}
+                    className="inline-flex items-center px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-violet-300 dark:hover:border-violet-500 transition-colors shadow-sm dark:shadow-none"
                   >
-                    <X className="h-5 w-5" />
+                    <svg className="h-3.5 w-3.5 mr-1.5" viewBox="0 0 23 23">
+                      <path fill="#f35325" d="M1 1h10v10H1z"/>
+                      <path fill="#81bc06" d="M12 1h10v10H12z"/>
+                      <path fill="#05a6f0" d="M1 12h10v10H1z"/>
+                      <path fill="#ffba08" d="M12 12h10v10H12z"/>
+                    </svg>
+                    Microsoft
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsCalendarConnected(true);
+                      toast.success('Google Calendar tilkoblet!');
+                    }}
+                    className="inline-flex items-center px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-violet-300 dark:hover:border-violet-500 transition-colors shadow-sm dark:shadow-none"
+                  >
+                    <svg className="h-3.5 w-3.5 mr-1.5" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Google
                   </button>
                 </div>
-              </div>
-            ) : (
-              // Connected state - show upcoming meetings
-              <div>
-                <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100">
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="h-5 w-5 text-violet-600" />
-                    <h3 className="font-medium">Kommende møter</h3>
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
-                      <CheckCircle className="h-3 w-3 mr-1" />
-                      Tilkoblet
-                    </span>
-                  </div>
-                  <Link
-                    to="/settings"
-                    className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <Settings className="h-4 w-4" />
-                  </Link>
-                </div>
-                <div className="divide-y divide-gray-50">
-                  {mockUpcomingMeetings.map((meeting, index) => (
-                    <div
-                      key={meeting.id}
-                      className="flex items-center justify-between px-5 py-3 hover:bg-gray-50/50 transition-colors"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className={cn(
-                          "w-2 h-2 rounded-full",
-                          index === 0 ? "bg-green-500" : "bg-gray-300"
-                        )} />
-                        <div>
-                          <p className="font-medium text-sm">{meeting.title}</p>
-                          <p className="text-xs text-gray-500">
-                            {formatMeetingTime(meeting.startTime)} • {meeting.platform}
-                          </p>
-                        </div>
-                      </div>
-                      {index === 0 && (
-                        <button
-                          onClick={() => toast.info('Notably vil automatisk delta i dette møtet')}
-                          className="inline-flex items-center px-3 py-1.5 bg-violet-600 text-white rounded-lg text-xs font-medium hover:bg-violet-700 transition-colors"
-                        >
-                          <ExternalLink className="h-3 w-3 mr-1" />
-                          Bli med
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+              ) : (
+                <Link
+                  to="/settings"
+                  className="inline-flex items-center text-sm font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
+                >
+                  Se møter
+                  <ArrowRight className="h-4 w-4 ml-1" />
+                </Link>
+              )}
+            </div>
           </div>
-        )}
+
+          {/* Templates Card */}
+          <Link
+            to="/templates"
+            className="rounded-xl shadow-sm overflow-hidden bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-900 dark:to-gray-900/80 border border-amber-100 dark:border-amber-900/50 transition-all hover:shadow-md hover:border-amber-200 dark:hover:border-amber-800 group"
+          >
+            <div className="p-5">
+              <div className="flex items-start justify-between mb-4">
+                <div className="p-3 bg-white dark:bg-gray-800 shadow-sm dark:shadow-none dark:border dark:border-gray-700 rounded-xl">
+                  <FileText className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+                </div>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Maler</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Velg mal for møtereferater og eksport
+              </p>
+              <span className="inline-flex items-center text-sm font-medium text-amber-600 dark:text-amber-400 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
+                Se alle maler
+                <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </div>
+          </Link>
+
+          {/* Settings Card */}
+          <Link
+            to="/settings"
+            className="rounded-xl shadow-sm overflow-hidden bg-gradient-to-br from-slate-50 to-gray-100 dark:from-gray-900 dark:to-gray-900/80 border border-slate-200 dark:border-gray-800 transition-all hover:shadow-md hover:border-slate-300 dark:hover:border-gray-700 group"
+          >
+            <div className="p-5">
+              <div className="flex items-start justify-between mb-4">
+                <div className="p-3 bg-white dark:bg-gray-800 shadow-sm dark:shadow-none dark:border dark:border-gray-700 rounded-xl">
+                  <Settings className="h-6 w-6 text-slate-600 dark:text-gray-400" />
+                </div>
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Innstillinger</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Profil, team og abonnement
+              </p>
+              <span className="inline-flex items-center text-sm font-medium text-slate-600 dark:text-gray-400 group-hover:text-slate-700 dark:group-hover:text-gray-300 transition-colors">
+                Administrer
+                <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </div>
+          </Link>
+        </div>
 
         {/* Search Bar */}
-        <div className="bg-white rounded-xl shadow-sm p-4 mb-6">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm dark:shadow-none dark:border dark:border-gray-800 p-4 mb-6">
           <div className="relative">
             <div className="flex items-center justify-between">
               <div className="flex-1 relative">
@@ -517,14 +525,14 @@ export default function DashboardPage() {
                   placeholder="Søk i opptak, transkripsjoner, etiketter..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 pl-10 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 pl-10 focus:border-violet-500 dark:focus:border-violet-500 focus:ring-violet-500"
                 />
                 {searchQuery ? (
                   <button
                     onClick={() => setSearchQuery('')}
                     className="absolute right-3 top-1/2 -translate-y-1/2"
                   >
-                    <X className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <X className="h-5 w-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" />
                   </button>
                 ) : (
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -540,15 +548,15 @@ export default function DashboardPage() {
                 className={cn(
                   "ml-4 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
                   isBulkEditMode
-                    ? "bg-violet-100 text-violet-700"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300"
+                    : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 )}
               >
                 {isBulkEditMode ? 'Avslutt redigering' : 'Rediger møter'}
               </button>
             </div>
             <div className="mt-3 flex items-center space-x-2">
-              <span className="text-xs text-gray-500 mr-1">Periode:</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 mr-1">Periode:</span>
               {[
                 { value: 'total', label: 'Totalt' },
                 { value: 'day', label: 'I dag' },
@@ -562,7 +570,7 @@ export default function DashboardPage() {
                     "px-3 py-1 rounded-full text-xs font-medium transition-colors",
                     dateRange === option.value
                       ? "bg-violet-600 text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
                   )}
                 >
                   {option.label}
@@ -577,12 +585,12 @@ export default function DashboardPage() {
           {/* Folders and Tags Sidebar */}
           <div className="lg:col-span-1 space-y-6">
             {/* Folders */}
-            <div className="bg-white rounded-xl shadow-sm p-4">
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm dark:shadow-none dark:border dark:border-gray-800 p-4">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-medium">Mapper</h3>
+                <h3 className="font-medium text-gray-900 dark:text-white">Mapper</h3>
                 <button
                   onClick={() => setShowNewFolderInput(true)}
-                  className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-600"
+                  className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400"
                 >
                   <FolderPlus className="h-4 w-4" />
                 </button>
@@ -595,7 +603,7 @@ export default function DashboardPage() {
                     value={newFolderName}
                     onChange={(e) => setNewFolderName(e.target.value)}
                     placeholder="Mappenavn..."
-                    className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                    className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-violet-500 focus:ring-violet-500"
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') handleAddFolder();
                       if (e.key === 'Escape') setShowNewFolderInput(false);
@@ -609,7 +617,7 @@ export default function DashboardPage() {
                   </button>
                   <button
                     onClick={() => setShowNewFolderInput(false)}
-                    className="p-1.5 hover:bg-gray-100 rounded-lg"
+                    className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -621,7 +629,9 @@ export default function DashboardPage() {
                   onClick={() => setActiveFolder(null)}
                   className={cn(
                     "w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors",
-                    !activeFolder ? "bg-violet-50 text-violet-600" : "text-gray-600 hover:bg-gray-50"
+                    !activeFolder
+                      ? "bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400"
+                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                   )}
                 >
                   <Folder className="h-4 w-4 mr-2" />
@@ -637,7 +647,9 @@ export default function DashboardPage() {
                       onClick={() => setActiveFolder(folder.id)}
                       className={cn(
                         "w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors",
-                        activeFolder === folder.id ? "bg-violet-50 text-violet-600" : "text-gray-600 hover:bg-gray-50"
+                        activeFolder === folder.id
+                          ? "bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                       )}
                     >
                       <Folder className="h-4 w-4 mr-2" />
@@ -656,17 +668,17 @@ export default function DashboardPage() {
                       <MoreVertical className="h-4 w-4 text-gray-400" />
                     </button>
                     {activeFolderMenu === folder.id && (
-                      <div className="absolute right-0 top-0 mt-8 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
+                      <div className="absolute right-0 top-0 mt-8 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-10">
                         <button
                           onClick={() => handleFolderAction(folder.id, folder.name, 'rename')}
-                          className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                          className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                         >
                           <Pencil className="h-4 w-4 mr-2" />
                           Endre navn
                         </button>
                         <button
                           onClick={() => handleFolderAction(folder.id, folder.name, 'delete')}
-                          className="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                          className="w-full flex items-center px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30"
                         >
                           <Trash2 className="h-4 w-4 mr-2" />
                           Slett mappe
@@ -679,12 +691,12 @@ export default function DashboardPage() {
             </div>
 
             {/* Tags */}
-            <div className="bg-white rounded-xl shadow-sm p-4">
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm dark:shadow-none dark:border dark:border-gray-800 p-4">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-medium">Etiketter</h3>
+                <h3 className="font-medium text-gray-900 dark:text-white">Etiketter</h3>
                 <button
                   onClick={() => setShowTagEditor(true)}
-                  className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-600"
+                  className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400"
                 >
                   <Edit2 className="h-4 w-4" />
                 </button>
@@ -698,7 +710,7 @@ export default function DashboardPage() {
                       "inline-flex items-center px-3 py-1 rounded-full text-sm transition-colors",
                       activeTags.has(tag.id)
                         ? "bg-violet-600 text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
                     )}
                   >
                     <TagIcon className="h-3 w-3 mr-1" />
@@ -714,13 +726,13 @@ export default function DashboardPage() {
             <div className="space-y-4">
               {isLoading ? (
                 <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600 mx-auto"></div>
-                  <p className="text-gray-600 mt-4">Henter opptak...</p>
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600 dark:border-violet-400 mx-auto"></div>
+                  <p className="text-gray-600 dark:text-gray-400 mt-4">Henter opptak...</p>
                 </div>
               ) : error ? (
-                <div className="text-center py-8 text-red-600">{error}</div>
+                <div className="text-center py-8 text-red-600 dark:text-red-400">{error}</div>
               ) : getCurrentPageRecordings().length === 0 ? (
-                <div className="text-center py-8 text-gray-600">
+                <div className="text-center py-8 text-gray-600 dark:text-gray-400">
                   {searchQuery
                     ? 'Ingen opptak funnet for dette søket'
                     : activeFolder
@@ -736,7 +748,7 @@ export default function DashboardPage() {
                       key={recording.id}
                       className={cn(
                         "feature-card flex items-center justify-between group",
-                        selectedRecordings.has(recording.id) && "bg-violet-50/50 border-violet-200"
+                        selectedRecordings.has(recording.id) && "bg-violet-50/50 dark:bg-violet-900/20 border-violet-200 dark:border-violet-800"
                       )}
                     >
                       <div
@@ -745,10 +757,10 @@ export default function DashboardPage() {
                         {isBulkEditMode && (
                         <button
                           onClick={() => toggleRecordingSelection(recording.id)}
-                          className="p-2 hover:bg-violet-100 rounded-lg transition-colors"
+                          className="p-2 hover:bg-violet-100 dark:hover:bg-violet-900/30 rounded-lg transition-colors"
                         >
                           {selectedRecordings.has(recording.id) ? (
-                            <CheckSquare className="h-5 w-5 text-violet-600" />
+                            <CheckSquare className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                           ) : (
                             <Square className="h-5 w-5 text-gray-400" />
                           )}
@@ -757,10 +769,10 @@ export default function DashboardPage() {
                         <div className={cn(
                           "p-3 rounded-xl",
                           recording.status === 'completed'
-                            ? 'bg-green-100 text-green-600'
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
                             : recording.status === 'processing'
-                            ? 'bg-yellow-100 text-yellow-600'
-                            : 'bg-red-100 text-red-600'
+                            ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'
+                            : 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
                         )}>
                           <Mic className="h-5 w-5" />
                         </div>
@@ -769,8 +781,8 @@ export default function DashboardPage() {
                           className="min-w-0 flex-1 flex items-center group"
                         >
                           <div className="flex-1">
-                            <h3 className="font-medium mb-1">{recording.title}</h3>
-                            <div className="flex items-center text-sm text-gray-600 mb-2">
+                            <h3 className="font-medium mb-1 text-gray-900 dark:text-white">{recording.title}</h3>
+                            <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-2">
                               <Clock className="h-4 w-4 mr-1" />
                               <span>{formatDate(recording.created_at)}</span>
                               <span className="mx-2">•</span>
@@ -778,7 +790,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
                               {recording.folder_id && (
-                                <span className="inline-flex items-center px-2 py-1 rounded-md bg-violet-50 text-violet-600 text-xs">
+                                <span className="inline-flex items-center px-2 py-1 rounded-md bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 text-xs">
                                   <Folder className="h-3 w-3 mr-1" />
                                   {folders.find(f => f.id === recording.folder_id)?.name}
                               </span>
@@ -786,7 +798,7 @@ export default function DashboardPage() {
                               {recording.tags?.map(tag => (
                                 <span
                                   key={tag.id}
-                                  className="inline-flex items-center px-2 py-1 rounded-md bg-gray-100 text-gray-600 text-xs"
+                                  className="inline-flex items-center px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs"
                                 >
                                   <TagIcon className="h-3 w-3 mr-1" />
                                   {tag.name}
@@ -802,8 +814,8 @@ export default function DashboardPage() {
 
                   {/* Bulk Delete Controls */}
                   {selectedRecordings.size > 0 && (
-                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-lg border border-gray-200 p-4 flex items-center space-x-4">
-                      <span className="text-sm text-gray-600">
+                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-900 rounded-xl shadow-lg dark:shadow-2xl border border-gray-200 dark:border-gray-700 p-4 flex items-center space-x-4">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         {selectedRecordings.size} opptak valgt
                       </span>
                       <button
@@ -850,6 +862,11 @@ export default function DashboardPage() {
         isOpen={showUploadModal}
         onClose={() => setShowUploadModal(false)}
         onUploadComplete={handleRecordingComplete}
+      />
+
+      <DirectInviteModal
+        isOpen={showDirectInviteModal}
+        onClose={() => setShowDirectInviteModal(false)}
       />
 
       <FolderRenameModal

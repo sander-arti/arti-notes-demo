@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { X, FileText, FileDown } from 'lucide-react';
+import { X, FileText, FileSpreadsheet, Music, Download, CheckCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface DownloadModalProps {
@@ -7,7 +8,7 @@ interface DownloadModalProps {
   onClose: () => void;
   hasSummary: boolean;
   hasTranscription: boolean;
-  hasAudio: boolean;
+  hasAudio?: boolean;
   meeting: {
     title: string;
     date: string;
@@ -25,171 +26,192 @@ interface DownloadModalProps {
   };
 }
 
-type ContentType = 'summary' | 'transcription' | 'audio';
-type FileFormat = 'pdf' | 'docx' | 'csv' | 'mp3';
+type DownloadType = 'summary-pdf' | 'summary-docx' | 'transcription-pdf' | 'transcription-docx' | 'transcription-csv' | 'audio-mp3';
 
 export default function DownloadModal({
   isOpen,
   onClose,
   hasSummary,
   hasTranscription,
-  hasAudio,
+  hasAudio = true, // Default til true for demo
   meeting
 }: DownloadModalProps) {
-  const [selectedType, setSelectedType] = useState<ContentType>('summary');
-  const [isLoading, setIsLoading] = useState(false);
+  const [loadingType, setLoadingType] = useState<DownloadType | null>(null);
+  const [downloadedType, setDownloadedType] = useState<DownloadType | null>(null);
 
   if (!isOpen) return null;
 
-  const handleDownload = async (format: FileFormat) => {
-    setIsLoading(true);
+  const handleDownload = async (type: DownloadType) => {
+    setLoadingType(type);
+    setDownloadedType(null);
 
     // Demo mode - simulate download
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 800));
 
     console.log('Demo: Would download', {
-      format,
-      contentType: selectedType,
+      type,
       meeting: meeting.title
     });
 
-    setIsLoading(false);
-    onClose();
+    setLoadingType(null);
+    setDownloadedType(type);
+
+    // Reset success state after 2 seconds
+    setTimeout(() => setDownloadedType(null), 2000);
+  };
+
+  const DownloadButton = ({
+    type,
+    label,
+    variant = 'primary'
+  }: {
+    type: DownloadType;
+    label: string;
+    variant?: 'primary' | 'secondary';
+  }) => {
+    const isLoading = loadingType === type;
+    const isDownloaded = downloadedType === type;
+
+    return (
+      <button
+        onClick={() => handleDownload(type)}
+        disabled={loadingType !== null}
+        className={cn(
+          "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
+          variant === 'primary'
+            ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white shadow-sm hover:shadow-md"
+            : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700",
+          loadingType !== null && loadingType !== type && "opacity-50 cursor-not-allowed",
+          isDownloaded && "bg-emerald-500 hover:bg-emerald-500 from-emerald-500 to-emerald-500"
+        )}
+      >
+        {isLoading ? (
+          <>
+            <div className="h-4 w-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+            Laster...
+          </>
+        ) : isDownloaded ? (
+          <>
+            <CheckCircle className="h-4 w-4" />
+            Lastet ned!
+          </>
+        ) : (
+          <>
+            <Download className="h-4 w-4" />
+            {label}
+          </>
+        )}
+      </button>
+    );
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl w-full max-w-md">
-        {/* Header */}
-        <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center justify-between">
-            <h3 className="font-semibold">Last ned</h3>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-full"
-              disabled={isLoading}
-            >
-              <X className="h-5 w-5 text-gray-500" />
-            </button>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50 p-4"
+        onClick={(e) => e.target === e.currentTarget && onClose()}
+      >
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ type: 'spring', duration: 0.3 }}
+          className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-lg shadow-2xl"
+        >
+          {/* Header */}
+          <div className="p-5 border-b border-gray-200 dark:border-gray-800">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Last ned</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+                  Velg innhold og format
+                </p>
+              </div>
+              <button
+                onClick={onClose}
+                disabled={loadingType !== null}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+              >
+                <X className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Content Type Tabs */}
-        <div className="border-b border-gray-200">
-          <div className="flex">
+          {/* Content Cards */}
+          <div className="p-5 space-y-4">
+            {/* Sammendrag Card */}
             {hasSummary && (
-              <button
-                onClick={() => setSelectedType('summary')}
-                disabled={isLoading}
-                className={cn(
-                  'flex-1 py-3 px-4 text-sm font-medium relative',
-                  selectedType === 'summary'
-                    ? 'text-violet-600'
-                    : 'text-gray-600 hover:text-gray-900'
-                )}
-              >
-                Sammendrag
-                {selectedType === 'summary' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-600" />
-                )}
-              </button>
+              <div className="bg-gradient-to-br from-violet-50 to-fuchsia-50 dark:from-violet-900/20 dark:to-fuchsia-900/20 rounded-xl p-4 border border-violet-100 dark:border-violet-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="p-2.5 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                    <FileText className="h-6 w-6 text-violet-600 dark:text-violet-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Sammendrag</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                      Oppsummering med hovedpunkter og aksjonspunkter
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <DownloadButton type="summary-pdf" label="PDF" variant="primary" />
+                      <DownloadButton type="summary-docx" label="DOCX" variant="secondary" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
+
+            {/* Transkripsjon Card */}
             {hasTranscription && (
-              <button
-                onClick={() => setSelectedType('transcription')}
-                disabled={isLoading}
-                className={cn(
-                  'flex-1 py-3 px-4 text-sm font-medium relative',
-                  selectedType === 'transcription'
-                    ? 'text-violet-600'
-                    : 'text-gray-600 hover:text-gray-900'
-                )}
-              >
-                Transkripsjon
-                {selectedType === 'transcription' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-600" />
-                )}
-              </button>
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="p-2.5 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                    <FileSpreadsheet className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Transkripsjon</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                      Fullstendig tekst med tidsstempler
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <DownloadButton type="transcription-pdf" label="PDF" variant="primary" />
+                      <DownloadButton type="transcription-docx" label="DOCX" variant="secondary" />
+                      <DownloadButton type="transcription-csv" label="CSV" variant="secondary" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
+
+            {/* Lydopptak Card */}
             {hasAudio && (
-              <button
-                onClick={() => setSelectedType('audio')}
-                disabled={isLoading}
-                className={cn(
-                  'flex-1 py-3 px-4 text-sm font-medium relative',
-                  selectedType === 'audio'
-                    ? 'text-violet-600'
-                    : 'text-gray-600 hover:text-gray-900'
-                )}
-              >
-                Lydklipp
-                {selectedType === 'audio' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-600" />
-                )}
-              </button>
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl p-4 border border-amber-100 dark:border-amber-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="p-2.5 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                    <Music className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Lydopptak</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                      Original lydfil fra møtet
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <DownloadButton type="audio-mp3" label="MP3" variant="primary" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
+
+            {/* Demo notice */}
+            <p className="text-xs text-center text-gray-400 dark:text-gray-500 pt-2">
+              Demo-modus: Nedlasting simuleres
+            </p>
           </div>
-        </div>
-
-        {/* Format Options */}
-        <div className="p-6">
-          <h4 className="text-sm font-medium text-gray-700 mb-4">
-            Velg format
-          </h4>
-
-          <p className="text-xs text-amber-600 mb-4">
-            Demo-modus: Nedlasting simulert
-          </p>
-
-          <div className="space-y-3">
-            {selectedType === 'audio' ? (
-              <button
-                onClick={() => handleDownload('mp3')}
-                disabled={isLoading}
-                className="w-full button-primary justify-center py-3 flex items-center"
-              >
-                <FileDown className="h-5 w-5 mr-2" />
-                Last ned lydklipp
-                {isLoading && (
-                  <div className="ml-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                )}
-              </button>
-            ) : (
-              <>
-                <button
-                  onClick={() => handleDownload('pdf')}
-                  disabled={isLoading}
-                  className="w-full button-primary justify-center py-3 flex items-center"
-                >
-                  <FileText className="h-5 w-5 mr-2" />
-                  Last ned PDF
-                  {isLoading && (
-                    <div className="ml-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  )}
-                </button>
-                <button
-                  onClick={() => handleDownload('docx')}
-                  disabled={isLoading}
-                  className="w-full button-secondary justify-center py-3 flex items-center"
-                >
-                  <FileText className="h-5 w-5 mr-2" />
-                  Last ned DOCX
-                </button>
-                {selectedType === 'transcription' && (
-                  <button
-                    onClick={() => handleDownload('csv')}
-                    disabled={isLoading}
-                    className="w-full button-secondary justify-center py-3 flex items-center"
-                  >
-                    <FileText className="h-5 w-5 mr-2" />
-                    Last ned CSV
-                  </button>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }

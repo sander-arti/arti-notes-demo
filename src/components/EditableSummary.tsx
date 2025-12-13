@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pencil, Check, X, Plus, Trash2 } from 'lucide-react';
+import { Pencil, Plus, Trash2, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface EditableSummaryProps {
@@ -30,13 +30,13 @@ export default function EditableSummary({
     try {
       setIsLoading(true);
       setError(null);
-      
+
       await onSave({
         summaryText: editedSummary.trim(),
         topics: editedTopics.filter(t => t.trim()),
         actionItems: editedActionItems.filter(a => a.trim())
       });
-      
+
       setIsEditing(false);
     } catch (err) {
       console.error('Error saving summary:', err);
@@ -80,38 +80,53 @@ export default function EditableSummary({
   if (!isEditing) {
     return (
       <div className="space-y-6">
-        {/* Summary */}
-        <div className="relative">
+        {/* Header with Edit button */}
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Sammendrag</h3>
+            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line leading-relaxed">{summaryText}</p>
+          </div>
           <button
             onClick={() => setIsEditing(true)}
-            className="absolute -top-10 right-0 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ml-4 flex-shrink-0"
+            title="Rediger"
           >
-            <Pencil className="h-4 w-4 text-gray-600" />
+            <Pencil className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           </button>
-          <p className="text-gray-600 whitespace-pre-line">{summaryText}</p>
         </div>
 
-        {/* Topics */}
+        {/* Topics as Tags */}
         {topics.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-md font-semibold mb-2">Hovedtemaer</h3>
-            <ul className="list-disc list-inside space-y-1">
+          <div>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Nøkkeltemaer</h3>
+            <div className="flex flex-wrap gap-2">
               {topics.map((topic, index) => (
-                <li key={index} className="text-gray-600">{topic}</li>
+                <span
+                  key={index}
+                  className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800"
+                >
+                  {topic}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
         )}
 
-        {/* Action Items */}
+        {/* Action Items with Checkmarks */}
         {actionItems.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-md font-semibold mb-2">Handlingspunkter</h3>
-            <ul className="list-disc list-inside space-y-1">
+          <div>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Aksjonspunkter</h3>
+            <div className="space-y-2">
               {actionItems.map((item, index) => (
-                <li key={index} className="text-gray-600">{item}</li>
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700"
+                >
+                  <CheckCircle2 className="h-5 w-5 text-violet-500 dark:text-violet-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>
@@ -121,28 +136,28 @@ export default function EditableSummary({
   return (
     <div className="space-y-6">
       {error && (
-        <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
+        <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm">
           {error}
         </div>
       )}
 
       {/* Edit Summary */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Sammendrag
         </label>
         <textarea
           value={editedSummary}
           onChange={(e) => setEditedSummary(e.target.value)}
           rows={6}
-          className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-violet-500 dark:focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 dark:focus:ring-violet-400/20 focus:outline-none resize-none"
         />
       </div>
 
       {/* Edit Topics */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Hovedtemaer
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Nøkkeltemaer
         </label>
         <div className="space-y-2">
           {editedTopics.map((topic, index) => (
@@ -151,12 +166,12 @@ export default function EditableSummary({
                 type="text"
                 value={topic}
                 onChange={(e) => updateListItem(index, e.target.value, editedTopics, setEditedTopics)}
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-violet-500 dark:focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 dark:focus:ring-violet-400/20 focus:outline-none"
                 placeholder="Skriv inn tema..."
               />
               <button
                 onClick={() => removeListItem(index, editedTopics, setEditedTopics)}
-                className="p-2 hover:bg-red-50 text-red-600 rounded-lg"
+                className="p-2 hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg transition-colors"
               >
                 <Trash2 className="h-4 w-4" />
               </button>
@@ -164,7 +179,7 @@ export default function EditableSummary({
           ))}
           <button
             onClick={() => addListItem(editedTopics, setEditedTopics)}
-            className="w-full py-2 px-4 border border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-violet-500 hover:text-violet-600 transition-colors flex items-center justify-center"
+            className="w-full py-2 px-4 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-600 dark:text-gray-400 hover:border-violet-500 dark:hover:border-violet-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center"
           >
             <Plus className="h-4 w-4 mr-2" />
             Legg til tema
@@ -174,8 +189,8 @@ export default function EditableSummary({
 
       {/* Edit Action Items */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Handlingspunkter
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Aksjonspunkter
         </label>
         <div className="space-y-2">
           {editedActionItems.map((item, index) => (
@@ -184,12 +199,12 @@ export default function EditableSummary({
                 type="text"
                 value={item}
                 onChange={(e) => updateListItem(index, e.target.value, editedActionItems, setEditedActionItems)}
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
-                placeholder="Skriv inn handlingspunkt..."
+                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-violet-500 dark:focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20 dark:focus:ring-violet-400/20 focus:outline-none"
+                placeholder="Skriv inn aksjonspunkt..."
               />
               <button
                 onClick={() => removeListItem(index, editedActionItems, setEditedActionItems)}
-                className="p-2 hover:bg-red-50 text-red-600 rounded-lg"
+                className="p-2 hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg transition-colors"
               >
                 <Trash2 className="h-4 w-4" />
               </button>
@@ -197,20 +212,20 @@ export default function EditableSummary({
           ))}
           <button
             onClick={() => addListItem(editedActionItems, setEditedActionItems)}
-            className="w-full py-2 px-4 border border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-violet-500 hover:text-violet-600 transition-colors flex items-center justify-center"
+            className="w-full py-2 px-4 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-600 dark:text-gray-400 hover:border-violet-500 dark:hover:border-violet-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors flex items-center justify-center"
           >
             <Plus className="h-4 w-4 mr-2" />
-            Legg til handlingspunkt
+            Legg til aksjonspunkt
           </button>
         </div>
       </div>
 
       {/* Actions */}
-      <div className="flex justify-end space-x-3">
+      <div className="flex justify-end space-x-3 pt-2">
         <button
           onClick={handleCancel}
           disabled={isLoading}
-          className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+          className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
         >
           Avbryt
         </button>
@@ -220,7 +235,7 @@ export default function EditableSummary({
           className={cn(
             "px-4 py-2 rounded-lg text-white transition-colors",
             isLoading
-              ? "bg-gray-400 cursor-not-allowed"
+              ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
               : "bg-violet-600 hover:bg-violet-700"
           )}
         >

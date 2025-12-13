@@ -22,7 +22,8 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<MockUser | null>(null);
+  // Start med mock-bruker innlogget for demo
+  const [user, setUser] = useState<MockUser | null>(mockUser);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 

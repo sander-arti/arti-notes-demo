@@ -10,11 +10,18 @@ import {
   User,
   Mail,
   Building,
-  CheckCircle
+  CheckCircle,
+  Globe,
+  Clock,
+  Download,
+  Shield,
+  Trash2,
+  ExternalLink
 } from 'lucide-react';
 import ChangePasswordModal from '@/components/ChangePasswordModal';
 import { cn } from '@/lib/utils';
 import { mockUser } from '@/lib/mockData';
+import { toast } from '@/components/ui/toast';
 
 interface SettingsSectionProps {
   title: string;
@@ -132,22 +139,106 @@ function ToggleSetting({
   );
 }
 
+interface SelectSettingProps {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  value: string;
+  options: { value: string; label: string }[];
+  onChange: (value: string) => void;
+}
+
+function SelectSetting({
+  icon: Icon,
+  title,
+  description,
+  value,
+  options,
+  onChange
+}: SelectSettingProps) {
+  return (
+    <div className="flex items-center justify-between p-4 border-b border-gray-100 last:border-0">
+      <div className="flex items-start space-x-3">
+        <div className="p-1">
+          <Icon className="h-5 w-5 text-gray-500" />
+        </div>
+        <div>
+          <h3 className="font-medium">{title}</h3>
+          <p className="text-sm text-gray-600">{description}</p>
+        </div>
+      </div>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm focus:border-violet-500 focus:ring-violet-500"
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+const languageOptions = [
+  { value: 'no', label: 'Norsk' },
+  { value: 'en', label: 'English' }
+];
+
+const timezoneOptions = [
+  { value: 'Europe/Oslo', label: 'Oslo (CET/CEST)' },
+  { value: 'Europe/London', label: 'London (GMT/BST)' },
+  { value: 'Europe/Stockholm', label: 'Stockholm (CET/CEST)' },
+  { value: 'Europe/Copenhagen', label: 'København (CET/CEST)' },
+  { value: 'America/New_York', label: 'New York (EST/EDT)' },
+  { value: 'America/Los_Angeles', label: 'Los Angeles (PST/PDT)' },
+  { value: 'UTC', label: 'UTC' }
+];
+
 export default function SettingsPage() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // Settings state
+  const [language, setLanguage] = useState('no');
+  const [timezone, setTimezone] = useState('Europe/Oslo');
+  const [notifications, setNotifications] = useState(true);
+  const [soundEffects, setSoundEffects] = useState(true);
 
   // Mock Microsoft connection state
   const [isMicrosoftConnected, setIsMicrosoftConnected] = useState(false);
-
-  const [notifications, setNotifications] = useState(true);
-  const [soundEffects, setSoundEffects] = useState(true);
+  const [isGoogleConnected, setIsGoogleConnected] = useState(false);
 
   // Mock connect/disconnect
   const handleConnectMicrosoft = () => {
     setIsMicrosoftConnected(true);
+    toast.success('Microsoft 365 tilkoblet');
   };
 
   const handleDisconnectMicrosoft = () => {
     setIsMicrosoftConnected(false);
+    toast.info('Microsoft 365 frakoblet');
+  };
+
+  const handleConnectGoogle = () => {
+    setIsGoogleConnected(true);
+    toast.success('Google Calendar tilkoblet');
+  };
+
+  const handleDisconnectGoogle = () => {
+    setIsGoogleConnected(false);
+    toast.info('Google Calendar frakoblet');
+  };
+
+  const handleExportData = () => {
+    toast.success('Din dataeksport er startet. Du vil motta en e-post når den er klar.');
+  };
+
+  const handleDeleteAccount = () => {
+    toast.error('Kontoen din er slettet. Du blir nå logget ut.');
+    setShowDeleteConfirm(false);
   };
 
   return (
@@ -165,65 +256,8 @@ export default function SettingsPage() {
           <h1 className="text-2xl font-semibold">Innstillinger</h1>
         </div>
 
-        {/* Digital Meetings Integration */}
-        <SettingsSection title="Digitale møter">
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10">
-              <div className="text-center">
-                <span className="inline-flex items-center px-4 py-2 rounded-full bg-violet-100 text-violet-700 font-medium text-sm">
-                  Kommer snart
-                </span>
-              </div>
-            </div>
-
-          <div className="p-4 bg-violet-50 border-b border-violet-100">
-            <div className="flex items-start">
-              <Video className="h-5 w-5 text-violet-600 mt-1 mr-3" />
-              <div>
-                <h3 className="font-medium text-violet-900">
-                  Automatisk transkripsjon av digitale møter
-                </h3>
-                <p className="text-sm text-violet-700 mt-1">
-                  La Notably automatisk bli med i dine digitale møter og transkribere dem.
-                  Koble til din kalender og møteplattform for å komme i gang.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-4 space-y-4">
-            <IntegrationCard
-              icon={Calendar}
-              title="Microsoft 365 Kalender"
-              description="Synkroniser møter fra din Microsoft 365 kalender"
-              isConnected={isMicrosoftConnected}
-              onConnect={handleConnectMicrosoft}
-              onDisconnect={handleDisconnectMicrosoft}
-            />
-          </div>
-          </div>
-        </SettingsSection>
-
-        {/* General Settings */}
-        <SettingsSection title="Generelt">
-          <ToggleSetting
-            icon={Bell}
-            title="Varslinger"
-            description="Motta varsler om nye transkripsjoner og viktige hendelser"
-            enabled={notifications}
-            onChange={setNotifications}
-          />
-          <ToggleSetting
-            icon={Volume2}
-            title="Lydeffekter"
-            description="Spill av lydeffekter ved viktige hendelser"
-            enabled={soundEffects}
-            onChange={setSoundEffects}
-          />
-        </SettingsSection>
-
         {/* Profile Settings */}
-        <SettingsSection title="Profil">
+        <SettingsSection title="Konto">
           <div className="p-4 space-y-4">
             <div className="flex items-center space-x-4">
               <div className="h-16 w-16 rounded-full bg-violet-100 flex items-center justify-center">
@@ -280,6 +314,87 @@ export default function SettingsPage() {
           </div>
         </SettingsSection>
 
+        {/* Preferences */}
+        <SettingsSection title="Preferanser">
+          <SelectSetting
+            icon={Globe}
+            title="Språk"
+            description="Velg språk for brukergrensesnittet"
+            value={language}
+            options={languageOptions}
+            onChange={setLanguage}
+          />
+          <SelectSetting
+            icon={Clock}
+            title="Tidssone"
+            description="Tidssone for møtedatoer og tidspunkter"
+            value={timezone}
+            options={timezoneOptions}
+            onChange={setTimezone}
+          />
+          <ToggleSetting
+            icon={Bell}
+            title="Varslinger"
+            description="Motta varsler om nye transkripsjoner og viktige hendelser"
+            enabled={notifications}
+            onChange={setNotifications}
+          />
+          <ToggleSetting
+            icon={Volume2}
+            title="Lydeffekter"
+            description="Spill av lydeffekter ved viktige hendelser"
+            enabled={soundEffects}
+            onChange={setSoundEffects}
+          />
+        </SettingsSection>
+
+        {/* Digital Meetings Integration */}
+        <SettingsSection title="Integrasjoner">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10">
+              <div className="text-center">
+                <span className="inline-flex items-center px-4 py-2 rounded-full bg-violet-100 text-violet-700 font-medium text-sm">
+                  Kommer snart
+                </span>
+              </div>
+            </div>
+
+          <div className="p-4 bg-violet-50 border-b border-violet-100">
+            <div className="flex items-start">
+              <Video className="h-5 w-5 text-violet-600 mt-1 mr-3" />
+              <div>
+                <h3 className="font-medium text-violet-900">
+                  Automatisk transkripsjon av digitale møter
+                </h3>
+                <p className="text-sm text-violet-700 mt-1">
+                  La Notably automatisk bli med i dine digitale møter og transkribere dem.
+                  Koble til din kalender og møteplattform for å komme i gang.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 space-y-4">
+            <IntegrationCard
+              icon={Calendar}
+              title="Microsoft 365"
+              description="Synkroniser møter fra din Microsoft 365 kalender"
+              isConnected={isMicrosoftConnected}
+              onConnect={handleConnectMicrosoft}
+              onDisconnect={handleDisconnectMicrosoft}
+            />
+            <IntegrationCard
+              icon={Calendar}
+              title="Google Calendar"
+              description="Synkroniser møter fra din Google kalender"
+              isConnected={isGoogleConnected}
+              onConnect={handleConnectGoogle}
+              onDisconnect={handleDisconnectGoogle}
+            />
+          </div>
+          </div>
+        </SettingsSection>
+
         {/* Security Settings */}
         <SettingsSection title="Sikkerhet">
           <div className="p-4 space-y-4">
@@ -298,6 +413,87 @@ export default function SettingsPage() {
               </div>
               <ChevronLeft className="h-5 w-5 text-gray-400 rotate-180" />
             </button>
+          </div>
+        </SettingsSection>
+
+        {/* Privacy & Data */}
+        <SettingsSection title="Personvern og data">
+          <div className="p-4 space-y-4">
+            <button
+              onClick={handleExportData}
+              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-violet-100 rounded-lg">
+                  <Download className="h-5 w-5 text-violet-600" />
+                </div>
+                <div className="text-left">
+                  <h3 className="font-medium">Eksporter data</h3>
+                  <p className="text-sm text-gray-600">Last ned alle dine opptak og data (GDPR)</p>
+                </div>
+              </div>
+              <ChevronLeft className="h-5 w-5 text-gray-400 rotate-180" />
+            </button>
+
+            <Link
+              to="/privacy"
+              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-violet-100 rounded-lg">
+                  <Shield className="h-5 w-5 text-violet-600" />
+                </div>
+                <div className="text-left">
+                  <h3 className="font-medium">Personvernerklæring</h3>
+                  <p className="text-sm text-gray-600">Les hvordan vi behandler dine data</p>
+                </div>
+              </div>
+              <ExternalLink className="h-5 w-5 text-gray-400" />
+            </Link>
+          </div>
+        </SettingsSection>
+
+        {/* Danger Zone */}
+        <SettingsSection title="Faresone">
+          <div className="p-4">
+            {!showDeleteConfirm ? (
+              <button
+                onClick={() => setShowDeleteConfirm(true)}
+                className="w-full flex items-center justify-between p-4 rounded-lg border border-red-200 hover:border-red-300 hover:bg-red-50/50 transition-colors"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-red-100 rounded-lg">
+                    <Trash2 className="h-5 w-5 text-red-600" />
+                  </div>
+                  <div className="text-left">
+                    <h3 className="font-medium text-red-700">Slett konto</h3>
+                    <p className="text-sm text-red-600">Slett permanent din konto og alle data</p>
+                  </div>
+                </div>
+                <ChevronLeft className="h-5 w-5 text-red-400 rotate-180" />
+              </button>
+            ) : (
+              <div className="p-4 bg-red-50 rounded-lg border border-red-200">
+                <h3 className="font-medium text-red-700 mb-2">Er du sikker?</h3>
+                <p className="text-sm text-red-600 mb-4">
+                  Denne handlingen kan ikke angres. Alle dine opptak, transkripsjoner og data vil bli permanent slettet.
+                </p>
+                <div className="flex space-x-3">
+                  <button
+                    onClick={() => setShowDeleteConfirm(false)}
+                    className="flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium"
+                  >
+                    Avbryt
+                  </button>
+                  <button
+                    onClick={handleDeleteAccount}
+                    className="flex-1 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 font-medium"
+                  >
+                    Ja, slett kontoen
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </SettingsSection>
       </div>
