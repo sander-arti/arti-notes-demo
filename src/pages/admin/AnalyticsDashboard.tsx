@@ -123,7 +123,7 @@ export default function AnalyticsDashboard() {
                 className={cn(
                   "px-4 py-2 text-sm font-medium rounded-lg transition-colors",
                   timeRange === range
-                    ? "bg-violet-100 text-violet-700"
+                    ? "bg-blue-100 text-blue-700"
                     : "text-gray-600 hover:bg-gray-100"
                 )}
               >
@@ -159,8 +159,8 @@ export default function AnalyticsDashboard() {
                     </div>
                   )}
                 </div>
-                <div className="p-3 bg-violet-100 rounded-lg">
-                  <stat.icon className="h-6 w-6 text-violet-600" />
+                <div className="p-3 bg-blue-100 rounded-lg">
+                  <stat.icon className="h-6 w-6 text-blue-600" />
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function AnalyticsDashboard() {
             <div className="h-[300px]">
               {isLoading ? (
                 <div className="h-full flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
                 </div>
               ) : chartData && (
                 <Line
@@ -210,7 +210,7 @@ export default function AnalyticsDashboard() {
             <div className="h-[300px]">
               {isLoading ? (
                 <div className="h-full flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
                 </div>
               ) : chartData && (
                 <Bar
@@ -243,7 +243,7 @@ export default function AnalyticsDashboard() {
             <div className="h-[300px]">
               {isLoading ? (
                 <div className="h-full flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
                 </div>
               ) : chartData && (
                 <Line

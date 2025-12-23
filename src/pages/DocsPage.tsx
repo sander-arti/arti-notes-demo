@@ -155,9 +155,9 @@ export default function DocsPage() {
       <section className="hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-violet-100 mb-8">
-              <Book className="h-4 w-4 text-violet-600 mr-2" />
-              <span className="text-sm font-medium text-violet-600">Dokumentasjon</span>
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-100 mb-8">
+              <Book className="h-4 w-4 text-blue-600 mr-2" />
+              <span className="text-sm font-medium text-blue-600">Dokumentasjon</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
               <span className="gradient-text">Alt du trenger å vite</span>
@@ -170,7 +170,7 @@ export default function DocsPage() {
               <input
                 type="text"
                 placeholder="Søk i dokumentasjonen..."
-                className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -191,12 +191,12 @@ export default function DocsPage() {
                   <link.icon className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold mb-1 group-hover:text-violet-600 transition-colors">
+                  <h3 className="font-semibold mb-1 group-hover:text-blue-600 transition-colors">
                     {link.title}
                   </h3>
                   <p className="text-sm text-gray-600">{link.description}</p>
                 </div>
-                <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-violet-600 transition-colors" />
+                <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
               </a>
             ))}
           </div>
@@ -215,23 +215,23 @@ export default function DocsPage() {
                     <a
                       key={section.id}
                       href={`#${section.id}`}
-                      className="flex items-center px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors"
+                      className="flex items-center px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                     >
                       <span>{section.title}</span>
                     </a>
                   ))}
                 </nav>
 
-                <div className="p-4 rounded-xl bg-violet-50 border border-violet-100">
+                <div className="p-4 rounded-xl bg-blue-50 border border-blue-100">
                   <h4 className="font-semibold mb-2">Trenger du hjelp?</h4>
                   <p className="text-sm text-gray-600 mb-4">
                     Vårt support-team er her for å hjelpe deg
                   </p>
                   <div className="flex items-center space-x-3">
-                    <Headphones className="h-5 w-5 text-violet-600" />
+                    <Headphones className="h-5 w-5 text-blue-600" />
                     <Link 
                       to="/support"
-                      className="text-sm text-violet-600 hover:text-violet-700 font-medium"
+                      className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                     >
                       Kontakt support
                     </Link>
@@ -256,7 +256,7 @@ export default function DocsPage() {
                           <ol className="space-y-3">
                             {item.steps.map((step, stepIndex) => (
                               <li key={stepIndex} className="flex items-start">
-                                <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-violet-100 text-violet-600 text-sm font-medium mr-3">
+                                <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mr-3">
                                   {stepIndex + 1}
                                 </span>
                                 <span className="text-gray-600">{step}</span>

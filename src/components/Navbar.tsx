@@ -46,7 +46,7 @@ export default function Navbar() {
                   className={cn(
                     "text-sm font-medium transition-colors flex items-center space-x-1.5",
                     isActiveLink('/dashboard')
-                      ? "text-violet-600"
+                      ? "text-blue-600"
                       : "text-gray-600 hover:text-gray-900"
                   )}
                 >
@@ -58,7 +58,7 @@ export default function Navbar() {
                   className={cn(
                     "text-sm font-medium transition-colors flex items-center space-x-1.5",
                     isActiveLink('/support')
-                      ? "text-violet-600"
+                      ? "text-blue-600"
                       : "text-gray-600 hover:text-gray-900"
                   )}
                 >
@@ -113,7 +113,7 @@ export default function Navbar() {
                         className={cn(
                           "flex-1 px-2 py-1.5 rounded-md text-xs font-medium transition-all",
                           mode === 'admin'
-                            ? "bg-violet-500 text-white shadow-sm"
+                            ? "bg-blue-500 text-white shadow-sm"
                             : "text-gray-600 hover:text-gray-900"
                         )}
                       >
@@ -126,7 +126,7 @@ export default function Navbar() {
                       "mt-2 px-3 py-2 rounded-lg text-xs",
                       mode === 'solo' && "bg-emerald-50 text-emerald-700",
                       mode === 'member' && "bg-amber-50 text-amber-700",
-                      mode === 'admin' && "bg-violet-50 text-violet-700"
+                      mode === 'admin' && "bg-blue-50 text-blue-700"
                     )}>
                       <div className="flex items-center space-x-2">
                         {mode === 'solo' && <UserCircle className="h-4 w-4" />}
@@ -152,7 +152,7 @@ export default function Navbar() {
                   {isAdmin && (
                     <Link
                       to="/admin"
-                      className="flex items-center px-4 py-2 text-sm text-violet-600 hover:bg-violet-50"
+                      className="flex items-center px-4 py-2 text-sm text-blue-600 hover:bg-blue-50"
                       onClick={() => setShowUserMenu(false)}
                     >
                       <Shield className="h-4 w-4 mr-2" />
@@ -183,7 +183,7 @@ export default function Navbar() {
                       </Link>
                       <Link
                         to="/register"
-                        className="flex items-center px-4 py-2 text-sm text-violet-600 hover:bg-violet-50"
+                        className="flex items-center px-4 py-2 text-sm text-blue-600 hover:bg-blue-50"
                         onClick={() => setShowUserMenu(false)}
                       >
                         Prøv gratis

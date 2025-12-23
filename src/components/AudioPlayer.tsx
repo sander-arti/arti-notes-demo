@@ -282,7 +282,7 @@ export default function AudioPlayer({ src, onTimeUpdate, onSeek, onAudioRef, ini
               disabled={!isReady}
               className={cn(
                 "p-3 rounded-full text-white transition-colors",
-                isReady ? "bg-violet-600 hover:bg-violet-700" : "bg-gray-400"
+                isReady ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-400"
               )}
               aria-label={isPlaying ? 'Pause' : 'Spill av'}
             >
@@ -330,13 +330,13 @@ export default function AudioPlayer({ src, onTimeUpdate, onSeek, onAudioRef, ini
             >
               <div
                 ref={progressFillRef}
-                className="absolute h-full bg-violet-600 rounded-full transition-all group-hover:bg-violet-700"
+                className="absolute h-full bg-blue-600 rounded-full transition-all group-hover:bg-blue-700"
                 style={{ width: `${(currentTime / duration * 100) || 0}%` }}
               />
               {/* Player Head */}
               <div
                 className={cn(
-                  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white border-2 border-violet-600 transition-opacity",
+                  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white border-2 border-blue-600 transition-opacity",
                   isDragging ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 )}
                 style={{ left: `${(currentTime / duration * 100) || 0}%` }}
@@ -350,7 +350,7 @@ export default function AudioPlayer({ src, onTimeUpdate, onSeek, onAudioRef, ini
           </div>
           {isLoading && !isPlaying && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/75 rounded-xl">
-              <div className="animate-spin rounded-full h-6 w-6 border-2 border-violet-600 border-t-transparent" />
+              <div className="animate-spin rounded-full h-6 w-6 border-2 border-blue-600 border-t-transparent" />
               <span className="ml-2 text-sm text-gray-600">Laster inn lydfil...</span>
             </div>
           )}

@@ -23,11 +23,11 @@ export default function MicrosoftIntegration() {
   };
 
   return (
-    <div className="flex flex-col p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors">
+    <div className="flex flex-col p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-4">
-          <div className="p-2 bg-violet-100 rounded-lg">
-            <Calendar className="h-5 w-5 text-violet-600" />
+          <div className="p-2 bg-blue-100 rounded-lg">
+            <Calendar className="h-5 w-5 text-blue-600" />
           </div>
           <div>
             <h3 className="font-medium">Microsoft 365 Kalender</h3>
@@ -56,7 +56,7 @@ export default function MicrosoftIntegration() {
               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
               : isConnected
               ? "bg-red-100 text-red-700 hover:bg-red-200"
-              : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+              : "bg-blue-100 text-blue-700 hover:bg-blue-200"
           )}
         >
           {isLoading ? (

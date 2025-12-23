@@ -115,7 +115,7 @@ export default function DirectInviteModal({ isOpen, onClose }: DirectInviteModal
 
               {/* Header with icon */}
               <div className="pt-8 pb-4 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#2C64E3] to-[#6EA0FF] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg">
                   <Sparkles className="h-8 w-8 text-white" />
                 </div>
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">
@@ -150,7 +150,7 @@ export default function DirectInviteModal({ isOpen, onClose }: DirectInviteModal
                     onChange={(e) => setMeetingTitle(e.target.value)}
                     placeholder="Gi møtet et navn"
                     disabled={status === 'inviting'}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-colors"
                   />
                 </div>
 
@@ -172,7 +172,7 @@ export default function DirectInviteModal({ isOpen, onClose }: DirectInviteModal
                       }}
                       placeholder="https://meet.google.com/abc-defg-hij"
                       disabled={status === 'inviting'}
-                      className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:bg-white outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-white outline-none transition-colors"
                     />
                   </div>
                 </div>

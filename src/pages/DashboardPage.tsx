@@ -644,7 +644,7 @@ export default function DashboardPage() {
                           <p className="text-xs text-gray-600 mb-2 truncate">
                             <span className="truncate">{nextMeeting.title}</span>
                             <span className="mx-1">•</span>
-                            <span className={cn(isUrgent && "text-orange-600 font-medium")}>
+                            <span className={cn(isUrgent ? "text-[#2C64E3] font-medium" : "text-[#2C64E3]")}>
                               {timeUntil}
                             </span>
                           </p>
@@ -755,9 +755,18 @@ export default function DashboardPage() {
                     onChange={(e) => setNewFolderName(e.target.value)}
                     placeholder="Mappenavn..."
                     className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-[#2C64E3] focus:ring-[#2C64E3]"
+                    autoFocus
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') handleAddFolder();
-                      if (e.key === 'Escape') setShowNewFolderInput(false);
+                      if (e.key === 'Escape') {
+                        setShowNewFolderInput(false);
+                        setNewFolderName('');
+                      }
+                    }}
+                    onBlur={() => {
+                      if (!newFolderName.trim()) {
+                        setShowNewFolderInput(false);
+                      }
                     }}
                   />
                   <button
@@ -765,12 +774,6 @@ export default function DashboardPage() {
                     className="p-1.5 bg-[#2C64E3] text-white rounded-lg hover:bg-[#1F49C6]"
                   >
                     <FolderPlus className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => setShowNewFolderInput(false)}
-                    className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-600"
-                  >
-                    <X className="h-4 w-4" />
                   </button>
                 </div>
               )}
@@ -897,25 +900,26 @@ export default function DashboardPage() {
                   {getCurrentPageRecordings().map((recording) => (
                     <div
                       key={recording.id}
+                      onClick={isBulkEditMode ? () => toggleRecordingSelection(recording.id) : undefined}
                       className={cn(
                         "feature-card dashboard-card flex items-center justify-between group",
-                        selectedRecordings.has(recording.id) && "bg-[#E4ECFF]/60 border-[#CFE0FF]"
+                        selectedRecordings.has(recording.id) && "bg-[#E4ECFF]/60 border-[#CFE0FF]",
+                        isBulkEditMode && "cursor-pointer hover:bg-[#F0F5FF]"
                       )}
                     >
                       <div
                         className="flex-1 flex items-center space-x-4"
                       >
                         {isBulkEditMode && (
-                        <button
-                          onClick={() => toggleRecordingSelection(recording.id)}
-                          className="p-2 hover:bg-[#E4ECFF] rounded-lg transition-colors"
+                        <div
+                          className="p-2 rounded-lg transition-colors"
                         >
                           {selectedRecordings.has(recording.id) ? (
                             <CheckSquare className="h-5 w-5 text-[#2C64E3]" />
                           ) : (
                             <Square className="h-5 w-5 text-gray-400" />
                           )}
-                        </button>
+                        </div>
                         )}
                         <div className={cn(
                           "p-3 rounded-xl",
@@ -929,6 +933,11 @@ export default function DashboardPage() {
                         </div>
                         <Link
                           to={`/meetings/${recording.id}`}
+                          onClick={(e) => {
+                            if (isBulkEditMode) {
+                              e.preventDefault();
+                            }
+                          }}
                           className="min-w-0 flex-1 flex items-center group"
                         >
                           <div className="flex-1">

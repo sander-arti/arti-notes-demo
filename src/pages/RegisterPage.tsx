@@ -87,7 +87,7 @@ export default function RegisterPage() {
     <main className="min-h-screen pt-16">
       <div className="max-w-md mx-auto p-6">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center p-2 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 mb-4">
+          <div className="inline-flex items-center justify-center p-2 rounded-xl bg-gradient-to-r from-blue-600 to-fuchsia-600 mb-4">
             <Shield className="h-6 w-6 text-white" />
           </div>
           <h1 className="text-2xl font-bold mb-2">Opprett konto</h1>
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                 placeholder="din@epost.no"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -128,7 +128,7 @@ export default function RegisterPage() {
                 type="text"
                 value={formData.organization}
                 onChange={handleInputChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -143,7 +143,7 @@ export default function RegisterPage() {
                 required
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -158,7 +158,7 @@ export default function RegisterPage() {
                 required
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -169,15 +169,15 @@ export default function RegisterPage() {
                 type="checkbox"
                 checked={formData.acceptTerms}
                 onChange={handleInputChange}
-                className="rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
               />
               <label htmlFor="acceptTerms" className="ml-2 text-sm text-gray-600">
                 Jeg aksepterer{' '}
-                <Link to="/terms" className="text-violet-600 hover:text-violet-700">
+                <Link to="/terms" className="text-blue-600 hover:text-blue-700">
                   vilkårene
                 </Link>{' '}
                 og{' '}
-                <Link to="/privacy" className="text-violet-600 hover:text-violet-700">
+                <Link to="/privacy" className="text-blue-600 hover:text-blue-700">
                   personvernerklæringen
                 </Link>
               </label>
@@ -205,7 +205,7 @@ export default function RegisterPage() {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Har du allerede en konto?{' '}
-          <Link to="/login" className="text-violet-600 hover:text-violet-700 font-medium">
+          <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
             Logg inn her
           </Link>
         </p>

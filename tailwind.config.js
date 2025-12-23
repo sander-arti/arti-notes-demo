@@ -8,17 +8,17 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: '#7C3AED', // violet-600
-          50: '#F5F3FF',
-          100: '#EDE9FE',
-          200: '#DDD6FE',
-          300: '#C4B5FD',
-          400: '#A78BFA',
-          500: '#8B5CF6',
-          600: '#7C3AED',
-          700: '#6D28D9',
-          800: '#5B21B6',
-          900: '#4C1D95',
+          DEFAULT: '#2C64E3', // blue primary
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',
+          600: '#2C64E3',
+          700: '#1F49C6',
+          800: '#1E40AF',
+          900: '#1E3A8A',
         },
         accent: {
           DEFAULT: '#DB2777', // fuchsia-600
@@ -129,10 +129,10 @@ export default {
     function({ addUtilities }) {
       const newUtilities = {
         '.bg-gradient-overlay': {
-          'background-image': 'linear-gradient(to right, rgba(124, 58, 237, 0.05), rgba(219, 39, 119, 0.05))',
+          'background-image': 'linear-gradient(to right, rgba(44, 100, 227, 0.05), rgba(110, 160, 255, 0.05))',
         },
         '.bg-gradient-overlay-hover': {
-          'background-image': 'linear-gradient(to right, rgba(124, 58, 237, 0.1), rgba(219, 39, 119, 0.1))',
+          'background-image': 'linear-gradient(to right, rgba(44, 100, 227, 0.1), rgba(110, 160, 255, 0.1))',
         },
       };
       addUtilities(newUtilities, ['hover']);

@@ -79,7 +79,7 @@ export default function DownloadModal({
         className={cn(
           "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
           variant === 'primary'
-            ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white shadow-sm hover:shadow-md"
+            ? "bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] hover:from-[#1F49C6] hover:to-[#4A81EB] text-white shadow-sm hover:shadow-md"
             : "bg-gray-100 text-gray-700 hover:bg-gray-200",
           loadingType !== null && loadingType !== type && "opacity-50 cursor-not-allowed",
           isDownloaded && "bg-emerald-500 hover:bg-emerald-500 from-emerald-500 to-emerald-500"
@@ -144,10 +144,10 @@ export default function DownloadModal({
           <div className="p-5 space-y-4">
             {/* Sammendrag Card */}
             {hasSummary && (
-              <div className="bg-gradient-to-br from-violet-50 to-fuchsia-50 rounded-xl p-4 border border-violet-100">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-100">
                 <div className="flex items-start gap-4">
                   <div className="p-2.5 bg-white rounded-xl shadow-sm">
-                    <FileText className="h-6 w-6 text-violet-600" />
+                    <FileText className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-gray-900">Sammendrag</h4>

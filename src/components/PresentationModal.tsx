@@ -141,8 +141,8 @@ export default function PresentationModal({
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-violet-100 rounded-lg">
-                <Presentation className="h-5 w-5 text-violet-600" />
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <Presentation className="h-5 w-5 text-blue-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900">
@@ -188,7 +188,7 @@ export default function PresentationModal({
                     className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-200 bg-white hover:border-gray-300 transition-colors"
                   >
                     <div className="flex items-center space-x-3">
-                      <selectedType.icon className="h-5 w-5 text-violet-500" />
+                      <selectedType.icon className="h-5 w-5 text-blue-500" />
                       <div className="text-left">
                         <p className="font-medium text-gray-900">{selectedType.name}</p>
                         <p className="text-sm text-gray-500">{selectedType.description}</p>
@@ -212,22 +212,22 @@ export default function PresentationModal({
                           }}
                           className={cn(
                             "w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors",
-                            options.type === type.id && "bg-violet-50"
+                            options.type === type.id && "bg-blue-50"
                           )}
                         >
                           <type.icon className={cn(
                             "h-5 w-5",
-                            options.type === type.id ? "text-violet-600" : "text-gray-400"
+                            options.type === type.id ? "text-blue-600" : "text-gray-400"
                           )} />
                           <div className="text-left flex-1">
                             <p className={cn(
                               "font-medium",
-                              options.type === type.id ? "text-violet-600" : "text-gray-900"
+                              options.type === type.id ? "text-blue-600" : "text-gray-900"
                             )}>{type.name}</p>
                             <p className="text-sm text-gray-500">{type.description}</p>
                           </div>
                           {options.type === type.id && (
-                            <Check className="h-5 w-5 text-violet-600" />
+                            <Check className="h-5 w-5 text-blue-600" />
                           )}
                         </button>
                       ))}
@@ -272,7 +272,7 @@ export default function PresentationModal({
                               }}
                               className={cn(
                                 "w-full px-3 py-2 text-sm text-left hover:bg-gray-50",
-                                options.language === lang.value && "bg-violet-50 text-violet-600"
+                                options.language === lang.value && "bg-blue-50 text-blue-600"
                               )}
                             >
                               {lang.label}
@@ -311,7 +311,7 @@ export default function PresentationModal({
                               }}
                               className={cn(
                                 "w-full px-3 py-2 text-sm text-left hover:bg-gray-50",
-                                options.slideCount === count && "bg-violet-50 text-violet-600"
+                                options.slideCount === count && "bg-blue-50 text-blue-600"
                               )}
                             >
                               {count} slides
@@ -341,7 +341,7 @@ export default function PresentationModal({
                           type="checkbox"
                           checked={options[item.key as keyof PresentationOptions] as boolean}
                           onChange={(e) => setOptions(prev => ({ ...prev, [item.key]: e.target.checked }))}
-                          className="w-4 h-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                          className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                         />
                         <span className="text-sm text-gray-700">{item.label}</span>
                       </label>
@@ -360,7 +360,7 @@ export default function PresentationModal({
                   onChange={(e) => setOptions(prev => ({ ...prev, customInstructions: e.target.value }))}
                   placeholder="F.eks: Fokuser på budsjett. Bruk profesjonell tone. Inkluder grafer..."
                   rows={3}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500 resize-none text-sm"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 resize-none text-sm"
                 />
                 <p className="mt-1 text-xs text-gray-500">
                   Disse instruksjonene sendes til Gamma for å tilpasse presentasjonen
@@ -374,9 +374,9 @@ export default function PresentationModal({
               {/* Spinner */}
               <div className="flex justify-center mb-8">
                 <div className="relative">
-                  <div className="w-16 h-16 rounded-full border-4 border-violet-100" />
-                  <div className="absolute inset-0 w-16 h-16 rounded-full border-4 border-violet-600 border-t-transparent animate-spin" />
-                  <Presentation className="absolute inset-0 m-auto h-6 w-6 text-violet-600" />
+                  <div className="w-16 h-16 rounded-full border-4 border-blue-100" />
+                  <div className="absolute inset-0 w-16 h-16 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+                  <Presentation className="absolute inset-0 m-auto h-6 w-6 text-blue-600" />
                 </div>
               </div>
 
@@ -387,7 +387,7 @@ export default function PresentationModal({
                     {index < currentStep ? (
                       <Check className="h-5 w-5 text-emerald-500 flex-shrink-0" />
                     ) : index === currentStep ? (
-                      <div className="h-5 w-5 rounded-full border-2 border-violet-500 border-t-transparent animate-spin flex-shrink-0" />
+                      <div className="h-5 w-5 rounded-full border-2 border-blue-500 border-t-transparent animate-spin flex-shrink-0" />
                     ) : (
                       <div className="h-5 w-5 rounded-full border-2 border-gray-300 flex-shrink-0" />
                     )}
@@ -408,12 +408,12 @@ export default function PresentationModal({
           {state === 'success' && result && (
             <div className="py-4">
               {/* Success Card */}
-              <div className="bg-gradient-to-br from-violet-50 to-fuchsia-50 rounded-xl p-4 mb-6 border border-violet-100">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 mb-6 border border-blue-100">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-white rounded-lg shadow-sm">
                     {(() => {
                       const TypeIcon = presentationTypes.find(t => t.id === result.type)?.icon || Presentation;
-                      return <TypeIcon className="h-6 w-6 text-violet-600" />;
+                      return <TypeIcon className="h-6 w-6 text-blue-600" />;
                     })()}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -457,7 +457,7 @@ export default function PresentationModal({
               </button>
               <button
                 onClick={handleGenerate}
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-medium flex items-center space-x-2 transition-colors"
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] hover:from-[#1F49C6] hover:to-[#4A81EB] text-white font-medium flex items-center space-x-2 transition-colors"
               >
                 <Presentation className="h-4 w-4" />
                 <span>Generer</span>
@@ -494,7 +494,7 @@ export default function PresentationModal({
               </button>
               <button
                 onClick={handleOpenInGamma}
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-medium flex items-center space-x-2 transition-colors"
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] hover:from-[#1F49C6] hover:to-[#4A81EB] text-white font-medium flex items-center space-x-2 transition-colors"
               >
                 <ExternalLink className="h-4 w-4" />
                 <span>Åpne i Gamma</span>
@@ -512,7 +512,7 @@ export default function PresentationModal({
               </button>
               <button
                 onClick={() => setState('form')}
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white font-medium transition-colors"
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] hover:from-[#1F49C6] hover:to-[#4A81EB] text-white font-medium transition-colors"
               >
                 Prøv igjen
               </button>

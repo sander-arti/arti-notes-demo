@@ -112,7 +112,7 @@ export default function FileUploadModal({
                 className={cn(
                   "block w-full border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
                   selectedFile
-                    ? "border-violet-500 bg-violet-50"
+                    ? "border-blue-500 bg-blue-50"
                     : "border-gray-300 hover:border-gray-400"
                 )}
               >
@@ -125,10 +125,10 @@ export default function FileUploadModal({
                 />
                 <Upload className={cn(
                   "h-8 w-8 mx-auto mb-2",
-                  selectedFile ? "text-violet-500" : "text-gray-400"
+                  selectedFile ? "text-blue-500" : "text-gray-400"
                 )} />
                 {selectedFile ? (
-                  <span className="text-sm text-violet-600">
+                  <span className="text-sm text-blue-600">
                     {selectedFile.name}
                   </span>
                 ) : (
@@ -149,7 +149,7 @@ export default function FileUploadModal({
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Gi opptaket en tittel"
                 disabled={isUploading}
               />
@@ -174,7 +174,7 @@ export default function FileUploadModal({
                 "px-4 py-2 rounded-lg text-white transition-colors",
                 isUploading || !selectedFile || !title.trim()
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-violet-600 hover:bg-violet-700"
+                  : "bg-blue-600 hover:bg-blue-700"
               )}
             >
               {isUploading ? (

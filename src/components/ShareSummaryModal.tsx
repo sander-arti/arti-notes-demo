@@ -167,7 +167,7 @@ export default function ShareSummaryModal({
                             disabled={sendStatus === 'sending'}
                             className={cn(
                               "w-full px-3 py-2.5 rounded-xl border-2 transition-all text-sm",
-                              "focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-100",
+                              "focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
                               email && !isValidEmail(email)
                                 ? "border-red-300 bg-red-50"
                                 : email && isValidEmail(email)
@@ -204,7 +204,7 @@ export default function ShareSummaryModal({
                     type="button"
                     onClick={addRow}
                     disabled={sendStatus === 'sending'}
-                    className="w-full py-2.5 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:border-violet-300 hover:text-violet-600 hover:bg-violet-50/50 transition-all flex items-center justify-center gap-2 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-2.5 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/50 transition-all flex items-center justify-center gap-2 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Plus className="h-4 w-4" />
                     Legg til mottaker
@@ -219,7 +219,7 @@ export default function ShareSummaryModal({
                       checked={includeMinutes}
                       onChange={(e) => setIncludeMinutes(e.target.checked)}
                       disabled={sendStatus === 'sending'}
-                      className="w-4 h-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
                       Inkluder fullt referat
@@ -231,7 +231,7 @@ export default function ShareSummaryModal({
                       checked={includeTranscription}
                       onChange={(e) => setIncludeTranscription(e.target.checked)}
                       disabled={sendStatus === 'sending'}
-                      className="w-4 h-4 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
                       Inkluder full transkripsjon
@@ -244,7 +244,7 @@ export default function ShareSummaryModal({
               <div className="p-5 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
                 <div className="text-sm text-gray-500">
                   {validCount > 0 ? (
-                    <span className="text-violet-600 font-medium">
+                    <span className="text-blue-600 font-medium">
                       {validCount} {validCount === 1 ? 'mottaker' : 'mottakere'}
                     </span>
                   ) : (
@@ -265,7 +265,7 @@ export default function ShareSummaryModal({
                     className={cn(
                       "px-5 py-2 rounded-xl text-sm font-medium transition-all inline-flex items-center gap-2",
                       validCount > 0
-                        ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white hover:from-violet-500 hover:to-fuchsia-500 shadow-lg shadow-violet-500/25"
+                        ? "bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] text-white hover:from-[#4A81EB] hover:to-[#6EA0FF] shadow-lg shadow-[#2C64E3]/25"
                         : "bg-gray-200 text-gray-400 cursor-not-allowed"
                     )}
                   >

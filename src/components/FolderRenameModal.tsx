@@ -94,7 +94,7 @@ export default function FolderRenameModal({
                     setNewName(e.target.value);
                     setError(null);
                   }}
-                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                   disabled={isLoading}
                   autoFocus
                   onFocus={(e) => e.target.select()}
@@ -119,7 +119,7 @@ export default function FolderRenameModal({
                 "px-4 py-2 rounded-lg text-white transition-colors",
                 isLoading || !newName.trim() || newName.trim() === currentName
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-violet-600 hover:bg-violet-700"
+                  : "bg-blue-600 hover:bg-blue-700"
               )}
             >
               {isLoading ? (

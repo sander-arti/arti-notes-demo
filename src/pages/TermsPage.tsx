@@ -147,8 +147,8 @@ export default function TermsPage() {
             Tilbake
           </Link>
           <div className="flex items-center space-x-3 mb-4">
-            <div className="p-2 bg-violet-100 rounded-lg">
-              <FileText className="h-6 w-6 text-violet-600" />
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <FileText className="h-6 w-6 text-blue-600" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900">Vilkår for bruk</h1>
           </div>
@@ -158,7 +158,7 @@ export default function TermsPage() {
         </div>
 
         {/* Introduction */}
-        <div className="bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl p-6 mb-8 border border-violet-100">
+        <div className="bg-gradient-to-r from-blue-50 to-fuchsia-50 rounded-xl p-6 mb-8 border border-blue-100">
           <p className="text-gray-700">
             Disse vilkårene beskriver avtalen mellom deg og Notably AI. Ved å opprette en konto eller bruke tjenesten godtar du reglene nedenfor.
           </p>
@@ -172,9 +172,9 @@ export default function TermsPage() {
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="flex items-center text-gray-600 hover:text-violet-600 transition-colors py-1"
+                className="flex items-center text-gray-600 hover:text-blue-600 transition-colors py-1"
               >
-                <span className="text-violet-600 mr-2 w-5">{index + 1}.</span>
+                <span className="text-blue-600 mr-2 w-5">{index + 1}.</span>
                 {'isGoogle' in section && section.isGoogle && (
                   <GoogleIcon className="h-4 w-4 mr-1.5 flex-shrink-0" />
                 )}
@@ -193,11 +193,11 @@ export default function TermsPage() {
               className="bg-white rounded-xl shadow-sm p-6 scroll-mt-24"
             >
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-violet-50 rounded-lg">
+                <div className="p-2 bg-blue-50 rounded-lg">
                   {'isGoogle' in section && section.isGoogle ? (
                     <GoogleIcon className="h-5 w-5" />
                   ) : (
-                    <section.icon className="h-5 w-5 text-violet-600" />
+                    <section.icon className="h-5 w-5 text-blue-600" />
                   )}
                 </div>
                 <h2 className="text-xl font-semibold text-gray-900">
@@ -244,7 +244,7 @@ export default function TermsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="mailto:legal@notably.no"
-                className="inline-flex items-center px-4 py-2 bg-violet-100 text-violet-700 rounded-lg hover:bg-violet-200 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
               >
                 <Mail className="h-4 w-4 mr-2" />
                 legal@notably.no

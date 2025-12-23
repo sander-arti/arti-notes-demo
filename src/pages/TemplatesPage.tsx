@@ -30,22 +30,18 @@ interface TemplateCardProps {
 
 function TemplateCard({ template, isSelected, onSelect, onPreview }: TemplateCardProps) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
+    <div
       className={cn(
         "relative bg-white rounded-xl shadow-sm overflow-hidden transition-all cursor-pointer group flex flex-col h-full",
         isSelected
-          ? "ring-2 ring-violet-600 shadow-md"
-          : "hover:shadow-md hover:ring-1 hover:ring-violet-200"
+          ? "ring-2 ring-blue-600 shadow-md"
+          : "hover:shadow-md hover:ring-1 hover:ring-blue-200"
       )}
       onClick={onPreview}
     >
       {template.isDefault && (
         <div className="absolute top-3 right-3">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-violet-100 text-violet-700">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
             <Star className="h-3 w-3 mr-1" />
             Standard
           </span>
@@ -106,8 +102,8 @@ function TemplateCard({ template, isSelected, onSelect, onPreview }: TemplateCar
           className={cn(
             "inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-colors",
             isSelected
-              ? "bg-violet-600 text-white"
-              : "bg-white border border-gray-200 text-gray-700 hover:border-violet-300 hover:text-violet-600"
+              ? "bg-blue-600 text-white"
+              : "bg-white border border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-600"
           )}
         >
           {isSelected ? (
@@ -124,12 +120,12 @@ function TemplateCard({ template, isSelected, onSelect, onPreview }: TemplateCar
             e.stopPropagation();
             onPreview();
           }}
-          className="text-sm text-gray-500 hover:text-violet-600"
+          className="text-sm text-gray-500 hover:text-blue-600"
         >
           Forhåndsvis
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -192,7 +188,7 @@ function TemplatePreviewModal({ template, onClose, onSelect, isSelected }: Templ
                   <Wand2 className="h-5 w-5 text-fuchsia-600" />
                   <h3 className="font-semibold">AI-instruksjoner:</h3>
                 </div>
-                <div className="p-4 bg-gradient-to-br from-fuchsia-50 to-violet-50 border border-fuchsia-200 rounded-xl">
+                <div className="p-4 bg-gradient-to-br from-fuchsia-50 to-blue-50 border border-fuchsia-200 rounded-xl">
                   <p className="text-sm text-gray-700 whitespace-pre-wrap">
                     {template.customPrompt}
                   </p>
@@ -215,7 +211,7 @@ function TemplatePreviewModal({ template, onClose, onSelect, isSelected }: Templ
                       key={index}
                       className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
                     >
-                      <span className="flex items-center justify-center w-6 h-6 bg-violet-100 text-violet-600 rounded-full text-sm font-medium">
+                      <span className="flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                         {index + 1}
                       </span>
                       <span>{section}</span>
@@ -505,7 +501,7 @@ function CreateTemplateModal({ onClose, onCreate }: CreateTemplateModalProps) {
           <div className={cn(
             "p-4 rounded-xl border-2 transition-colors",
             name.trim()
-              ? "border-violet-200 bg-violet-50/50"
+              ? "border-blue-200 bg-blue-50/50"
               : "border-amber-300 bg-amber-50"
           )}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -536,7 +532,7 @@ function CreateTemplateModal({ onClose, onCreate }: CreateTemplateModalProps) {
                           className={cn(
                             "w-9 h-9 rounded-lg text-lg flex items-center justify-center transition-all",
                             icon === emoji
-                              ? "bg-violet-100 ring-2 ring-violet-500"
+                              ? "bg-blue-100 ring-2 ring-blue-500"
                               : "hover:bg-gray-100"
                           )}
                         >
@@ -553,7 +549,7 @@ function CreateTemplateModal({ onClose, onCreate }: CreateTemplateModalProps) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="F.eks. Ukentlig statusmøte"
-                  className="w-full px-3 py-2 text-lg font-semibold bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent placeholder-gray-400"
+                  className="w-full px-3 py-2 text-lg font-semibold bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400"
                   autoFocus
                 />
                 <input
@@ -561,7 +557,7 @@ function CreateTemplateModal({ onClose, onCreate }: CreateTemplateModalProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Kort beskrivelse (valgfritt)"
-                  className="w-full px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent placeholder-gray-400"
+                  className="w-full px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400"
                 />
               </div>
             </div>
@@ -577,14 +573,14 @@ function CreateTemplateModal({ onClose, onCreate }: CreateTemplateModalProps) {
               <button
                 type="button"
                 onClick={handleSwitchToModuleMode}
-                className="inline-flex items-center text-sm text-gray-500 hover:text-violet-600 transition-colors"
+                className="inline-flex items-center text-sm text-gray-500 hover:text-blue-600 transition-colors"
               >
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 Tilbake til modulbasert mal
               </button>
 
               {/* Info box */}
-              <div className="p-4 rounded-xl bg-gradient-to-br from-fuchsia-50 to-violet-50 border border-fuchsia-200">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-fuchsia-50 to-blue-50 border border-fuchsia-200">
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-lg bg-fuchsia-100">
                     <Wand2 className="h-5 w-5 text-fuchsia-600" />
@@ -652,14 +648,14 @@ eller
                               className={cn(
                                 "w-full flex items-start gap-3 p-3 rounded-xl border-2 transition-all text-left",
                                 isSelected
-                                  ? "border-violet-500 bg-violet-50"
+                                  ? "border-blue-500 bg-blue-50"
                                   : "border-gray-100 hover:border-gray-200 hover:bg-gray-50"
                               )}
                             >
                               <div className={cn(
                                 "w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
                                 isSelected
-                                  ? "bg-violet-600 border-violet-600"
+                                  ? "bg-blue-600 border-blue-600"
                                   : "border-gray-300"
                               )}>
                                 {isSelected && <Check className="h-3 w-3 text-white" />}
@@ -669,14 +665,14 @@ eller
                                   <span className="text-lg">{module.icon}</span>
                                   <span className={cn(
                                     "font-medium",
-                                    isSelected ? "text-violet-900" : "text-gray-900"
+                                    isSelected ? "text-blue-900" : "text-gray-900"
                                   )}>
                                     {module.title}
                                   </span>
                                 </div>
                                 <p className={cn(
                                   "text-sm mt-0.5",
-                                  isSelected ? "text-violet-700" : "text-gray-500"
+                                  isSelected ? "text-blue-700" : "text-gray-500"
                                 )}>
                                   {module.description}
                                 </p>
@@ -803,9 +799,7 @@ eller
               className={cn(
                 "px-5 py-2 rounded-xl text-sm font-medium transition-all",
                 name.trim() && (isCustomPromptMode ? customPrompt.trim() : selectedCount > 0)
-                  ? isCustomPromptMode
-                    ? "bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white hover:from-fuchsia-500 hover:to-violet-500 hover:shadow-lg"
-                    : "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white hover:from-violet-500 hover:to-fuchsia-500 hover:shadow-lg"
+                  ? "bg-gradient-to-r from-[#2C64E3] to-[#5A8DF8] text-white hover:from-[#1F49C6] hover:to-[#4A81EB] hover:shadow-lg"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
               )}
             >
@@ -863,8 +857,8 @@ export default function TemplatesPage() {
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center space-x-3 mb-2">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <FileText className="h-6 w-6 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <FileText className="h-6 w-6 text-blue-600" />
                 </div>
                 <h1 className="text-3xl font-bold">Maler for møtereferat</h1>
               </div>
@@ -893,7 +887,7 @@ export default function TemplatesPage() {
                 placeholder="Søk etter maler..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -904,7 +898,7 @@ export default function TemplatesPage() {
                 className={cn(
                   "px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors",
                   selectedCategory === 'all'
-                    ? "bg-violet-600 text-white"
+                    ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 )}
               >
@@ -915,7 +909,7 @@ export default function TemplatesPage() {
                 className={cn(
                   "px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors",
                   selectedCategory === 'custom'
-                    ? "bg-violet-600 text-white"
+                    ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 )}
               >
@@ -927,10 +921,10 @@ export default function TemplatesPage() {
 
         {/* Selected Template Info */}
         {selectedTemplate && selectedTemplateName && (
-          <div className="bg-gradient-to-r from-violet-50 to-fuchsia-50 border border-violet-100 rounded-xl p-4 mb-6">
+          <div className="bg-gradient-to-r from-blue-50 to-fuchsia-50 border border-blue-100 rounded-xl p-4 mb-6">
             <div className="flex items-center space-x-3">
-              <Check className="h-5 w-5 text-violet-600" />
-              <span className="text-violet-900">
+              <Check className="h-5 w-5 text-blue-600" />
+              <span className="text-blue-900">
                 <strong>{selectedTemplateName}</strong> er din aktive mal
               </span>
             </div>
@@ -939,17 +933,15 @@ export default function TemplatesPage() {
 
         {/* Template Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filteredTemplates.map((template) => (
-              <TemplateCard
-                key={template.id}
-                template={template}
-                isSelected={selectedTemplate === template.id}
-                onSelect={() => handleSelectTemplate(template.id)}
-                onPreview={() => setPreviewTemplate(template)}
-              />
-            ))}
-          </AnimatePresence>
+          {filteredTemplates.map((template) => (
+            <TemplateCard
+              key={template.id}
+              template={template}
+              isSelected={selectedTemplate === template.id}
+              onSelect={() => handleSelectTemplate(template.id)}
+              onPreview={() => setPreviewTemplate(template)}
+            />
+          ))}
         </div>
 
         {filteredTemplates.length === 0 && (

@@ -40,9 +40,9 @@ export default function AboutPage() {
       <section className="hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-violet-100 mb-8">
-              <Building className="h-4 w-4 text-violet-600 mr-2" />
-              <span className="text-sm font-medium text-violet-600">Notably</span>
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-100 mb-8">
+              <Building className="h-4 w-4 text-blue-600 mr-2" />
+              <span className="text-sm font-medium text-blue-600">Notably</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
               <span className="gradient-text">Vi digitaliserer møtehverdagen</span>
@@ -78,12 +78,12 @@ export default function AboutPage() {
               </Link>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 p-1">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-[#2C64E3] to-[#6EA0FF] p-1">
                 <div className="h-full w-full rounded-xl bg-white p-8">
                   <div className="space-y-6">
                     <div className="flex items-center space-x-4">
-                      <div className="p-3 rounded-xl bg-violet-100">
-                        <Zap className="h-6 w-6 text-violet-600" />
+                      <div className="p-3 rounded-xl bg-blue-100">
+                        <Zap className="h-6 w-6 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold">Rask implementering</h3>
@@ -91,8 +91,8 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="p-3 rounded-xl bg-violet-100">
-                        <Shield className="h-6 w-6 text-violet-600" />
+                      <div className="p-3 rounded-xl bg-blue-100">
+                        <Shield className="h-6 w-6 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold">GDPR-kompatibel</h3>
@@ -100,8 +100,8 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="p-3 rounded-xl bg-violet-100">
-                        <MessageSquare className="h-6 w-6 text-violet-600" />
+                      <div className="p-3 rounded-xl bg-blue-100">
+                        <MessageSquare className="h-6 w-6 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold">Norsk support</h3>
@@ -143,7 +143,7 @@ export default function AboutPage() {
       {/* Contact CTA */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-2xl p-12 text-center text-white">
+          <div className="bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] rounded-2xl p-12 text-center text-white">
             <h2 className="text-3xl font-bold mb-4">
               La oss hjelpe din bedrift
             </h2>
@@ -151,7 +151,7 @@ export default function AboutPage() {
               Kontakt oss for en uforpliktende prat om hvordan vi kan effektivisere deres møter.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact" className="button-primary bg-white text-violet-600 hover:bg-gray-50">
+              <Link to="/contact" className="button-primary bg-white text-blue-600 hover:bg-gray-50">
                 Kontakt oss
               </Link>
               <Link to="/pricing" className="text-white hover:text-gray-100 inline-flex items-center">

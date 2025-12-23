@@ -238,7 +238,7 @@ export default function RecordingModal({ isOpen, onClose, onComplete }: Recordin
                     }}
                     placeholder="F.eks. Ukentlig møte"
                     className={cn(
-                      "w-full rounded-lg border px-4 py-2 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500",
+                      "w-full rounded-lg border px-4 py-2 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500",
                       titleError ? "border-red-300" : "border-gray-300"
                     )}
                     disabled={isRecording}
@@ -278,8 +278,8 @@ export default function RecordingModal({ isOpen, onClose, onComplete }: Recordin
                       className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="p-2 rounded-full bg-violet-100">
-                          <UserPlus className="h-4 w-4 text-violet-600" />
+                        <div className="p-2 rounded-full bg-blue-100">
+                          <UserPlus className="h-4 w-4 text-blue-600" />
                         </div>
                         <div>
                           <p className="font-medium text-sm text-gray-900">{participant.name}</p>
@@ -309,7 +309,7 @@ export default function RecordingModal({ isOpen, onClose, onComplete }: Recordin
                           name: e.target.value
                         }))}
                         placeholder="Navn"
-                        className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     <div className="flex-1">
@@ -321,12 +321,12 @@ export default function RecordingModal({ isOpen, onClose, onComplete }: Recordin
                           email: e.target.value
                         }))}
                         placeholder="E-post (valgfritt)"
-                        className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     <button
                       onClick={handleAddParticipant}
-                      className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors"
+                      className="button-primary px-4 py-2"
                     >
                       <UserPlus className="h-5 w-5" />
                     </button>
@@ -347,7 +347,7 @@ export default function RecordingModal({ isOpen, onClose, onComplete }: Recordin
               </div>
             ) : isProcessing || isSaving ? (
               <div className="flex flex-col items-center">
-                <Activity className="h-12 w-12 text-violet-600 animate-pulse mb-4" />
+                <Activity className="h-12 w-12 text-blue-600 animate-pulse mb-4" />
                 <p className="text-gray-600">
                   {isProcessing ? 'Behandler opptak...' : 'Lagrer opptak...'}
                 </p>

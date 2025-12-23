@@ -119,7 +119,7 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
                   type={showCurrentPassword ? 'text' : 'password'}
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500 pr-10"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500 pr-10"
                   disabled={isLoading}
                 />
                 <button
@@ -146,7 +146,7 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
                   type={showNewPassword ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500 pr-10"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500 pr-10"
                   disabled={isLoading}
                 />
                 <button
@@ -173,7 +173,7 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
                   type={showConfirmPassword ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500 pr-10"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500 pr-10"
                   disabled={isLoading}
                 />
                 <button
@@ -207,7 +207,7 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
                 "px-4 py-2 rounded-lg text-white transition-colors",
                 isLoading
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-violet-600 hover:bg-violet-700"
+                  : "bg-blue-600 hover:bg-blue-700"
               )}
             >
               {isLoading ? (

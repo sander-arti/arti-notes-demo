@@ -65,8 +65,8 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <UserPlus className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <UserPlus className="h-5 w-5 text-blue-600" />
                 </div>
                 <h2 className="text-xl font-bold">Inviter nytt medlem</h2>
               </div>
@@ -91,7 +91,7 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                   placeholder="kollega@firma.no"
                 />
               </div>
@@ -108,18 +108,18 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                   className={cn(
                     "flex items-center p-3 rounded-lg border-2 transition-colors",
                     role === 'member'
-                      ? "border-violet-600 bg-violet-50"
+                      ? "border-blue-600 bg-blue-50"
                       : "border-gray-200 hover:border-gray-300"
                   )}
                 >
                   <User className={cn(
                     "h-5 w-5 mr-2",
-                    role === 'member' ? "text-violet-600" : "text-gray-400"
+                    role === 'member' ? "text-blue-600" : "text-gray-400"
                   )} />
                   <div className="text-left">
                     <div className={cn(
                       "font-medium",
-                      role === 'member' ? "text-violet-900" : "text-gray-900"
+                      role === 'member' ? "text-blue-900" : "text-gray-900"
                     )}>
                       Medlem
                     </div>
@@ -132,18 +132,18 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                   className={cn(
                     "flex items-center p-3 rounded-lg border-2 transition-colors",
                     role === 'admin'
-                      ? "border-violet-600 bg-violet-50"
+                      ? "border-blue-600 bg-blue-50"
                       : "border-gray-200 hover:border-gray-300"
                   )}
                 >
                   <Shield className={cn(
                     "h-5 w-5 mr-2",
-                    role === 'admin' ? "text-violet-600" : "text-gray-400"
+                    role === 'admin' ? "text-blue-600" : "text-gray-400"
                   )} />
                   <div className="text-left">
                     <div className={cn(
                       "font-medium",
-                      role === 'admin' ? "text-violet-900" : "text-gray-900"
+                      role === 'admin' ? "text-blue-900" : "text-gray-900"
                     )}>
                       Administrator
                     </div>
@@ -189,11 +189,11 @@ function MemberCard({ member, isCurrentUser, onRemove, onChangeRole }: MemberCar
   return (
     <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors">
       <div className="flex items-center space-x-4">
-        <div className="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
           {member.avatar ? (
             <img src={member.avatar} alt={member.name} className="w-10 h-10 rounded-full" />
           ) : (
-            <User className="h-5 w-5 text-violet-600" />
+            <User className="h-5 w-5 text-blue-600" />
           )}
         </div>
         <div>
@@ -315,8 +315,8 @@ export default function OrganizationPage() {
           </Link>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-xl bg-violet-100 flex items-center justify-center">
-                <Building2 className="h-8 w-8 text-violet-600" />
+              <div className="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center">
+                <Building2 className="h-8 w-8 text-blue-600" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold">{mockOrganization.name}</h1>
@@ -339,8 +339,8 @@ export default function OrganizationPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl shadow-sm p-5">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-violet-50 rounded-lg">
-                <Users className="h-5 w-5 text-violet-600" />
+              <div className="p-2 bg-blue-50 rounded-lg">
+                <Users className="h-5 w-5 text-blue-600" />
               </div>
               <div>
                 <div className="text-2xl font-bold">{members.length}</div>
@@ -440,7 +440,7 @@ export default function OrganizationPage() {
             </h2>
             <button
               onClick={() => toast.info('Administrer delte mapper fra dashboard')}
-              className="text-sm text-violet-600 hover:text-violet-700"
+              className="text-sm text-blue-600 hover:text-blue-700"
             >
               Administrer
             </button>
@@ -453,7 +453,7 @@ export default function OrganizationPage() {
                     key={folder.id}
                     className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
                   >
-                    <Folder className="h-5 w-5 text-violet-600" />
+                    <Folder className="h-5 w-5 text-blue-600" />
                     <span>{folder.name}</span>
                     <Check className="h-4 w-4 text-green-500 ml-auto" />
                   </div>
@@ -484,7 +484,7 @@ export default function OrganizationPage() {
                 <input
                   type="text"
                   defaultValue={mockOrganization.name}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -494,7 +494,7 @@ export default function OrganizationPage() {
                 <input
                   type="email"
                   defaultValue={mockOrganization.billingEmail}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
             </div>

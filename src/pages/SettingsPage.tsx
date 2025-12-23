@@ -57,11 +57,11 @@ function IntegrationCard({
   onDisconnect
 }: IntegrationCardProps) {
   return (
-    <div className="flex flex-col p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors">
+    <div className="flex flex-col p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-4">
-          <div className="p-2 bg-violet-100 rounded-lg">
-            <Icon className="h-5 w-5 text-violet-600" />
+          <div className="p-2 bg-blue-100 rounded-lg">
+            <Icon className="h-5 w-5 text-blue-600" />
           </div>
           <div>
             <h3 className="font-medium">{title}</h3>
@@ -85,7 +85,7 @@ function IntegrationCard({
             "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
             isConnected
               ? "bg-red-100 text-red-700 hover:bg-red-200"
-              : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+              : "bg-blue-100 text-blue-700 hover:bg-blue-200"
           )}
         >
           {isConnected ? 'Koble fra' : 'Koble til'}
@@ -125,7 +125,7 @@ function ToggleSetting({
         onClick={() => onChange(!enabled)}
         className={cn(
           "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
-          enabled ? "bg-violet-600" : "bg-gray-200"
+          enabled ? "bg-blue-600" : "bg-gray-200"
         )}
       >
         <span
@@ -170,7 +170,7 @@ function SelectSetting({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm focus:border-violet-500 focus:ring-violet-500"
+        className="px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm focus:border-blue-500 focus:ring-blue-500"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -260,12 +260,12 @@ export default function SettingsPage() {
         <SettingsSection title="Konto">
           <div className="p-4 space-y-4">
             <div className="flex items-center space-x-4">
-              <div className="h-16 w-16 rounded-full bg-violet-100 flex items-center justify-center">
-                <User className="h-8 w-8 text-violet-600" />
+              <div className="h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center">
+                <User className="h-8 w-8 text-blue-600" />
               </div>
               <div>
                 <h3 className="font-medium">{mockUser.email}</h3>
-                <button className="text-sm text-violet-600 hover:text-violet-700">
+                <button className="text-sm text-blue-600 hover:text-blue-700">
                   Endre profilbilde
                 </button>
               </div>
@@ -286,7 +286,7 @@ export default function SettingsPage() {
                       className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-600"
                     />
                   </div>
-                  <button className="px-4 py-2 text-sm text-violet-600 hover:text-violet-700 font-medium">
+                  <button className="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
                     Endre
                   </button>
                 </div>
@@ -302,10 +302,10 @@ export default function SettingsPage() {
                     <input
                       type="text"
                       defaultValue={mockUser.organization}
-                      className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                      className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
-                  <button className="px-4 py-2 text-sm text-violet-600 hover:text-violet-700 font-medium">
+                  <button className="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
                     Lagre
                   </button>
                 </div>
@@ -353,20 +353,20 @@ export default function SettingsPage() {
           <div className="relative">
             <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10">
               <div className="text-center">
-                <span className="inline-flex items-center px-4 py-2 rounded-full bg-violet-100 text-violet-700 font-medium text-sm">
+                <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-sm">
                   Kommer snart
                 </span>
               </div>
             </div>
 
-          <div className="p-4 bg-violet-50 border-b border-violet-100">
+          <div className="p-4 bg-blue-50 border-b border-blue-100">
             <div className="flex items-start">
-              <Video className="h-5 w-5 text-violet-600 mt-1 mr-3" />
+              <Video className="h-5 w-5 text-blue-600 mt-1 mr-3" />
               <div>
-                <h3 className="font-medium text-violet-900">
+                <h3 className="font-medium text-blue-900">
                   Automatisk transkripsjon av digitale møter
                 </h3>
-                <p className="text-sm text-violet-700 mt-1">
+                <p className="text-sm text-blue-700 mt-1">
                   La Notably automatisk bli med i dine digitale møter og transkribere dem.
                   Koble til din kalender og møteplattform for å komme i gang.
                 </p>
@@ -400,11 +400,11 @@ export default function SettingsPage() {
           <div className="p-4 space-y-4">
             <button
               onClick={() => setShowPasswordModal(true)}
-              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
             >
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <Lock className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Lock className="h-5 w-5 text-blue-600" />
                 </div>
                 <div className="text-left">
                   <h3 className="font-medium">Endre passord</h3>
@@ -421,11 +421,11 @@ export default function SettingsPage() {
           <div className="p-4 space-y-4">
             <button
               onClick={handleExportData}
-              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
             >
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <Download className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Download className="h-5 w-5 text-blue-600" />
                 </div>
                 <div className="text-left">
                   <h3 className="font-medium">Eksporter data</h3>
@@ -437,11 +437,11 @@ export default function SettingsPage() {
 
             <Link
               to="/privacy"
-              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+              className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
             >
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <Shield className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Shield className="h-5 w-5 text-blue-600" />
                 </div>
                 <div className="text-left">
                   <h3 className="font-medium">Personvernerklæring</h3>

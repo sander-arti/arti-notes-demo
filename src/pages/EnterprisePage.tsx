@@ -53,9 +53,9 @@ export default function EnterprisePage() {
       <section className="hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-violet-100 mb-8">
-              <Building className="h-4 w-4 text-violet-600 mr-2" />
-              <span className="text-sm font-medium text-violet-600">Enterprise</span>
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-100 mb-8">
+              <Building className="h-4 w-4 text-blue-600 mr-2" />
+              <span className="text-sm font-medium text-blue-600">Enterprise</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
               <span className="gradient-text">Skreddersydd for store organisasjoner</span>
@@ -107,7 +107,7 @@ export default function EnterprisePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="feature-card flex items-start p-6">
-                <CheckCircle className="h-5 w-5 text-violet-600 mr-3 flex-shrink-0 mt-1" />
+                <CheckCircle className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-1" />
                 <span className="text-gray-600">{feature}</span>
               </div>
             ))}
@@ -163,7 +163,7 @@ export default function EnterprisePage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 p-1">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-[#2C64E3] to-[#6EA0FF] p-1">
                 <div className="h-full w-full rounded-xl bg-white p-8">
                   <h3 className="text-2xl font-bold mb-6">La oss diskutere deres behov</h3>
                   <form className="space-y-4">
@@ -173,7 +173,7 @@ export default function EnterprisePage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -182,7 +182,7 @@ export default function EnterprisePage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -191,7 +191,7 @@ export default function EnterprisePage() {
                       </label>
                       <input
                         type="email"
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -200,7 +200,7 @@ export default function EnterprisePage() {
                       </label>
                       <textarea
                         rows={4}
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-violet-500 focus:ring-violet-500"
+                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     <button type="submit" className="button-primary w-full">

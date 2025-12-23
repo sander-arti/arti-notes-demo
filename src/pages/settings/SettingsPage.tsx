@@ -94,7 +94,7 @@ function ToggleSetting({ icon: Icon, title, description, enabled, onChange }: To
         onClick={() => onChange(!enabled)}
         className={cn(
           "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
-          enabled ? "bg-violet-600" : "bg-gray-200"
+          enabled ? "bg-blue-600" : "bg-gray-200"
         )}
       >
         <span
@@ -132,7 +132,7 @@ function SelectSetting({ icon: Icon, title, description, value, options, onChang
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm focus:border-violet-500 focus:ring-violet-500"
+        className="px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm focus:border-blue-500 focus:ring-blue-500"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -161,16 +161,16 @@ function ProfileTab() {
             "h-20 w-20 rounded-full flex items-center justify-center",
             isSolo && "bg-emerald-100",
             isMember && "bg-amber-100",
-            isAdmin && "bg-violet-100"
+            isAdmin && "bg-blue-100"
           )}>
             {isSolo && <UserCircle className="h-10 w-10 text-emerald-600" />}
             {isMember && <Users className="h-10 w-10 text-amber-600" />}
-            {isAdmin && <User className="h-10 w-10 text-violet-600" />}
+            {isAdmin && <User className="h-10 w-10 text-blue-600" />}
           </div>
           <div>
             <h3 className="font-semibold text-lg text-gray-900">{currentUserData.name}</h3>
             <p className="text-gray-600">{currentUserData.email}</p>
-            <button className="text-sm text-violet-600 hover:text-violet-700 mt-1">
+            <button className="text-sm text-blue-600 hover:text-blue-700 mt-1">
               Endre profilbilde
             </button>
           </div>
@@ -185,7 +185,7 @@ function ProfileTab() {
             <input
               type="text"
               defaultValue={currentUserData.name}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-violet-500 focus:ring-violet-500"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
 
@@ -203,7 +203,7 @@ function ProfileTab() {
                   className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-600"
                 />
               </div>
-              <button className="px-4 py-2 text-sm text-violet-600 hover:text-violet-700 font-medium">
+              <button className="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
                 Endre
               </button>
             </div>
@@ -214,22 +214,22 @@ function ProfileTab() {
             <div className="pt-4 border-t border-gray-100">
               <div className={cn(
                 "flex items-center space-x-3 p-4 rounded-lg",
-                isAdmin ? "bg-violet-50" : "bg-amber-50"
+                isAdmin ? "bg-blue-50" : "bg-amber-50"
               )}>
                 <Building className={cn(
                   "h-5 w-5",
-                  isAdmin ? "text-violet-600" : "text-amber-600"
+                  isAdmin ? "text-blue-600" : "text-amber-600"
                 )} />
                 <div>
                   <p className={cn(
                     "font-medium",
-                    isAdmin ? "text-violet-900" : "text-amber-900"
+                    isAdmin ? "text-blue-900" : "text-amber-900"
                   )}>
                     {mockOrganization.name}
                   </p>
                   <p className={cn(
                     "text-sm",
-                    isAdmin ? "text-violet-700" : "text-amber-700"
+                    isAdmin ? "text-blue-700" : "text-amber-700"
                   )}>
                     {isAdmin ? 'Administrator' : 'Medlem'}
                   </p>
@@ -321,7 +321,7 @@ function StyledDropdown({ value, options, onChange, icon: Icon }: StyledDropdown
         className={cn(
           "w-full flex items-center justify-between px-4 py-3 border rounded-xl transition-all text-left",
           isOpen
-            ? "bg-white border-violet-300 ring-2 ring-violet-100 shadow-md"
+            ? "bg-white border-blue-300 ring-2 ring-blue-100 shadow-md"
             : "bg-gray-50 hover:bg-gray-100 border-gray-200"
         )}
       >
@@ -329,16 +329,16 @@ function StyledDropdown({ value, options, onChange, icon: Icon }: StyledDropdown
           {Icon && (
             <div className={cn(
               "p-1.5 rounded-lg shadow-sm transition-colors",
-              isOpen ? "bg-violet-100" : "bg-white"
+              isOpen ? "bg-blue-100" : "bg-white"
             )}>
-              <Icon className="h-4 w-4 text-violet-600" />
+              <Icon className="h-4 w-4 text-blue-600" />
             </div>
           )}
           <span className="font-medium text-gray-900">{selectedOption?.label}</span>
         </div>
         <ChevronLeft className={cn(
           "h-4 w-4 transition-transform duration-200",
-          isOpen ? "rotate-90 text-violet-500" : "-rotate-90 text-gray-400"
+          isOpen ? "rotate-90 text-blue-500" : "-rotate-90 text-gray-400"
         )} />
       </button>
 
@@ -373,25 +373,25 @@ function StyledDropdown({ value, options, onChange, icon: Icon }: StyledDropdown
                 className={cn(
                   "w-full flex items-center px-4 py-3 text-left transition-colors",
                   option.value === value
-                    ? "bg-violet-50"
+                    ? "bg-blue-50"
                     : "hover:bg-gray-50"
                 )}
               >
                 <div className="flex-1">
                   <span className={cn(
                     "font-medium",
-                    option.value === value ? "text-violet-700" : "text-gray-900"
+                    option.value === value ? "text-blue-700" : "text-gray-900"
                   )}>{option.label}</span>
                   {option.description && (
                     <p className={cn(
                       "text-xs mt-0.5",
-                      option.value === value ? "text-violet-600/70" : "text-gray-500"
+                      option.value === value ? "text-blue-600/70" : "text-gray-500"
                     )}>{option.description}</p>
                   )}
                 </div>
                 {option.value === value && (
-                  <div className="p-1 bg-violet-100 rounded-full ml-3">
-                    <Check className="h-3.5 w-3.5 text-violet-600" />
+                  <div className="p-1 bg-blue-100 rounded-full ml-3">
+                    <Check className="h-3.5 w-3.5 text-blue-600" />
                   </div>
                 )}
               </button>
@@ -456,8 +456,8 @@ function PreferencesTab() {
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-gray-100">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 bg-gradient-to-br from-violet-100 to-fuchsia-100 rounded-xl">
-              <Mic className="h-5 w-5 text-violet-600" />
+            <div className="p-2.5 bg-gradient-to-br from-blue-100 to-fuchsia-100 rounded-xl">
+              <Mic className="h-5 w-5 text-blue-600" />
             </div>
             <div>
               <h2 className="font-semibold text-gray-900">Opptak</h2>
@@ -468,11 +468,11 @@ function PreferencesTab() {
 
         <div className="p-6 space-y-8">
           {/* Auto-record toggle - redesigned as a card */}
-          <div className="p-5 bg-gradient-to-r from-violet-50/50 to-fuchsia-50/50 rounded-xl border border-violet-100">
+          <div className="p-5 bg-gradient-to-r from-blue-50/50 to-fuchsia-50/50 rounded-xl border border-blue-100">
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-1">
-                  <Calendar className="h-4 w-4 text-violet-600" />
+                  <Calendar className="h-4 w-4 text-blue-600" />
                   <h3 className="font-semibold text-gray-900">Automatisk opptak</h3>
                 </div>
                 <p className="text-sm text-gray-600">
@@ -483,7 +483,7 @@ function PreferencesTab() {
                 onClick={() => setAutoRecord(!autoRecord)}
                 className={cn(
                   "relative inline-flex h-7 w-12 items-center rounded-full transition-colors shadow-inner",
-                  autoRecord ? "bg-violet-600" : "bg-gray-300"
+                  autoRecord ? "bg-blue-600" : "bg-gray-300"
                 )}
               >
                 <span
@@ -616,10 +616,10 @@ function BillingTabTeamMember() {
           <h2 className="font-semibold">Bedriftsabonnement</h2>
         </div>
         <div className="p-6">
-          <div className="p-6 bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl border border-violet-100">
+          <div className="p-6 bg-gradient-to-r from-blue-50 to-fuchsia-50 rounded-xl border border-blue-100">
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-white rounded-xl shadow-sm">
-                <Building className="h-6 w-6 text-violet-600" />
+                <Building className="h-6 w-6 text-blue-600" />
               </div>
               <div className="flex-1">
                 <p className="text-gray-600 mb-4">
@@ -748,11 +748,11 @@ function ManageSeatsModal({ onClose }: ManageSeatsModalProps) {
         className="bg-white rounded-2xl shadow-xl max-w-lg w-full overflow-hidden"
       >
         {/* Header */}
-        <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-violet-50 to-fuchsia-50">
+        <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-fuchsia-50">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="p-2.5 bg-white rounded-xl shadow-sm">
-                <Users className="h-5 w-5 text-violet-600" />
+                <Users className="h-5 w-5 text-blue-600" />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-gray-900">Administrer seter</h2>
@@ -778,7 +778,7 @@ function ManageSeatsModal({ onClose }: ManageSeatsModalProps) {
             </div>
             <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-blue-500 to-fuchsia-500 rounded-full transition-all duration-500"
                 style={{ width: `${(usedSeats / originalSeats) * 100}%` }}
               />
             </div>
@@ -835,7 +835,7 @@ function ManageSeatsModal({ onClose }: ManageSeatsModalProps) {
           </div>
 
           {/* Price Summary */}
-          <div className="bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl p-4 border border-violet-100">
+          <div className="bg-gradient-to-r from-blue-50 to-fuchsia-50 rounded-xl p-4 border border-blue-100">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-600">Månedlig kostnad</span>
               <span className="text-lg font-semibold text-gray-900">
@@ -889,7 +889,7 @@ function ManageSeatsModal({ onClose }: ManageSeatsModalProps) {
             className={cn(
               "px-5 py-2 rounded-xl text-sm font-medium transition-all flex items-center",
               seatCount !== originalSeats && !isProcessing
-                ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white hover:shadow-lg"
+                ? "bg-gradient-to-r from-blue-600 to-fuchsia-600 text-white hover:shadow-lg"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
             )}
           >
@@ -1132,10 +1132,10 @@ function BillingTabAdmin({ isOrgAdmin = false }: { isOrgAdmin?: boolean }) {
           </h2>
         </div>
         <div className="p-6">
-          <div className="flex items-center justify-between p-4 bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl border border-violet-100">
+          <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-fuchsia-50 rounded-xl border border-blue-100">
             <div className="flex items-center space-x-4">
               <div className="p-3 bg-white rounded-xl shadow-sm">
-                <Crown className="h-6 w-6 text-violet-600" />
+                <Crown className="h-6 w-6 text-blue-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{isOrgAdmin ? 'Enterprise' : 'Pro-plan'}</h3>
@@ -1188,7 +1188,7 @@ function BillingTabAdmin({ isOrgAdmin = false }: { isOrgAdmin?: boolean }) {
                 <p className="text-sm text-gray-500">Utløper 12/26</p>
               </div>
             </div>
-            <button className="text-sm text-violet-600 hover:text-violet-700 font-medium">
+            <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               Endre
             </button>
           </div>
@@ -1209,8 +1209,8 @@ function BillingTabAdmin({ isOrgAdmin = false }: { isOrgAdmin?: boolean }) {
                   className={cn(
                     "p-4 rounded-lg border-2 transition-colors",
                     plan.current
-                      ? "border-violet-600 bg-violet-50"
-                      : "border-gray-200 hover:border-violet-200"
+                      ? "border-blue-600 bg-blue-50"
+                      : "border-gray-200 hover:border-blue-200"
                   )}
                 >
                   <h3 className="font-semibold">{plan.name}</h3>
@@ -1227,7 +1227,7 @@ function BillingTabAdmin({ isOrgAdmin = false }: { isOrgAdmin?: boolean }) {
                     ))}
                   </ul>
                   {plan.current && (
-                    <p className="mt-3 text-sm text-violet-600 font-medium">Nåværende plan</p>
+                    <p className="mt-3 text-sm text-blue-600 font-medium">Nåværende plan</p>
                   )}
                 </div>
               ))}
@@ -1304,7 +1304,7 @@ function BillingTabSolo() {
                 <p className="text-sm text-gray-500">Utløper 12/26</p>
               </div>
             </div>
-            <button className="text-sm text-violet-600 hover:text-violet-700 font-medium">
+            <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
               Endre
             </button>
           </div>
@@ -1355,17 +1355,17 @@ function BillingTabSolo() {
       </div>
 
       {/* Team CTA */}
-      <div className="bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl p-6 border border-violet-100">
+      <div className="bg-gradient-to-r from-blue-50 to-fuchsia-50 rounded-xl p-6 border border-blue-100">
         <div className="flex items-start space-x-4">
-          <div className="p-3 bg-violet-100 rounded-xl">
-            <Users className="h-6 w-6 text-violet-600" />
+          <div className="p-3 bg-blue-100 rounded-xl">
+            <Users className="h-6 w-6 text-blue-600" />
           </div>
           <div className="flex-1">
-            <h3 className="font-semibold text-lg text-violet-900">Trenger du team-funksjonalitet?</h3>
-            <p className="text-violet-700 mt-1">
+            <h3 className="font-semibold text-lg text-blue-900">Trenger du team-funksjonalitet?</h3>
+            <p className="text-blue-700 mt-1">
               Oppgrader til Team-planen for å invitere kollegaer, dele mapper og samarbeide om møtenotater.
             </p>
-            <button className="mt-4 px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-sm font-medium transition-colors">
+            <button className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors">
               Oppgrader til Team
             </button>
           </div>
@@ -1408,8 +1408,8 @@ function MemberCardReadOnly({ member, isCurrentUser, showActions, onRemove, onCh
   return (
     <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors">
       <div className="flex items-center space-x-4">
-        <div className="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center">
-          <User className="h-5 w-5 text-violet-600" />
+        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+          <User className="h-5 w-5 text-blue-600" />
         </div>
         <div>
           <div className="flex items-center space-x-2">
@@ -1545,8 +1545,8 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
           <div className="p-6 border-b border-gray-100 flex-shrink-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-xl">
-                  <UserPlus className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-xl">
+                  <UserPlus className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-gray-900">Inviter medlemmer</h2>
@@ -1582,7 +1582,7 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                         placeholder="navn@eksempel.no"
                         className={cn(
                           "w-full px-4 py-3 rounded-xl border-2 transition-all text-sm",
-                          "focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-100",
+                          "focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
                           row.email && !isValidEmail(row.email)
                             ? "border-red-300 bg-red-50"
                             : row.email && isValidEmail(row.email)
@@ -1602,7 +1602,7 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                     <select
                       value={row.role}
                       onChange={(e) => updateRow(row.id, 'role', e.target.value as 'admin' | 'member')}
-                      className="px-3 py-3 rounded-xl border-2 border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-100 cursor-pointer appearance-none pr-8 min-w-[120px]"
+                      className="px-3 py-3 rounded-xl border-2 border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 cursor-pointer appearance-none pr-8 min-w-[120px]"
                       style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center', backgroundSize: '16px' }}
                     >
                       <option value="member">Medlem</option>
@@ -1633,7 +1633,7 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                 onClick={addRow}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
-                className="w-full py-3 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:border-violet-300 hover:text-violet-600 hover:bg-violet-50/50 transition-all flex items-center justify-center gap-2 text-sm font-medium"
+                className="w-full py-3 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/50 transition-all flex items-center justify-center gap-2 text-sm font-medium"
               >
                 <Plus className="h-4 w-4" />
                 Legg til medlem
@@ -1644,7 +1644,7 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
             <div className="p-6 border-t border-gray-100 bg-gray-50 flex items-center justify-between flex-shrink-0">
               <div className="text-sm text-gray-500">
                 {validCount > 0 ? (
-                  <span className="text-violet-600 font-medium">
+                  <span className="text-blue-600 font-medium">
                     {validCount} {validCount === 1 ? 'invitasjon' : 'invitasjoner'} klar
                   </span>
                 ) : (
@@ -1665,7 +1665,7 @@ function InviteMemberModal({ isOpen, onClose, onInvite }: InviteMemberModalProps
                   className={cn(
                     "px-5 py-2.5 rounded-xl text-sm font-medium transition-all inline-flex items-center gap-2",
                     validCount > 0
-                      ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white hover:from-violet-500 hover:to-fuchsia-500 shadow-lg shadow-violet-500/25"
+                      ? "bg-gradient-to-r from-blue-600 to-fuchsia-600 text-white hover:from-blue-500 hover:to-fuchsia-500 shadow-lg shadow-blue-500/25"
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   )}
                 >
@@ -1729,8 +1729,8 @@ function TeamTab() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center">
-            <Building className="h-6 w-6 text-violet-600" />
+          <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+            <Building className="h-6 w-6 text-blue-600" />
           </div>
           <div>
             <h2 className="font-semibold text-lg">{mockOrganization.name}</h2>
@@ -1879,7 +1879,7 @@ function IntegrationCard({
       ) : (
         <button
           onClick={onConnect}
-          className="px-4 py-2 text-sm font-medium text-violet-600 hover:text-violet-700 hover:bg-violet-50 rounded-lg border border-violet-200 transition-colors"
+          className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg border border-blue-200 transition-colors"
         >
           Koble til
         </button>
@@ -1957,8 +1957,8 @@ function IntegrationsTab() {
         <div className="p-6 space-y-4">
           <IntegrationCard
             icon={MessageSquare}
-            iconBg="bg-purple-50"
-            iconColor="text-purple-600"
+            iconBg="bg-blue-50"
+            iconColor="text-blue-600"
             name="Slack"
             description="Send møtesammendrag til Slack-kanaler"
             connected={slackConnected}
@@ -1997,7 +1997,7 @@ function IntegrationsTab() {
               <h2 className="font-semibold">Utviklerverktøy</h2>
               <p className="text-sm text-gray-600 mt-1">Bygg egne integrasjoner med Notably API</p>
             </div>
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-violet-100 text-violet-800">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
               Pro / Enterprise
             </span>
           </div>
@@ -2007,8 +2007,8 @@ function IntegrationsTab() {
           <div>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <Bot className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Bot className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
                   <h3 className="font-medium">MCP-server</h3>
@@ -2034,7 +2034,7 @@ function IntegrationsTab() {
 }`);
                     toast.success('MCP-konfigurasjon kopiert');
                   }}
-                  className="text-xs text-violet-600 hover:text-violet-700 font-medium flex items-center"
+                  className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center"
                 >
                   <Copy className="h-3 w-3 mr-1" />
                   Kopier
@@ -2152,11 +2152,11 @@ function IntegrationsTab() {
           <div className="pt-4 border-t border-gray-100">
             <a
               href="#"
-              className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+              className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
             >
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-violet-100 rounded-lg">
-                  <ExternalLink className="h-5 w-5 text-violet-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <ExternalLink className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
                   <h3 className="font-medium">API-dokumentasjon</h3>
@@ -2192,11 +2192,11 @@ function SecurityTab() {
         <div className="p-6">
           <button
             onClick={() => setShowPasswordModal(true)}
-            className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+            className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
           >
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-violet-100 rounded-lg">
-                <Lock className="h-5 w-5 text-violet-600" />
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <Lock className="h-5 w-5 text-blue-600" />
               </div>
               <div className="text-left">
                 <h3 className="font-medium">Endre passord</h3>
@@ -2216,11 +2216,11 @@ function SecurityTab() {
         <div className="p-6 space-y-4">
           <Link
             to="/privacy"
-            className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-violet-200 hover:bg-violet-50/50 transition-colors"
+            className="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
           >
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-violet-100 rounded-lg">
-                <Shield className="h-5 w-5 text-violet-600" />
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <Shield className="h-5 w-5 text-blue-600" />
               </div>
               <div className="text-left">
                 <h3 className="font-medium">Personvernerklæring</h3>
@@ -2365,7 +2365,7 @@ export default function SettingsPage() {
                   className={cn(
                     "flex items-center space-x-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap",
                     effectiveTab === tab.id
-                      ? "bg-violet-100 text-violet-700"
+                      ? "bg-blue-100 text-blue-700"
                       : "text-gray-600 hover:bg-gray-100"
                   )}
                 >

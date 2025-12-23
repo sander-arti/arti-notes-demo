@@ -73,7 +73,7 @@ export default function ChatMessageList({
       {hasMore && (
         <div ref={loadMoreRef} className="text-center py-2">
           {isLoading ? (
-            <div className="animate-spin rounded-full h-5 w-5 border-2 border-violet-600 border-t-transparent mx-auto" />
+            <div className="animate-spin rounded-full h-5 w-5 border-2 border-blue-600 border-t-transparent mx-auto" />
           ) : (
             <span className="text-sm text-gray-500">Last inn flere meldinger...</span>
           )}
@@ -103,7 +103,7 @@ export default function ChatMessageList({
             className={cn(
               "rounded-2xl px-5 py-3",
               message.role === 'user'
-                ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white relative"
+                ? "bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] text-white relative"
                 : "bg-gray-100 text-gray-900 relative"
             )}
           >
@@ -191,7 +191,7 @@ export default function ChatMessageList({
           >
             <div className="relative">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-violet-600 bg-[length:200%_100%] rounded-lg"
+                className="absolute inset-0 bg-gradient-to-r from-[#2C64E3] via-[#4A81EB] to-[#6EA0FF] bg-[length:200%_100%] rounded-lg"
                 animate={{
                   backgroundPosition: ['0% 0%', '100% 0%', '0% 0%']
                 }}
@@ -218,7 +218,7 @@ export default function ChatMessageList({
                 times: [0, 0.2, 1],
                 ease: "easeInOut"
               }}
-              className="text-sm text-violet-600 font-medium ml-1 tracking-wider"
+              className="text-sm text-blue-600 font-medium ml-1 tracking-wider"
             >
               ...
             </motion.div>

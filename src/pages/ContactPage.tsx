@@ -103,9 +103,9 @@ export default function ContactPage() {
       <section className="hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-violet-100 mb-8">
-              <Building className="h-4 w-4 text-violet-600 mr-2" />
-              <span className="text-sm font-medium text-violet-600">Kontakt oss</span>
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-100 mb-8">
+              <Building className="h-4 w-4 text-blue-600 mr-2" />
+              <span className="text-sm font-medium text-blue-600">Kontakt oss</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
               <span className="gradient-text">La oss snakke sammen</span>
@@ -132,7 +132,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{method.title}</h3>
                 <p className="text-gray-600 mb-6">{method.description}</p>
-                <span className="text-violet-600 font-medium group-hover:text-violet-700">
+                <span className="text-blue-600 font-medium group-hover:text-blue-700">
                   {method.action}
                 </span>
               </a>
@@ -179,7 +179,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
 
@@ -194,7 +194,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
 
@@ -209,7 +209,7 @@ export default function ContactPage() {
                       value={formData.company}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
 
@@ -223,7 +223,7 @@ export default function ContactPage() {
                       value={formData.employees}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">Velg antall</option>
                       <option value="1-10">1-10</option>
@@ -245,7 +245,7 @@ export default function ContactPage() {
                       onChange={handleInputChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
 
@@ -277,7 +277,7 @@ export default function ContactPage() {
                 <div className="space-y-8">
                   {offices.map((office, index) => (
                     <div key={index} className="flex space-x-4">
-                      <MapPin className="h-5 w-5 text-violet-600 flex-shrink-0" />
+                      <MapPin className="h-5 w-5 text-blue-600 flex-shrink-0" />
                       <div>
                         <h4 className="font-medium mb-2">{office.city}</h4>
                         <p className="text-gray-600">{office.address}</p>
@@ -300,8 +300,8 @@ export default function ContactPage() {
 
               <div className="feature-card">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="p-3 rounded-xl bg-violet-100">
-                    <Users className="h-6 w-6 text-violet-600" />
+                  <div className="p-3 rounded-xl bg-blue-100">
+                    <Users className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold">Enterprise</h3>
@@ -314,7 +314,7 @@ export default function ContactPage() {
                 </p>
                 <a 
                   href="/enterprise"
-                  className="inline-flex items-center text-violet-600 hover:text-violet-700 font-medium"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
                 >
                   <Briefcase className="h-5 w-5 mr-2" />
                   Les mer om Enterprise

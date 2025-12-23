@@ -111,7 +111,7 @@ export default function PricingPage() {
                 className={cn(
                   "relative px-6 py-2 text-sm font-medium rounded-lg transition-colors",
                   billingPeriod === 'monthly' 
-                    ? "text-violet-700" 
+                    ? "text-blue-700" 
                     : "text-gray-600 hover:text-gray-900"
                 )}
               >
@@ -119,7 +119,7 @@ export default function PricingPage() {
                 {billingPeriod === 'monthly' && (
                   <motion.div
                     layoutId="billing-period"
-                    className="absolute inset-0 bg-violet-100 rounded-lg -z-10"
+                    className="absolute inset-0 bg-blue-100 rounded-lg -z-10"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -130,7 +130,7 @@ export default function PricingPage() {
                 className={cn(
                   "relative px-6 py-2 text-sm font-medium rounded-lg transition-colors",
                   billingPeriod === 'yearly'
-                    ? "text-violet-700"
+                    ? "text-blue-700"
                     : "text-gray-600 hover:text-gray-900"
                 )}
               >
@@ -141,7 +141,7 @@ export default function PricingPage() {
                 {billingPeriod === 'yearly' && (
                   <motion.div
                     layoutId="billing-period"
-                    className="absolute inset-0 bg-violet-100 rounded-lg -z-10"
+                    className="absolute inset-0 bg-blue-100 rounded-lg -z-10"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -154,7 +154,7 @@ export default function PricingPage() {
               <div key={index} className="feature-card flex flex-col">
                 <div className="mb-8">
                   <div className="flex items-center mb-4">
-                    <plan.icon className="h-6 w-6 text-violet-600 mr-2" />
+                    <plan.icon className="h-6 w-6 text-blue-600 mr-2" />
                     <h3 className="text-xl font-semibold">{plan.name}</h3>
                   </div>
                   <div className="mb-4">
@@ -188,7 +188,7 @@ export default function PricingPage() {
                 <ul className="space-y-4 mb-8 flex-grow">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-center">
-                      <Check className="h-5 w-5 text-violet-600 mr-2 flex-shrink-0" />
+                      <Check className="h-5 w-5 text-blue-600 mr-2 flex-shrink-0" />
                       <span className="text-gray-600">{feature}</span>
                     </li>
                   ))}

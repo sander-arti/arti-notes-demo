@@ -259,8 +259,8 @@ export default function PrivacyPage() {
             Tilbake
           </Link>
           <div className="flex items-center space-x-3 mb-4">
-            <div className="p-2 bg-violet-100 rounded-lg">
-              <Shield className="h-6 w-6 text-violet-600" />
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <Shield className="h-6 w-6 text-blue-600" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900">Personvernerklæring</h1>
           </div>
@@ -270,7 +270,7 @@ export default function PrivacyPage() {
         </div>
 
         {/* Introduction */}
-        <div className="bg-gradient-to-br from-violet-50 to-fuchsia-50 rounded-xl p-6 mb-8 border border-violet-100">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 mb-8 border border-blue-100">
           <p className="text-gray-700 leading-relaxed">
             Notably AI fanger, transkriberer og oppsummerer møtene dine samtidig som vi følger GDPR og globale personvernkrav. Denne erklæringen forklarer hvordan vi behandler personopplysninger, hvilke partnere vi bruker, og hvilke kontrollmuligheter du har.
           </p>
@@ -284,9 +284,9 @@ export default function PrivacyPage() {
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="flex items-center text-gray-600 hover:text-violet-600 transition-colors py-1"
+                className="flex items-center text-gray-600 hover:text-blue-600 transition-colors py-1"
               >
-                <span className="text-violet-600 mr-2 text-sm w-5">{index + 1}.</span>
+                <span className="text-blue-600 mr-2 text-sm w-5">{index + 1}.</span>
                 <span className="text-sm">{section.title}</span>
                 {(section as any).isGoogle && (
                   <GoogleIcon className="h-3.5 w-3.5 ml-1.5 flex-shrink-0" />
@@ -308,13 +308,13 @@ export default function PrivacyPage() {
               className="bg-white rounded-xl shadow-sm p-6 scroll-mt-24"
             >
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-violet-50 rounded-lg">
+                <div className="p-2 bg-blue-50 rounded-lg">
                   {(section as any).isGoogle ? (
                     <GoogleIcon className="h-5 w-5" />
                   ) : (section as any).isMicrosoft ? (
                     <MicrosoftIcon className="h-5 w-5" />
                   ) : (
-                    <section.icon className="h-5 w-5 text-violet-600" />
+                    <section.icon className="h-5 w-5 text-blue-600" />
                   )}
                 </div>
                 <h2 className="text-xl font-semibold text-gray-900">
@@ -355,12 +355,12 @@ export default function PrivacyPage() {
         {/* Contact Footer */}
         <div className="mt-12 bg-gray-100 rounded-xl p-6 text-center">
           <div className="flex items-center justify-center space-x-2 mb-3">
-            <Mail className="h-5 w-5 text-violet-600" />
+            <Mail className="h-5 w-5 text-blue-600" />
             <span className="font-medium text-gray-900">Kontakt oss</span>
           </div>
           <p className="text-gray-600 text-sm mb-2">
             For personvernspørsmål, kontakt{' '}
-            <a href="mailto:legal@notably.no" className="text-violet-600 hover:underline">
+            <a href="mailto:legal@notably.no" className="text-blue-600 hover:underline">
               legal@notably.no
             </a>
           </p>
@@ -374,7 +374,7 @@ export default function PrivacyPage() {
           <p>Ved å bruke Notably godtar du denne personvernerklæringen.</p>
           <p className="mt-2">
             Se også våre{' '}
-            <Link to="/terms" className="text-violet-600 hover:underline">
+            <Link to="/terms" className="text-blue-600 hover:underline">
               vilkår for bruk
             </Link>
             .

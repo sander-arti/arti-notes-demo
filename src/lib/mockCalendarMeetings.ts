@@ -208,7 +208,7 @@ export const getPlatformInfo = (platform: CalendarMeeting['platform']) => {
   const platforms = {
     'google-meet': { name: 'Google Meet', color: 'bg-emerald-500' },
     'zoom': { name: 'Zoom', color: 'bg-blue-500' },
-    'teams': { name: 'Teams', color: 'bg-violet-500' },
+    'teams': { name: 'Teams', color: 'bg-blue-500' },
     'whereby': { name: 'Whereby', color: 'bg-orange-500' },
   };
   return platforms[platform];

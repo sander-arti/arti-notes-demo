@@ -109,9 +109,9 @@ export default function HomePage() {
       <section className="hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-violet-100 mb-8">
-              <Sparkles className="h-4 w-4 text-violet-600 mr-2" />
-              <span className="text-sm font-medium bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-100 mb-8">
+              <Sparkles className="h-4 w-4 text-blue-600 mr-2" />
+              <span className="text-sm font-medium bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] bg-clip-text text-transparent">
                 Intelligent møteassistent
               </span>
             </div>
@@ -129,8 +129,8 @@ export default function HomePage() {
               <Link 
                 to="/register" 
                 className="w-full sm:w-auto px-8 py-3 rounded-xl font-medium transition-all duration-300
-                         bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600
-                         hover:scale-105 hover:shadow-xl hover:shadow-violet-600/20
+                         bg-gradient-to-r from-[#2C64E3] via-[#4A81EB] to-[#6EA0FF]
+                         hover:scale-105 hover:shadow-xl hover:shadow-[#2C64E3]/20
                          text-white"
               >
                 Start gratis prøveperiode
@@ -139,7 +139,7 @@ export default function HomePage() {
                 to="/how-it-works" 
                 className="w-full sm:w-auto px-8 py-3 rounded-xl font-medium transition-all duration-300
                          bg-white hover:bg-gray-50 border border-gray-200
-                         hover:scale-105 hover:shadow-xl hover:shadow-violet-600/20
+                         hover:scale-105 hover:shadow-xl hover:shadow-[#2C64E3]/20
                          text-gray-900"
               >
                 Se hvordan det fungerer
@@ -172,7 +172,7 @@ export default function HomePage() {
               </p>
               <Link 
                 to="/features" 
-                className="inline-flex items-center text-violet-600 font-medium group-hover:text-violet-700"
+                className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700"
               >
                 <span>Les mer</span>
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -189,7 +189,7 @@ export default function HomePage() {
               </p>
               <Link 
                 to="/features" 
-                className="inline-flex items-center text-violet-600 font-medium group-hover:text-violet-700"
+                className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700"
               >
                 <span>Les mer</span>
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -206,7 +206,7 @@ export default function HomePage() {
               </p>
               <Link 
                 to="/features" 
-                className="inline-flex items-center text-violet-600 font-medium group-hover:text-violet-700"
+                className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700"
               >
                 <span>Les mer</span>
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -299,7 +299,7 @@ export default function HomePage() {
                   <motion.div
                     animate={{ 
                       rotate: openFaq === index ? 180 : 0,
-                      color: openFaq === index ? "#7c3aed" : "#6b7280"
+                      color: openFaq === index ? "#2C64E3" : "#6b7280"
                     }}
                   >
                     <ChevronDown className="h-5 w-5" />
@@ -335,8 +335,8 @@ export default function HomePage() {
               <Link 
                 to="/register" 
                 className="px-8 py-3 rounded-xl font-medium transition-all duration-300
-                         bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600
-                         hover:scale-105 hover:shadow-xl hover:shadow-violet-600/20
+                         bg-gradient-to-r from-[#2C64E3] via-[#4A81EB] to-[#6EA0FF]
+                         hover:scale-105 hover:shadow-xl hover:shadow-[#2C64E3]/20
                          text-white"
               >
                 Start gratis prøveperiode
@@ -345,7 +345,7 @@ export default function HomePage() {
                 to="/contact" 
                 className="px-8 py-3 rounded-xl font-medium transition-all duration-300
                          bg-white hover:bg-gray-50 border border-gray-200
-                         hover:scale-105 hover:shadow-xl hover:shadow-violet-600/20
+                         hover:scale-105 hover:shadow-xl hover:shadow-[#2C64E3]/20
                          text-gray-900 inline-flex items-center"
               >
                 <span>Kontakt salg</span>

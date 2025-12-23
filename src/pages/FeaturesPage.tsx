@@ -89,7 +89,7 @@ export default function FeaturesPage() {
                 <ul className="space-y-3">
                   {feature.benefits.map((benefit, i) => (
                     <li key={i} className="flex items-center text-gray-600">
-                      <CheckCircle className="h-5 w-5 text-violet-600 mr-2 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mr-2 flex-shrink-0" />
                       <span>{benefit}</span>
                     </li>
                   ))}
@@ -112,21 +112,21 @@ export default function FeaturesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="feature-card">
-              <Lock className="h-8 w-8 text-violet-600 mb-4" />
+              <Lock className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Kryptering av data</h3>
               <p className="text-gray-600">
                 Vi benytter oss av server-side kryptering for å sikre dine data.
               </p>
             </div>
             <div className="feature-card">
-              <Globe className="h-8 w-8 text-violet-600 mb-4" />
+              <Globe className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2">GDPR-kompatibel</h3>
               <p className="text-gray-600">
                 Fullt samsvar med europeiske personvernregler.
               </p>
             </div>
             <div className="feature-card">
-              <Share2 className="h-8 w-8 text-violet-600 mb-4" />
+              <Share2 className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Sikker deling</h3>
               <p className="text-gray-600">
                 Kontrollert tilgang og delingsrettigheter.
@@ -139,7 +139,7 @@ export default function FeaturesPage() {
       {/* CTA Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-2xl p-12 text-center text-white">
+          <div className="bg-gradient-to-r from-[#2C64E3] to-[#6EA0FF] rounded-2xl p-12 text-center text-white">
             <h2 className="text-3xl font-bold mb-4">
               Klar til å forbedre møtene dine?
             </h2>
@@ -148,7 +148,7 @@ export default function FeaturesPage() {
             </p>
             <Link 
               to="/register" 
-              className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-xl bg-white text-violet-600 hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/20"
+              className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-xl bg-white text-blue-600 hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/20"
             >
               Start gratis prøveperiode
             </Link>

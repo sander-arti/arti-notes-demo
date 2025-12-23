@@ -94,7 +94,7 @@ export default function AudioVisualizer({ stream }: AudioVisualizerProps) {
 
         // Gradient based on amplitude
         const alpha = 0.3 + (percent * 0.7);  // More dynamic opacity range
-        ctx.fillStyle = `rgba(124, 58, 237, ${alpha})`;
+        ctx.fillStyle = `rgba(44, 100, 227, ${alpha})`;
 
         // Draw right bar
         const x = halfWidth + (i * totalWidth);

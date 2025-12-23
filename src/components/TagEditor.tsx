@@ -120,10 +120,6 @@ export default function TagEditor({
         </div>
 
         <div className="p-6 overflow-y-auto flex-1">
-          <p className="text-xs text-amber-600 mb-4">
-            Demo-modus: Endringer lagres kun lokalt
-          </p>
-
           {error && (
             <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
               {error}
@@ -146,7 +142,7 @@ export default function TagEditor({
                         setEditingValue(e.target.value);
                         setError(null);
                       }}
-                      className="flex-1 px-3 py-1 rounded-md border border-violet-300 bg-white text-gray-900 focus:border-violet-500 focus:ring-violet-500 mr-2"
+                      className="flex-1 px-3 py-1 rounded-md border border-blue-300 bg-white text-gray-900 focus:border-blue-500 focus:ring-blue-500 mr-2"
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           e.preventDefault();
@@ -174,7 +170,7 @@ export default function TagEditor({
                     ) : (
                       <button
                         onClick={() => startEditing(tag)}
-                        className="p-1.5 text-gray-400 hover:text-violet-600 hover:bg-violet-50 rounded-lg"
+                        className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
                         disabled={isLoading}
                       >
                         <Pencil className="h-4 w-4" />
@@ -202,7 +198,7 @@ export default function TagEditor({
                   setError(null);
                 }}
                 placeholder="Skriv inn ny etikett..."
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500"
+                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -213,7 +209,7 @@ export default function TagEditor({
               />
               <button
                 onClick={handleAddTag}
-                className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg"
+                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
                 disabled={isLoading || !newTag.trim()}
               >
                 <Plus className="h-5 w-5" />
@@ -230,7 +226,7 @@ export default function TagEditor({
                 "px-4 py-2 rounded-lg text-white transition-colors",
                 isLoading
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-violet-600 hover:bg-violet-700"
+                  : "bg-blue-600 hover:bg-blue-700"
               )}
             >
               Lukk

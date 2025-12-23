@@ -63,7 +63,7 @@ export default function AdminDashboard() {
     return (
       <AdminLayout>
         <div className="flex items-center justify-center h-96">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
         </div>
       </AdminLayout>
     );
@@ -82,8 +82,8 @@ export default function AdminDashboard() {
                 <p className="text-sm text-gray-600">Total Users</p>
                 <p className="text-2xl font-semibold">{stats?.totalUsers}</p>
               </div>
-              <div className="p-3 bg-violet-100 rounded-lg">
-                <Users className="h-6 w-6 text-violet-600" />
+              <div className="p-3 bg-blue-100 rounded-lg">
+                <Users className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </div>

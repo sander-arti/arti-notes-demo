@@ -135,7 +135,7 @@ function FAQAccordion({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boole
     <div className="border-b border-gray-100 last:border-0">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-4 text-left hover:text-violet-600 transition-colors"
+        className="w-full flex items-center justify-between py-4 text-left hover:text-blue-600 transition-colors"
       >
         <span className="font-medium pr-4">{item.question}</span>
         <ChevronDown className={cn(
@@ -193,8 +193,8 @@ export default function SupportPage() {
             Tilbake til dashboard
           </Link>
           <div className="flex items-center space-x-3 mb-4">
-            <div className="p-2 bg-violet-100 rounded-lg">
-              <HelpCircle className="h-6 w-6 text-violet-600" />
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <HelpCircle className="h-6 w-6 text-blue-600" />
             </div>
             <h1 className="text-3xl font-bold">Hjelp og støtte</h1>
           </div>
@@ -209,8 +209,8 @@ export default function SupportPage() {
             to="/docs"
             className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="p-2 bg-violet-50 rounded-lg mr-4">
-              <Book className="h-5 w-5 text-violet-600" />
+            <div className="p-2 bg-blue-50 rounded-lg mr-4">
+              <Book className="h-5 w-5 text-blue-600" />
             </div>
             <div>
               <h3 className="font-medium">Dokumentasjon</h3>
@@ -221,8 +221,8 @@ export default function SupportPage() {
             href="mailto:support@notably.no"
             className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="p-2 bg-violet-50 rounded-lg mr-4">
-              <Mail className="h-5 w-5 text-violet-600" />
+            <div className="p-2 bg-blue-50 rounded-lg mr-4">
+              <Mail className="h-5 w-5 text-blue-600" />
             </div>
             <div>
               <h3 className="font-medium">E-post</h3>
@@ -233,8 +233,8 @@ export default function SupportPage() {
             onClick={() => toast.info('Chat-funksjon kommer snart!')}
             className="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow text-left"
           >
-            <div className="p-2 bg-violet-50 rounded-lg mr-4">
-              <MessageCircle className="h-5 w-5 text-violet-600" />
+            <div className="p-2 bg-blue-50 rounded-lg mr-4">
+              <MessageCircle className="h-5 w-5 text-blue-600" />
             </div>
             <div>
               <h3 className="font-medium">Live chat</h3>
@@ -250,8 +250,8 @@ export default function SupportPage() {
             {faqCategories.map((category) => (
               <div key={category.id} className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="flex items-center space-x-3 p-4 bg-gray-50 border-b border-gray-100">
-                  <div className="p-1.5 bg-violet-100 rounded-lg">
-                    <category.icon className="h-4 w-4 text-violet-600" />
+                  <div className="p-1.5 bg-blue-100 rounded-lg">
+                    <category.icon className="h-4 w-4 text-blue-600" />
                   </div>
                   <h3 className="font-semibold">{category.title}</h3>
                 </div>
@@ -287,7 +287,7 @@ export default function SupportPage() {
                   required
                   value={contactForm.name}
                   onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                   placeholder="Ditt navn"
                 />
               </div>
@@ -300,7 +300,7 @@ export default function SupportPage() {
                   required
                   value={contactForm.email}
                   onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                   placeholder="din@epost.no"
                 />
               </div>
@@ -314,7 +314,7 @@ export default function SupportPage() {
                 required
                 value={contactForm.subject}
                 onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Hva gjelder henvendelsen?"
               />
             </div>
@@ -327,7 +327,7 @@ export default function SupportPage() {
                 rows={4}
                 value={contactForm.message}
                 onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="Beskriv hva du trenger hjelp med..."
               />
             </div>
@@ -345,11 +345,11 @@ export default function SupportPage() {
         <div className="mt-8 text-center text-gray-500 text-sm">
           <p>
             Se også:{' '}
-            <Link to="/privacy" className="text-violet-600 hover:underline">
+            <Link to="/privacy" className="text-blue-600 hover:underline">
               Personvernerklæring
             </Link>
             {' '}&bull;{' '}
-            <Link to="/terms" className="text-violet-600 hover:underline">
+            <Link to="/terms" className="text-blue-600 hover:underline">
               Vilkår for bruk
             </Link>
           </p>

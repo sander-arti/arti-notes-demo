@@ -196,7 +196,7 @@ export default function UsersPage() {
                 className={cn(
                   "px-4 py-2 text-sm font-medium rounded-lg transition-colors",
                   timeRange === range
-                    ? "bg-violet-100 text-violet-700"
+                    ? "bg-blue-100 text-blue-700"
                     : "text-gray-600 hover:bg-gray-100"
                 )}
               >
@@ -216,8 +216,8 @@ export default function UsersPage() {
                 <p className="text-sm text-gray-600 mb-1">Totalt antall brukere</p>
                 <p className="text-2xl font-semibold">{stats?.totalUsers || 0}</p>
               </div>
-              <div className="p-3 bg-violet-100 rounded-lg">
-                <UsersIcon className="h-6 w-6 text-violet-600" />
+              <div className="p-3 bg-blue-100 rounded-lg">
+                <UsersIcon className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@ export default function UsersPage() {
           <div className="h-[300px]">
             {isLoading ? (
               <div className="h-full flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
               </div>
             ) : growthData && (
               <Line
@@ -326,7 +326,7 @@ export default function UsersPage() {
                 placeholder="Søk etter brukere..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -363,7 +363,7 @@ export default function UsersPage() {
                 {isLoading ? (
                   <tr>
                     <td colSpan={5} className="px-6 py-4 text-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600 mx-auto"></div>
+                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
                     </td>
                   </tr>
                 ) : (

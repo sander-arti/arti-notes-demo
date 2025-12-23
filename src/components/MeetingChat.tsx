@@ -133,7 +133,7 @@ export default function MeetingChat({ recordingId, transcription }: MeetingChatP
                   <button
                     key={suggestion}
                     onClick={() => setNewMessage(suggestion)}
-                    className="text-xs px-3 py-1.5 rounded-full bg-violet-50 text-violet-600 hover:bg-violet-100 transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
                   >
                     {suggestion}
                   </button>
@@ -153,10 +153,10 @@ export default function MeetingChat({ recordingId, transcription }: MeetingChatP
           >
             <div className={cn(
               "p-2 rounded-full flex-shrink-0",
-              message.role === 'user' ? "bg-violet-100" : "bg-gray-100"
+              message.role === 'user' ? "bg-blue-100" : "bg-gray-100"
             )}>
               {message.role === 'user' ? (
-                <User className="h-4 w-4 text-violet-600" />
+                <User className="h-4 w-4 text-blue-600" />
               ) : (
                 <Bot className="h-4 w-4 text-gray-600" />
               )}
@@ -164,7 +164,7 @@ export default function MeetingChat({ recordingId, transcription }: MeetingChatP
             <div className={cn(
               "max-w-[80%] rounded-2xl px-4 py-2",
               message.role === 'user'
-                ? "bg-violet-600 text-white"
+                ? "bg-blue-600 text-white"
                 : "bg-gray-100 text-gray-900"
             )}>
               <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -198,7 +198,7 @@ export default function MeetingChat({ recordingId, transcription }: MeetingChatP
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Still et spørsmål om møtet..."
-            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:border-violet-500 focus:ring-violet-500"
+            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
             disabled={isTyping}
           />
           <button
@@ -208,7 +208,7 @@ export default function MeetingChat({ recordingId, transcription }: MeetingChatP
               "p-2 rounded-lg",
               isTyping || !newMessage.trim()
                 ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                : "bg-violet-600 text-white hover:bg-violet-700"
+                : "bg-blue-600 text-white hover:bg-blue-700"
             )}
           >
             {isTyping ? (

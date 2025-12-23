@@ -48,9 +48,9 @@ export default function HowItWorksPage() {
             <p className="text-xl text-gray-600 mb-8">
               Fra møtestart til ferdig notat på få minutter
             </p>
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/50 backdrop-blur-sm border border-violet-100">
-              <Play className="h-4 w-4 text-violet-600 mr-2" />
-              <span className="text-sm font-medium text-violet-600">Se demo</span>
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/50 backdrop-blur-sm border border-blue-100">
+              <Play className="h-4 w-4 text-blue-600 mr-2" />
+              <span className="text-sm font-medium text-blue-600">Se demo</span>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function HowItWorksPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="feature-card relative">
-                <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-violet-600 text-white flex items-center justify-center font-semibold">
+                <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold">
                   {index + 1}
                 </div>
                 <div className="feature-icon mb-6">
@@ -88,14 +88,14 @@ export default function HowItWorksPage() {
                 Opplev hvor enkelt det er å få profesjonelle møtenotater med AI-assistert transkribering.
               </p>
               <div className="space-y-6">
-                <div className="flex items-center space-x-2 text-violet-600">
+                <div className="flex items-center space-x-2 text-blue-600">
                   <PauseCircle className="h-5 w-5" />
                   <span className="font-medium">02:45 / 05:30</span>
                 </div>
                 <div className="space-y-4">
                   <div className="feature-card p-4">
                     <div className="flex items-center">
-                      <MessageSquare className="h-5 w-5 text-violet-600 mr-2" />
+                      <MessageSquare className="h-5 w-5 text-blue-600 mr-2" />
                       <span className="text-sm text-gray-600">
                         "La oss gå gjennom siste kvartal..."
                       </span>
@@ -103,7 +103,7 @@ export default function HowItWorksPage() {
                   </div>
                   <div className="feature-card p-4">
                     <div className="flex items-center">
-                      <ListChecks className="h-5 w-5 text-violet-600 mr-2" />
+                      <ListChecks className="h-5 w-5 text-blue-600 mr-2" />
                       <span className="text-sm text-gray-600">
                         Oppgave: Oppdater salgsrapport innen fredag
                       </span>
@@ -113,7 +113,7 @@ export default function HowItWorksPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 p-1">
+              <div className="aspect-video rounded-2xl bg-gradient-to-br from-[#2C64E3] to-[#6EA0FF] p-1">
                 <div className="h-full w-full rounded-xl bg-gray-900">
                   {/* Her ville vi normalt hatt en video eller animasjon */}
                   <div className="h-full flex items-center justify-center text-white">
@@ -138,21 +138,21 @@ export default function HowItWorksPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="feature-card">
-              <CheckCircle className="h-8 w-8 text-violet-600 mb-4" />
+              <CheckCircle className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Automatisk transkribering</h3>
               <p className="text-gray-600">
                 Nøyaktig transkripsjon med støtte for norsk språk og dialekter
               </p>
             </div>
             <div className="feature-card">
-              <CheckCircle className="h-8 w-8 text-violet-600 mb-4" />
+              <CheckCircle className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2">AI-drevet analyse</h3>
               <p className="text-gray-600">
                 Trekker ut sammendrag, hovedtemaer og handlingspunkter automatisk
               </p>
             </div>
             <div className="feature-card">
-              <CheckCircle className="h-8 w-8 text-violet-600 mb-4" />
+              <CheckCircle className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-lg font-semibold mb-2">Enkel deling</h3>
               <p className="text-gray-600">
                 Del notater sikkert med teamet ditt
