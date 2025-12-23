@@ -86,8 +86,8 @@ export default function Pagination({
             className={cn(
               "min-w-[40px] h-10 px-4 rounded-lg transition-colors",
               currentPage === page
-                ? "bg-violet-600 text-white"
-                : "text-gray-600 hover:bg-gray-100"
+                ? "bg-[#2C64E3] text-white"
+                : "text-gray-600 hover:bg-[#E4ECFF]"
             )}
           >
             {page}
@@ -103,7 +103,7 @@ export default function Pagination({
           "p-2 rounded-lg transition-colors",
           currentPage === totalPages
             ? "text-gray-400 cursor-not-allowed"
-            : "text-gray-600 hover:bg-gray-100"
+            : "text-[#2C64E3] hover:bg-[#E4ECFF]"
         )}
         aria-label="Neste side"
       >

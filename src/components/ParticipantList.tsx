@@ -38,8 +38,8 @@ export default function ParticipantList({ participants, className }: Participant
         className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
       >
         <div className="flex items-center space-x-2">
-          <div className="p-1.5 bg-violet-100 rounded-lg">
-            <User className="h-4 w-4 text-violet-600" />
+          <div className="p-1.5 rounded-lg bg-[#E4ECFF]">
+            <User className="h-4 w-4 text-[#2C64E3]" />
           </div>
           <h3 className="text-sm font-medium text-gray-700">
             {participants.length} {participants.length === 1 ? 'deltaker' : 'deltakere'}
@@ -50,9 +50,9 @@ export default function ParticipantList({ participants, className }: Participant
             {participants.slice(0, 3).map((participant) => (
               <div
                 key={participant.id}
-                className="w-8 h-8 rounded-full bg-violet-100 border-2 border-white flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-[#E4ECFF] border-2 border-white flex items-center justify-center"
               >
-                <span className="text-xs font-medium text-violet-600">
+                <span className="text-xs font-medium text-[#2C64E3]">
                   {participant.name.charAt(0).toUpperCase()}
                 </span>
               </div>
@@ -91,8 +91,8 @@ export default function ParticipantList({ participants, className }: Participant
                     className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center">
-                        <span className="text-sm font-medium text-violet-600">
+                      <div className="w-8 h-8 rounded-full bg-[#E4ECFF] flex items-center justify-center">
+                        <span className="text-sm font-medium text-[#2C64E3]">
                           {participant.name.charAt(0).toUpperCase()}
                         </span>
                       </div>

@@ -47,7 +47,7 @@ export default function FolderSelect({
           className={cn(
             "w-full flex items-center justify-between px-4 py-2 rounded-lg border text-left transition-colors",
             currentFolder
-              ? "bg-violet-50 border-violet-200"
+              ? "bg-[#F0F5FF] border-[#CFE0FF]"
               : "bg-white border-gray-300",
             (disabled || isLoading)
               ? "opacity-50 cursor-not-allowed"
@@ -57,7 +57,7 @@ export default function FolderSelect({
           <div className="flex items-center min-w-0">
             <Folder className={cn(
               "h-4 w-4 flex-shrink-0 mr-2",
-              currentFolder ? "text-violet-600" : "text-gray-400"
+              currentFolder ? "text-[#2C64E3]" : "text-gray-400"
             )} />
             <span className={cn(
               "truncate",
@@ -81,7 +81,7 @@ export default function FolderSelect({
                 className={cn(
                   "w-full flex items-center px-3 py-2 rounded-md text-left text-sm transition-colors",
                   !currentFolderId
-                    ? "bg-violet-50 text-violet-900"
+                    ? "bg-[#F0F5FF] text-[#1F49C6]"
                     : "text-gray-700 hover:bg-gray-50"
                 )}
               >
@@ -97,7 +97,7 @@ export default function FolderSelect({
                   className={cn(
                     "w-full flex items-center px-3 py-2 rounded-md text-left text-sm transition-colors",
                     currentFolderId === folder.id
-                      ? "bg-violet-50 text-violet-900"
+                      ? "bg-[#F0F5FF] text-[#1F49C6]"
                       : "text-gray-700 hover:bg-gray-50"
                   )}
                 >

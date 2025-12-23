@@ -103,7 +103,7 @@ export default function EditableSummary({
               {topics.map((topic, index) => (
                 <span
                   key={index}
-                  className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-violet-100 text-violet-700 border border-violet-200"
+                  className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-[#E4ECFF] text-[#1F49C6] border border-[#CFE0FF]"
                 >
                   {topic}
                 </span>
@@ -122,7 +122,7 @@ export default function EditableSummary({
                   key={index}
                   className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 border border-gray-100"
                 >
-                  <CheckCircle2 className="h-5 w-5 text-violet-500 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-5 w-5 text-[#2C64E3] flex-shrink-0 mt-0.5" />
                   <span className="text-gray-700">{item}</span>
                 </div>
               ))}
@@ -150,7 +150,7 @@ export default function EditableSummary({
           value={editedSummary}
           onChange={(e) => setEditedSummary(e.target.value)}
           rows={6}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:outline-none resize-none"
+          className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-[#2C64E3] focus:ring-2 focus:ring-[#2C64E3]/20 focus:outline-none resize-none"
         />
       </div>
 
@@ -166,7 +166,7 @@ export default function EditableSummary({
                 type="text"
                 value={topic}
                 onChange={(e) => updateListItem(index, e.target.value, editedTopics, setEditedTopics)}
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:outline-none"
+                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-[#2C64E3] focus:ring-2 focus:ring-[#2C64E3]/20 focus:outline-none"
                 placeholder="Skriv inn tema..."
               />
               <button
@@ -179,7 +179,7 @@ export default function EditableSummary({
           ))}
           <button
             onClick={() => addListItem(editedTopics, setEditedTopics)}
-            className="w-full py-2 px-4 border border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-violet-500 hover:text-violet-600 transition-colors flex items-center justify-center"
+            className="w-full py-2 px-4 border border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-[#2C64E3] hover:text-[#2C64E3] transition-colors flex items-center justify-center"
           >
             <Plus className="h-4 w-4 mr-2" />
             Legg til tema
@@ -199,7 +199,7 @@ export default function EditableSummary({
                 type="text"
                 value={item}
                 onChange={(e) => updateListItem(index, e.target.value, editedActionItems, setEditedActionItems)}
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:outline-none"
+                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:border-[#2C64E3] focus:ring-2 focus:ring-[#2C64E3]/20 focus:outline-none"
                 placeholder="Skriv inn aksjonspunkt..."
               />
               <button
@@ -212,7 +212,7 @@ export default function EditableSummary({
           ))}
           <button
             onClick={() => addListItem(editedActionItems, setEditedActionItems)}
-            className="w-full py-2 px-4 border border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-violet-500 hover:text-violet-600 transition-colors flex items-center justify-center"
+            className="w-full py-2 px-4 border border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-[#2C64E3] hover:text-[#2C64E3] transition-colors flex items-center justify-center"
           >
             <Plus className="h-4 w-4 mr-2" />
             Legg til aksjonspunkt
@@ -236,7 +236,7 @@ export default function EditableSummary({
             "px-4 py-2 rounded-lg text-white transition-colors",
             isLoading
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-violet-600 hover:bg-violet-700"
+              : "bg-[#2C64E3] hover:bg-[#1F49C6]"
           )}
         >
           {isLoading ? (

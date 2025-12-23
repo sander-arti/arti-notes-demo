@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, Mic, Download } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Mic } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface TranscriptSegment {
@@ -19,8 +19,6 @@ interface MiniAudioPlayerProps {
   onSeek: (time: number) => void;
   onVolumeChange: (volume: number) => void;
   onPlaybackSpeedChange: (speed: number) => void;
-  onSkip: (seconds: number) => void;
-  onDownload?: () => void;
   isReady: boolean;
   currentTranscript?: string;
   currentSpeaker?: string;
@@ -39,8 +37,6 @@ export default function MiniAudioPlayer({
   onSeek,
   onVolumeChange,
   onPlaybackSpeedChange,
-  onSkip,
-  onDownload,
   isReady,
   currentTranscript,
   currentSpeaker,
@@ -142,7 +138,7 @@ export default function MiniAudioPlayer({
     )}>
       <div className="max-w-7xl mx-auto px-4 py-3">
         {/* Main player row */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {/* Play/Pause Button - Larger and more prominent */}
           <button
             onClick={onPlayPause}
@@ -150,7 +146,7 @@ export default function MiniAudioPlayer({
             className={cn(
               "p-3 rounded-full text-white transition-all flex-shrink-0 shadow-lg",
               isReady
-                ? "bg-gradient-to-br from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 hover:shadow-violet-500/25 hover:scale-105"
+                ? "bg-gradient-to-br from-[#2C64E3] to-[#5A8DF8] hover:from-[#1F49C6] hover:to-[#4A81EB] hover:shadow-[#2C64E3]/25 hover:scale-105"
                 : "bg-gray-400 cursor-not-allowed"
             )}
             aria-label={isPlaying ? 'Pause' : 'Spill av'}
@@ -162,32 +158,16 @@ export default function MiniAudioPlayer({
             )}
           </button>
 
-          {/* Skip backward */}
-          <button
-            onClick={() => onSkip(-10)}
-            disabled={!isReady}
-            className={cn(
-              "p-2 rounded-full transition-colors flex-shrink-0 hidden sm:flex",
-              isReady
-                ? "hover:bg-gray-100 text-gray-600"
-                : "text-gray-300 cursor-not-allowed"
-            )}
-            aria-label="Spol 10 sekunder tilbake"
-            title="-10s"
-          >
-            <SkipBack className="h-4 w-4" />
-          </button>
-
           {/* Center section with transcript and progress */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 flex flex-col items-center">
             {/* Live transcript display */}
             <div className="flex items-center gap-2 mb-2 min-h-[24px]">
               {currentSpeaker && (
                 <div className="flex items-center gap-1.5 flex-shrink-0">
-                  <div className="p-1 bg-violet-100 rounded-full">
-                    <Mic className="h-3 w-3 text-violet-600" />
+                  <div className="p-1 bg-[#E4ECFF] rounded-full">
+                    <Mic className="h-3 w-3 text-[#2C64E3]" />
                   </div>
-                  <span className="text-xs font-medium text-violet-600">
+                  <span className="text-xs font-medium text-[#2C64E3]">
                     {currentSpeaker}
                   </span>
                 </div>
@@ -197,18 +177,13 @@ export default function MiniAudioPlayer({
                   "{currentTranscript}"
                 </p>
               )}
-              {!currentTranscript && !currentSpeaker && (
-                <p className="text-sm text-gray-400 italic">
-                  Klikk play for å starte avspilling
-                </p>
-              )}
             </div>
 
             {/* Waveform-style progress bar */}
             <div
               ref={progressRef}
               className={cn(
-                "relative h-8 rounded-lg overflow-hidden group",
+                "relative h-8 rounded-lg overflow-hidden group w-full max-w-3xl",
                 isReady ? "cursor-pointer" : "cursor-not-allowed"
               )}
               onClick={handleProgressClick}
@@ -224,7 +199,7 @@ export default function MiniAudioPlayer({
                     className={cn(
                       "flex-1 rounded-full transition-colors",
                       (i / waveformBars) * 100 <= progress
-                        ? "bg-violet-500"
+                        ? "bg-[#2C64E3]"
                         : "bg-gray-200"
                     )}
                     style={{ height: `${height}%` }}
@@ -249,22 +224,6 @@ export default function MiniAudioPlayer({
               />
             </div>
           </div>
-
-          {/* Skip forward */}
-          <button
-            onClick={() => onSkip(10)}
-            disabled={!isReady}
-            className={cn(
-              "p-2 rounded-full transition-colors flex-shrink-0 hidden sm:flex",
-              isReady
-                ? "hover:bg-gray-100 text-gray-600"
-                : "text-gray-300 cursor-not-allowed"
-            )}
-            aria-label="Spol 10 sekunder fremover"
-            title="+10s"
-          >
-            <SkipForward className="h-4 w-4" />
-          </button>
 
           {/* Time display */}
           <div className="flex-shrink-0 text-sm tabular-nums text-gray-600 hidden md:block">
@@ -316,28 +275,10 @@ export default function MiniAudioPlayer({
               value={volume}
               onChange={(e) => onVolumeChange(parseFloat(e.target.value))}
               disabled={!isReady}
-              className="w-20 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-violet-600"
+              className="w-20 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#2C64E3]"
               aria-label="Volum"
             />
           </div>
-
-          {/* Download button */}
-          {onDownload && (
-            <button
-              onClick={onDownload}
-              disabled={!isReady}
-              className={cn(
-                "p-2 rounded-full transition-colors flex-shrink-0",
-                isReady
-                  ? "hover:bg-gray-100 text-gray-600 hover:text-violet-600"
-                  : "text-gray-300 cursor-not-allowed"
-              )}
-              aria-label="Last ned lydklipp"
-              title="Last ned lydklipp"
-            >
-              <Download className="h-4 w-4" />
-            </button>
-          )}
         </div>
 
         {/* Mobile time display */}

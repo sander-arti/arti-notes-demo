@@ -93,7 +93,7 @@ export default function TagSelect({
           className={cn(
             "w-full flex items-start justify-between px-4 py-2 rounded-lg border text-left transition-colors",
             selectedTags.length > 0
-              ? "bg-violet-50 border-violet-200"
+              ? "bg-[#F0F5FF] border-[#CFE0FF]"
               : "bg-white border-gray-300",
             (disabled || isLoading)
               ? "opacity-50 cursor-not-allowed"
@@ -107,7 +107,7 @@ export default function TagSelect({
               selectedTags.map(tag => (
                 <span
                   key={tag.id}
-                  className="inline-flex items-center px-2 py-1 rounded-md bg-violet-100 text-violet-700 text-sm"
+                  className="inline-flex items-center px-2 py-1 rounded-md bg-[#E4ECFF] text-[#2C64E3] text-sm"
                 >
                   <TagIcon className="h-3 w-3 mr-1" />
                   {tag.name}
@@ -143,9 +143,9 @@ export default function TagSelect({
                   className={cn(
                     "w-full flex items-center px-3 py-2 rounded-md text-left text-sm transition-colors",
                     selectedTags.some(t => t.id === tag.id)
-                      ? "bg-violet-50 text-violet-900"
+                      ? "bg-[#F0F5FF] text-[#1F49C6]"
                       : "hover:bg-gray-50"
-                  )}
+                )}
                 >
                   <TagIcon className="h-4 w-4 mr-2 text-gray-400" />
                   {tag.name}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Pencil, Check } from 'lucide-react';
 
 interface EditableTitleProps {
   title: string;
@@ -48,26 +49,49 @@ export default function EditableTitle({ title, onSave }: EditableTitleProps) {
 
   if (!isEditing) {
     return (
-      <h1 
-        onClick={() => setIsEditing(true)}
-        className="text-2xl font-semibold mb-2 cursor-pointer hover:text-violet-600 transition-colors"
-      >
-        {title}
-      </h1>
+      <div className="flex items-center gap-3 mb-2">
+        <h1 className="text-2xl font-semibold text-gray-900">
+          {title}
+        </h1>
+        <button
+          type="button"
+          onClick={() => {
+            setEditedTitle(title);
+            setIsEditing(true);
+          }}
+          className="p-2 rounded-lg text-gray-500 hover:text-[#2C64E3] hover:bg-[#E4ECFF] transition-colors"
+          aria-label="Rediger tittel"
+        >
+          <Pencil className="h-4 w-4" />
+        </button>
+      </div>
     );
   }
 
   return (
-    <input
-      ref={inputRef}
-      type="text"
-      value={editedTitle}
-      onChange={(e) => setEditedTitle(e.target.value)}
-      onBlur={handleSave}
-      onKeyDown={handleKeyDown}
-      disabled={isLoading}
-      className="text-2xl font-semibold mb-2 w-[130%] px-0 border-0 border-b-2 border-violet-600 focus:ring-0 bg-transparent"
-      placeholder="Skriv inn tittel..."
-    />
+    <div className="flex items-center gap-3 mb-2">
+      <div className="relative flex-1">
+        <input
+          ref={inputRef}
+          type="text"
+          value={editedTitle}
+          onChange={(e) => setEditedTitle(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={handleKeyDown}
+          disabled={isLoading}
+          className="w-full bg-transparent text-2xl font-semibold text-gray-900 border-b border-[#CFE0FF] focus:border-[#2C64E3] transition-colors outline-none pr-10"
+          placeholder="Skriv inn tittel..."
+        />
+      </div>
+      <button
+        type="button"
+        onClick={handleSave}
+        disabled={isLoading}
+        className="p-2 rounded-lg text-white bg-[#2C64E3] hover:bg-[#1F49C6] disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Lagre tittel"
+      >
+        <Check className="h-4 w-4" />
+      </button>
+    </div>
   );
 }

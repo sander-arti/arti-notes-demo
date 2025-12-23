@@ -6,7 +6,6 @@ import {
   Download,
   Share2,
   Trash2,
-  Presentation,
   FileText,
   ClipboardList,
   MessageSquare,
@@ -19,14 +18,12 @@ import {
   Wand2
 } from 'lucide-react';
 import DownloadModal from '@/components/DownloadModal';
-import PresentationModal from '@/components/PresentationModal';
 import ShareSummaryModal from '@/components/ShareSummaryModal';
 import MiniAudioPlayer from '@/components/MiniAudioPlayer';
 import FolderSelect from '@/components/FolderSelect';
 import TagSelect from '@/components/TagSelect';
 import DeleteConfirmationDialog from '@/components/DeleteConfirmationDialog';
 import EditableSummary from '@/components/EditableSummary';
-import EditableTitle from '@/components/EditableTitle';
 import MeetingChat from '@/components/MeetingChat';
 import ParticipantList from '@/components/ParticipantList';
 import { cn } from '@/lib/utils';
@@ -90,7 +87,6 @@ export default function MeetingDetailsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showDownloadModal, setShowDownloadModal] = useState(false);
-  const [showPresentationModal, setShowPresentationModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -392,14 +388,6 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
     }
   };
 
-  const handleSkip = (seconds: number) => {
-    const newTime = Math.max(0, Math.min(currentTimestamp + seconds, meeting?.duration || 0));
-    setCurrentTimestamp(newTime);
-    if (audioRef.current) {
-      audioRef.current.currentTime = newTime;
-    }
-  };
-
   // Compute current transcript segment and speaker based on timestamp
   const currentSegment = useMemo(() => {
     if (!transcription?.content || transcription.content.length === 0) return null;
@@ -464,7 +452,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
   if (isLoading) {
     return (
       <div className="min-h-screen pt-16 flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#2C64E3]"></div>
       </div>
     );
   }
@@ -474,7 +462,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
       <div className="min-h-screen pt-16 flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <p className="text-red-600 mb-4">{error || 'Møte ikke funnet'}</p>
-          <Link to="/dashboard" className="text-violet-600 hover:text-violet-700">
+          <Link to="/dashboard" className="text-[#2C64E3] hover:text-[#1F49C6]">
             Tilbake til dashboard
           </Link>
         </div>
@@ -513,10 +501,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
 
           <div className="flex items-center justify-between">
             <div>
-              <EditableTitle
-                title={meeting.title}
-                onSave={handleTitleChange}
-              />
+              <h1 className="text-2xl font-semibold text-gray-900 mb-2">{meeting.title}</h1>
               <div className="flex items-center space-x-4 text-gray-600">
                 <span>{formatDate(meeting.created_at)}</span>
                 <span>•</span>
@@ -542,7 +527,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                     className={cn(
                       "flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors",
                       activeTab === tab.id
-                        ? "border-b-2 border-violet-600 text-violet-600"
+                        ? "border-b-2 border-[#2C64E3] text-[#2C64E3]"
                         : "text-gray-500 hover:text-gray-700"
                     )}
                   >
@@ -577,8 +562,8 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                     <div className="border-t border-gray-200 pt-6">
                       {isRegenerating ? (
                         <div className="text-center py-12">
-                          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-violet-100 mb-4">
-                            <Sparkles className="h-8 w-8 text-violet-600 animate-pulse" />
+                          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#E4ECFF] mb-4">
+                            <Sparkles className="h-8 w-8 text-[#2C64E3] animate-pulse" />
                           </div>
                           <p className="text-gray-900 font-medium mb-2">Genererer nytt referat...</p>
                           <p className="text-sm text-gray-500">
@@ -591,7 +576,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                           <div className="flex items-center justify-between pb-4 mb-4">
                             <div>
                               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                                <ClipboardList className="h-5 w-5 text-violet-600" />
+                                <ClipboardList className="h-5 w-5 text-[#2C64E3]" />
                                 Møtereferat
                               </h3>
                               <p className="text-sm text-gray-500 mt-0.5">
@@ -610,7 +595,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                                   </button>
                                   <button
                                     onClick={saveMinutesEdits}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-white bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors"
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-white bg-[#2C64E3] hover:bg-[#1F49C6] rounded-lg transition-colors"
                                   >
                                     <Check className="h-4 w-4" />
                                     Lagre
@@ -628,7 +613,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                                   <div className="relative">
                                     <button
                                       onClick={() => setShowTemplateSelector(!showTemplateSelector)}
-                                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-violet-600 hover:bg-violet-50 rounded-lg transition-colors border border-violet-200"
+                                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-[#2C64E3] hover:bg-[#F0F5FF] rounded-lg transition-colors border border-[#CFE0FF]"
                                     >
                                       <FileText className="h-4 w-4" />
                                       {currentTemplate.name}
@@ -649,21 +634,21 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                                               onClick={() => handleTemplateSelect(template)}
                                               className={cn(
                                                 "w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0",
-                                                currentTemplate.id === template.id && "bg-violet-50"
+                                                currentTemplate.id === template.id && "bg-[#F0F5FF]"
                                               )}
                                             >
                                               <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
                                                   <p className="text-sm font-medium text-gray-900">{template.name}</p>
                                                   {template.isCustomPrompt && (
-                                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-fuchsia-100 text-fuchsia-700">
+                                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#E4ECFF] text-[#2C64E3]">
                                                       <Wand2 className="h-2.5 w-2.5 mr-0.5" />
                                                       Prompt
                                                     </span>
                                                   )}
                                                 </div>
                                                 {currentTemplate.id === template.id && (
-                                                  <Check className="h-4 w-4 text-violet-600" />
+                                                  <Check className="h-4 w-4 text-[#2C64E3]" />
                                                 )}
                                               </div>
                                               <p className="text-xs text-gray-500 mt-0.5">{template.description}</p>
@@ -683,12 +668,12 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                             /* Custom prompt template - freetext content */
                             <>
                               {/* Info banner for custom prompt */}
-                              <div className="mb-4 p-3 bg-gradient-to-r from-fuchsia-50 to-violet-50 border border-fuchsia-200 rounded-lg">
+                              <div className="mb-4 p-3 bg-gradient-to-r from-[#E4ECFF] to-[#F8FBFF] border border-[#CFE0FF] rounded-lg">
                                 <div className="flex items-start gap-2">
-                                  <Wand2 className="h-4 w-4 text-fuchsia-600 flex-shrink-0 mt-0.5" />
+                                  <Wand2 className="h-4 w-4 text-[#2C64E3] flex-shrink-0 mt-0.5" />
                                   <div>
-                                    <p className="text-sm font-medium text-fuchsia-900">Egendefinert AI-referat</p>
-                                    <p className="text-xs text-fuchsia-700 mt-0.5">
+                                    <p className="text-sm font-medium text-[#1F49C6]">Egendefinert AI-referat</p>
+                                    <p className="text-xs text-[#2C64E3] mt-0.5">
                                       Generert fra din egendefinerte prompt - redigeres som fritekst
                                     </p>
                                   </div>
@@ -701,7 +686,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                                     value={editedFreetextContent}
                                     onChange={(e) => setEditedFreetextContent(e.target.value)}
                                     rows={20}
-                                    className="w-full text-gray-700 bg-white border border-gray-200 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-y text-sm leading-relaxed font-mono"
+                                    className="w-full text-gray-700 bg-white border border-gray-200 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-[#2C64E3] resize-y text-sm leading-relaxed font-mono"
                                     placeholder="Skriv eller rediger møtereferatet..."
                                   />
                                 </div>
@@ -723,14 +708,14 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                                       type="text"
                                       value={section.title}
                                       onChange={(e) => updateMinutesSection(index, 'title', e.target.value)}
-                                      className="w-full text-lg font-semibold text-gray-900 bg-transparent border-b border-gray-200 pb-2 mb-3 focus:outline-none focus:border-violet-500"
+                                      className="w-full text-lg font-semibold text-gray-900 bg-transparent border-b border-gray-200 pb-2 mb-3 focus:outline-none focus:border-[#2C64E3]"
                                       placeholder="Seksjonstittel"
                                     />
                                     <textarea
                                       value={section.content}
                                       onChange={(e) => updateMinutesSection(index, 'content', e.target.value)}
                                       rows={4}
-                                      className="w-full text-gray-700 bg-white border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none"
+                                      className="w-full text-gray-700 bg-white border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#2C64E3] resize-none"
                                       placeholder="Seksjoninnhold"
                                     />
                                   </div>
@@ -793,10 +778,10 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
-                      className="bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-xl border border-violet-100 overflow-hidden"
+                      className="bg-gradient-to-r from-[#E4ECFF] to-[#F8FBFF] rounded-xl border border-[#CFE0FF] overflow-hidden"
                     >
-                      <div className="px-4 py-2 border-b border-violet-100">
-                        <h3 className="text-sm font-medium text-violet-700">Spill av opptaket</h3>
+                      <div className="px-4 py-2 border-b border-[#CFE0FF]">
+                        <h3 className="text-sm font-medium text-[#2C64E3]">Spill av opptaket</h3>
                       </div>
                       <MiniAudioPlayer
                         src=""
@@ -809,8 +794,6 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                         onSeek={handleSeek}
                         onVolumeChange={handleVolumeChange}
                         onPlaybackSpeedChange={handlePlaybackSpeedChange}
-                        onSkip={handleSkip}
-                        onDownload={() => setShowDownloadModal(true)}
                         isReady={true}
                         currentTranscript={currentTranscript}
                         currentSpeaker={currentSpeaker}
@@ -822,7 +805,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                     {transcription?.content && transcription.content.length > 0 ? (
                       <div
                         ref={transcriptionContainerRef}
-                        className="space-y-4 max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-violet-200 scrollbar-track-gray-100"
+                        className="space-y-4 max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-[#CFE0FF] scrollbar-track-gray-100"
                       >
                         {transcription.content.map((segment, index) => (
                           <div
@@ -831,13 +814,13 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                               "flex items-start space-x-4 p-2 rounded-lg transition-colors",
                               currentTimestamp >= segment.timestamp &&
                               currentTimestamp < (transcription.content[index + 1]?.timestamp || Infinity)
-                                ? "bg-violet-50"
+                                ? "bg-[#F0F5FF]"
                                 : "hover:bg-gray-50"
                             )}
                           >
                             <button
                               onClick={() => handleSeek(segment.timestamp)}
-                              className="w-16 flex-shrink-0 text-sm text-violet-600 hover:text-violet-700 cursor-pointer hover:underline"
+                              className="w-16 flex-shrink-0 text-sm text-[#2C64E3] hover:text-[#1F49C6] cursor-pointer hover:underline"
                             >
                               {new Date(segment.timestamp * 1000).toISOString().substr(14, 5)}
                             </button>
@@ -871,13 +854,6 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                 >
                   <Download className="h-5 w-5 mr-2" />
                   Last ned
-                </button>
-                <button
-                  onClick={() => setShowPresentationModal(true)}
-                  className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-[1.02] text-white justify-center py-3 flex items-center rounded-lg transition-all duration-200"
-                >
-                  <Presentation className="h-5 w-5 mr-2" />
-                  Lag presentasjon
                 </button>
                 <button
                   onClick={() => setShowShareModal(true)}
@@ -936,8 +912,6 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
               onSeek={handleSeek}
               onVolumeChange={handleVolumeChange}
               onPlaybackSpeedChange={handlePlaybackSpeedChange}
-              onSkip={handleSkip}
-              onDownload={() => setShowDownloadModal(true)}
               isReady={true}
               currentTranscript={currentTranscript}
               currentSpeaker={currentSpeaker}
@@ -957,15 +931,6 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
           meeting={downloadData}
         />
       )}
-
-      {/* Presentation Modal */}
-      <PresentationModal
-        isOpen={showPresentationModal}
-        onClose={() => setShowPresentationModal(false)}
-        meetingId={meeting.id}
-        meetingTitle={meeting.title}
-        meetingSummary={transcription?.summary_text || ''}
-      />
 
       {/* Share Summary Modal */}
       <ShareSummaryModal
@@ -1018,7 +983,7 @@ Møtet konkluderte med klare handlingspunkter og en felles forståelse av veien 
                 </button>
                 <button
                   onClick={confirmTemplateChange}
-                  className="px-4 py-1.5 text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors"
+                  className="px-4 py-1.5 text-sm font-medium text-white bg-[#2C64E3] hover:bg-[#1F49C6] rounded-lg transition-colors"
                 >
                   Bytt mal
                 </button>

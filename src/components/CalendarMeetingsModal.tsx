@@ -110,7 +110,7 @@ export default function CalendarMeetingsModal({
           <div className="p-5 border-b border-gray-200 flex-shrink-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="p-2.5 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl shadow-lg">
+                <div className="p-2.5 bg-gradient-to-br from-[#2C64E3] to-[#5A8DF8] rounded-xl shadow-lg">
                   <Calendar className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -200,7 +200,7 @@ export default function CalendarMeetingsModal({
                             "p-4 rounded-xl border transition-all",
                             meeting.status === 'completed'
                               ? "bg-gray-50 border-gray-200"
-                              : "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md"
+                              : "bg-white border-gray-200 hover:border-[#93C1FF] hover:shadow-md"
                           )}
                         >
                           <div className="flex items-start justify-between">
@@ -253,7 +253,7 @@ export default function CalendarMeetingsModal({
                                   className={cn(
                                     "flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
                                     isAutoRecordOn
-                                      ? "bg-violet-100 text-violet-600"
+                                      ? "bg-[#E4ECFF] text-[#2C64E3]"
                                       : "bg-gray-100 text-gray-500 hover:bg-gray-200"
                                   )}
                                 >
@@ -278,7 +278,7 @@ export default function CalendarMeetingsModal({
                           {meeting.status === 'upcoming' && onInviteAssistant && (
                             <button
                               onClick={() => onInviteAssistant(meeting)}
-                              className="mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white rounded-lg text-sm font-medium transition-all shadow-sm hover:shadow-md"
+                              className="mt-3 w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#2C64E3] to-[#5A8DF8] hover:from-[#1F49C6] hover:to-[#4A81EB] text-white rounded-lg text-sm font-medium transition-all shadow-sm hover:shadow-md"
                             >
                               <Sparkles className="h-4 w-4" />
                               <span>Inviter Notably-assistent</span>

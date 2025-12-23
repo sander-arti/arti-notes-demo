@@ -23,10 +23,7 @@ import {
   CheckCircle,
   ArrowRight,
   Sparkles,
-  Flame,
-  TrendingUp,
-  Zap,
-  Trophy
+  Zap
 } from 'lucide-react';
 import RecordingModal from '@/components/RecordingModal';
 import FileUploadModal from '@/components/FileUploadModal';
@@ -440,14 +437,8 @@ export default function DashboardPage() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mb-8 relative"
         >
-          {/* Bakgrunns-gradient blob */}
-          <div className="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-violet-400/30 to-fuchsia-400/30 rounded-full blur-3xl" />
-          <div className="absolute -top-5 right-20 w-32 h-32 bg-gradient-to-br from-fuchsia-400/20 to-pink-400/20 rounded-full blur-3xl" />
-
           {/* Glassmorphism card */}
-          <div className="relative backdrop-blur-xl bg-white/70 rounded-2xl border border-white/50 shadow-lg shadow-violet-500/5 p-6 overflow-hidden">
-            {/* Subtil shimmer-effekt */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite]" style={{ animationDelay: '1s' }} />
+          <div className="relative backdrop-blur-xl bg-white/70 rounded-2xl border border-white/50 shadow-lg shadow-[#2C64E3]/5 p-6">
 
             <div className="relative flex items-center justify-between">
               <div>
@@ -457,8 +448,8 @@ export default function DashboardPage() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="flex items-center gap-2 mb-1"
                 >
-                  <Sparkles className="h-5 w-5 text-violet-500" />
-                  <span className="text-sm font-medium text-violet-600">Velkommen tilbake</span>
+                  <Sparkles className="h-5 w-5 text-[#2C64E3]" />
+                  <span className="text-sm font-medium text-[#2C64E3]">Velkommen tilbake</span>
                 </motion.div>
                 <motion.h1
                   initial={{ opacity: 0, x: -10 }}
@@ -479,30 +470,10 @@ export default function DashboardPage() {
                     <Zap className="h-3.5 w-3.5" />
                     <span className="text-sm font-medium">{formatMinutesToHours(userStats.estimatedTimeSaved)} spart</span>
                   </div>
-
-                  {/* Streak */}
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-100/80 text-orange-700">
-                    <Flame className="h-3.5 w-3.5" />
-                    <span className="text-sm font-medium">{userStats.currentStreak} dager streak</span>
-                  </div>
-
-                  {/* Denne måneden */}
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-violet-100/80 text-violet-700">
-                    <TrendingUp className="h-3.5 w-3.5" />
-                    <span className="text-sm font-medium">{userStats.recordingsThisMonth} opptak i desember</span>
-                  </div>
                 </motion.div>
               </div>
 
-              {/* Trophy ikon - matcher gamification stats */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5, type: 'spring' }}
-                className="hidden md:flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-orange-500/30"
-              >
-                <Trophy className="h-7 w-7 text-white" />
-              </motion.div>
+              <div className="hidden md:block w-16" aria-hidden="true"></div>
             </div>
           </div>
         </motion.div>
@@ -510,10 +481,10 @@ export default function DashboardPage() {
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <button
-            className="feature-card flex items-center"
+            className="feature-card dashboard-card flex items-center"
             onClick={handleStartRecording}
           >
-            <div className="feature-icon mr-4">
+            <div className="feature-icon dashboard-feature-icon mr-4">
               <Mic className="h-5 w-5" />
             </div>
             <div className="text-left">
@@ -525,10 +496,10 @@ export default function DashboardPage() {
           </button>
 
           <button
-            className="feature-card flex items-center"
+            className="feature-card dashboard-card flex items-center"
             onClick={() => setShowUploadModal(true)}
           >
-            <div className="feature-icon mr-4">
+            <div className="feature-icon dashboard-feature-icon mr-4">
               <FileText className="h-5 w-5" />
             </div>
             <div className="text-left">
@@ -540,10 +511,10 @@ export default function DashboardPage() {
           </button>
 
           <button
-            className="feature-card flex items-center"
+            className="feature-card dashboard-card flex items-center"
             onClick={() => setShowDirectInviteModal(true)}
           >
-            <div className="feature-icon mr-4">
+            <div className="feature-icon dashboard-feature-icon mr-4">
               <Video className="h-5 w-5" />
             </div>
             <div className="text-left">
@@ -558,14 +529,14 @@ export default function DashboardPage() {
         {/* Search Bar */}
         <div className="bg-white rounded-xl shadow-sm p-4 mb-6">
           <div className="relative">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center">
               <div className="flex-1 relative">
                 <input
                   type="search"
                   placeholder="Søk i opptak, transkripsjoner, etiketter..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 pl-10 focus:border-violet-500 focus:ring-violet-500"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 pl-10 focus:border-[#2C64E3] focus:ring-[#2C64E3]"
                 />
                 {searchQuery ? (
                   <button
@@ -578,6 +549,30 @@ export default function DashboardPage() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 )}
               </div>
+            </div>
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-gray-500 mr-1">Periode:</span>
+                {[
+                  { value: 'total', label: 'Totalt' },
+                  { value: 'day', label: 'I dag' },
+                  { value: 'week', label: 'Denne uken' },
+                  { value: 'month', label: 'Denne måneden' }
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => setDateRange(option.value as 'total' | 'day' | 'week' | 'month')}
+                    className={cn(
+                      "px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                      dateRange === option.value
+                        ? "bg-[#2C64E3] text-white"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    )}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
               <button
                 onClick={() => {
                   setIsBulkEditMode(!isBulkEditMode);
@@ -586,36 +581,14 @@ export default function DashboardPage() {
                   }
                 }}
                 className={cn(
-                  "ml-4 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                  "text-sm font-medium transition-colors",
                   isBulkEditMode
-                    ? "bg-violet-100 text-violet-700"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "text-[#2C64E3]"
+                    : "text-gray-500 hover:text-gray-700"
                 )}
               >
                 {isBulkEditMode ? 'Avslutt redigering' : 'Rediger møter'}
               </button>
-            </div>
-            <div className="mt-3 flex items-center space-x-2">
-              <span className="text-xs text-gray-500 mr-1">Periode:</span>
-              {[
-                { value: 'total', label: 'Totalt' },
-                { value: 'day', label: 'I dag' },
-                { value: 'week', label: 'Denne uken' },
-                { value: 'month', label: 'Denne måneden' }
-              ].map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setDateRange(option.value as 'total' | 'day' | 'week' | 'month')}
-                  className={cn(
-                    "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                    dateRange === option.value
-                      ? "bg-violet-600 text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  )}
-                >
-                  {option.label}
-                </button>
-              ))}
             </div>
           </div>
         </div>
@@ -626,20 +599,16 @@ export default function DashboardPage() {
           <div className="lg:col-span-1 space-y-6">
             {/* Meny - Quick Access */}
             <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-              <div className="px-4 py-3 bg-gradient-to-r from-violet-50 to-fuchsia-50 border-b border-violet-100">
+              <div className="px-4 py-3 bg-gradient-to-r from-[#E4ECFF] to-[#F0F5FF] border-b border-[#CFE0FF]">
                 <div className="flex items-center space-x-2">
-                  <div className="p-1 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-md">
+                  <div className="p-1 bg-gradient-to-br from-[#2C64E3] to-[#5A8DF8] rounded-md">
                     <Zap className="h-3.5 w-3.5 text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-900">Meny</h3>
                 </div>
               </div>
 
-              {/* Calendar Mini Card */}
-              <div className={cn(
-                "p-3 border-b border-gray-100",
-                !isCalendarConnected && "bg-gradient-to-r from-violet-50/50 to-fuchsia-50/50"
-              )}>
+              <div className="p-3 border-b border-gray-100">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-2">
                     <div className={cn(
@@ -650,7 +619,7 @@ export default function DashboardPage() {
                     )}>
                       <CalendarIcon className={cn(
                         "h-4 w-4",
-                        isCalendarConnected ? "text-green-600" : "text-violet-600"
+                        isCalendarConnected ? "text-green-600" : "text-[#2C64E3]"
                       )} />
                     </div>
                     <span className="font-medium text-sm text-gray-900">Kalender</span>
@@ -689,7 +658,7 @@ export default function DashboardPage() {
                     })()}
                     <button
                       onClick={() => setShowCalendarMeetingsModal(true)}
-                      className="w-full text-xs font-medium text-violet-600 hover:text-violet-700 flex items-center justify-center py-1.5 rounded-lg bg-violet-50 hover:bg-violet-100 transition-colors"
+                      className="w-full text-xs font-medium text-[#2C64E3] hover:text-[#1F49C6] flex items-center justify-center py-1.5 rounded-lg bg-[#F0F5FF] hover:bg-[#E0EBFF] transition-colors"
                     >
                       Se alle møter
                       <ArrowRight className="h-3 w-3 ml-1" />
@@ -707,7 +676,7 @@ export default function DashboardPage() {
                           setIsCalendarConnected(true);
                           toast.success('Microsoft 365 kalender tilkoblet!');
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 hover:border-violet-300 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 hover:border-[#93C1FF] transition-colors"
                       >
                         <svg className="h-3 w-3 mr-1" viewBox="0 0 23 23">
                           <path fill="#f35325" d="M1 1h10v10H1z"/>
@@ -722,7 +691,7 @@ export default function DashboardPage() {
                           setIsCalendarConnected(true);
                           toast.success('Google Calendar tilkoblet!');
                         }}
-                        className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 hover:border-violet-300 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 hover:border-[#93C1FF] transition-colors"
                       >
                         <svg className="h-3 w-3 mr-1" viewBox="0 0 24 24">
                           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -743,8 +712,8 @@ export default function DashboardPage() {
                 className="flex items-center justify-between px-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors group"
               >
                 <div className="flex items-center space-x-2">
-                  <div className="p-1.5 rounded-lg bg-amber-100">
-                    <FileText className="h-4 w-4 text-amber-600" />
+                  <div className="p-1.5 rounded-lg bg-slate-100">
+                    <FileText className="h-4 w-4 text-slate-600" />
                   </div>
                   <span className="font-medium text-sm text-gray-900">Maler</span>
                 </div>
@@ -785,7 +754,7 @@ export default function DashboardPage() {
                     value={newFolderName}
                     onChange={(e) => setNewFolderName(e.target.value)}
                     placeholder="Mappenavn..."
-                    className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:ring-violet-500"
+                    className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-[#2C64E3] focus:ring-[#2C64E3]"
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') handleAddFolder();
                       if (e.key === 'Escape') setShowNewFolderInput(false);
@@ -793,7 +762,7 @@ export default function DashboardPage() {
                   />
                   <button
                     onClick={handleAddFolder}
-                    className="p-1.5 bg-violet-600 text-white rounded-lg hover:bg-violet-700"
+                    className="p-1.5 bg-[#2C64E3] text-white rounded-lg hover:bg-[#1F49C6]"
                   >
                     <FolderPlus className="h-4 w-4" />
                   </button>
@@ -812,7 +781,7 @@ export default function DashboardPage() {
                   className={cn(
                     "w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors",
                     !activeFolder
-                      ? "bg-violet-50 text-violet-600"
+                      ? "bg-[#F0F5FF] text-[#2C64E3]"
                       : "text-gray-600 hover:bg-gray-50"
                   )}
                 >
@@ -830,7 +799,7 @@ export default function DashboardPage() {
                       className={cn(
                         "w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors",
                         activeFolder === folder.id
-                          ? "bg-violet-50 text-violet-600"
+                          ? "bg-[#F0F5FF] text-[#2C64E3]"
                           : "text-gray-600 hover:bg-gray-50"
                       )}
                     >
@@ -891,7 +860,7 @@ export default function DashboardPage() {
                     className={cn(
                       "inline-flex items-center px-3 py-1 rounded-full text-sm transition-colors",
                       activeTags.has(tag.id)
-                        ? "bg-violet-600 text-white"
+                        ? "bg-[#2C64E3] text-white"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     )}
                   >
@@ -908,7 +877,7 @@ export default function DashboardPage() {
             <div className="space-y-4">
               {isLoading ? (
                 <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-violet-600 mx-auto"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#2C64E3] mx-auto"></div>
                   <p className="text-gray-600 mt-4">Henter opptak...</p>
                 </div>
               ) : error ? (
@@ -929,8 +898,8 @@ export default function DashboardPage() {
                     <div
                       key={recording.id}
                       className={cn(
-                        "feature-card flex items-center justify-between group",
-                        selectedRecordings.has(recording.id) && "bg-violet-50/50 border-violet-200"
+                        "feature-card dashboard-card flex items-center justify-between group",
+                        selectedRecordings.has(recording.id) && "bg-[#E4ECFF]/60 border-[#CFE0FF]"
                       )}
                     >
                       <div
@@ -939,10 +908,10 @@ export default function DashboardPage() {
                         {isBulkEditMode && (
                         <button
                           onClick={() => toggleRecordingSelection(recording.id)}
-                          className="p-2 hover:bg-violet-100 rounded-lg transition-colors"
+                          className="p-2 hover:bg-[#E4ECFF] rounded-lg transition-colors"
                         >
                           {selectedRecordings.has(recording.id) ? (
-                            <CheckSquare className="h-5 w-5 text-violet-600" />
+                            <CheckSquare className="h-5 w-5 text-[#2C64E3]" />
                           ) : (
                             <Square className="h-5 w-5 text-gray-400" />
                           )}
@@ -972,7 +941,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
                               {recording.folder_id && (
-                                <span className="inline-flex items-center px-2 py-1 rounded-md bg-violet-50 text-violet-600 text-xs">
+                                <span className="inline-flex items-center px-2 py-1 rounded-md bg-[#F0F5FF] text-[#2C64E3] text-xs">
                                   <Folder className="h-3 w-3 mr-1" />
                                   {folders.find(f => f.id === recording.folder_id)?.name}
                               </span>
